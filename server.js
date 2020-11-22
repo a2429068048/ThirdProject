@@ -29,7 +29,7 @@ app.use(body.urlencoded({extended:true}));
 // 页面跳转（views）
 app.use(require("./router/toPage"));
 
-
+require("./db");
 
 
 // 服务器端口监听
