@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发现</title>
+    {{include "./commend.html"}}
+    <style>
+        .content>section {
+            padding: 16px;
+            background-color: white;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .content>section img {
+            width: 100%;
+        }
+        .content .pics img {
+            width: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .content .text {
+            position: absolute;
+            width: 85%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+        .content .mytitle {
+            font-size: 20px;
+            
+        }
+        .content .info {
+            margin: 10px 0;
+        }
+        .content a {
+            color: #3d4145;
+            padding: 4px 14px;
+            border: 1px solid black;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        {{include "./footer.html"}}
+        <div class="content">
+            <section data-href="/community">
+                <img src="/img/discovery/community.png" alt="">
+                <div class="text">
+                    <div class="top">
+                        <div class="mytitle">社区</div>
+                        <div class="info">共有80w+人参加</div>
+                        <ul class="pics line">
+                            <li></li>
+                            <li></li>
+                            <li>
+                                <img src="/img/discovery/ellipse.png" alt="">
+                            </li>
+                            <li>
+                                <img src="/img/discovery/ellipse.png" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="javascript:;">立即查看</a>
+                </div>
+            </section>
+            <section data-href="/flower">
+                <img src="/img/discovery/saver.png" alt="">
+                <div class="text">
+                    <div class="top">
+                        <div class="mytitle">鲜花养护</div>
+                        <div class="info">鲜花之美需精心呵护</div>
+                    </div>
+                    <a href="javascript:;">立即查看</a>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        $("section").click(function () {
+            location.href = $(this).data("href");
+        })
+    </script>
+</body>
+
+</html>

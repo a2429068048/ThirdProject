@@ -11,6 +11,17 @@ router.get("/", (req, res) => {
 
 
 
+//------- 发现 ---------
+router.get("/discovery", (req, res) => {
+    res.render("discovery");
+})
+
+//------- 社区 ----------
+router.get("/community", (req, res) => {
+    res.render("community");
+})
+
+
 
 
 

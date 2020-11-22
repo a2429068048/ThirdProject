@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  {{include "./commend.html"}}
+
+  <style>
+    .bar,
+    .content {
+      position: static;
+
+    }
+
+    .searchbar>.line {
+      align-items: center;
+    }
+
+    .line>.search-input {
+      flex: 1;
+
+    }
+
+    .line>span {
+      font-size: 16px;
+      margin-left: 6px;
+    }
+
+    .swiper-slide {
+      background-color: white;
+      /* width: 100px !important; */
+      /* flex: 0; */
+      /* margin: 6px; */
+      margin-top: 6px;
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .box img {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: inline-block;
+      vertical-align: top;
+      
+    }
+
+    .box .imgs {
+      justify-content: center;
+
+    }
+
+    .box .imgs img:first-child {
+      margin-right: 10px;
+    }
+
+    .box .userInfo img {
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      /* position: relative; */
+    }
+
+    .box .userInfo .userPic {
+      /* padding: 2px; */
+      
+      border: 1px solid white;
+      border-radius: 50%;
+      overflow: hidden;
+      font-size: 0;
+      /* box-sizing: content-box; */
+    }
+    .box .userInfo .user {
+      justify-content: center;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="page">
+    <div class="bar com-bar">
+      <div class="searchbar">
+        <form action="" class="line">
+          <div class="search-input">
+            <label class="icon icon-search" for="search"></label>
+            <input type="search" id='search' placeholder='输入关键字...' />
+          </div>
+          <span>搜索</span>
+        </form>
+      </div>
+    </div>
+    <div class="content">
+      <div class="swiper-container">
+        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+          <div class="swiper-slide">
+            <div class="box">
+              <div class="imgs line">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+              </div>
+              <div class="userInfo">
+                <div class="user line">
+                  <div class="userPic">
+                    <img
+                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+                    alt="">
+                  </div>
+                  <span>1</span>
+                </div>
+                <div>
+                  花艺摄影达人
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="box">
+              <div class="imgs line">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+              </div>
+              <div class="userInfo">
+                <div class="user line">
+                  <div class="userPic">
+                    <img
+                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+                    alt="">
+                  </div>
+                  <span>1</span>
+                </div>
+                <div>
+                  花艺摄影达人
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="box">
+              <div class="imgs line">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+              </div>
+              <div class="userInfo">
+                <div class="user line">
+                  <div class="userPic">
+                    <img
+                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+                    alt="">
+                  </div>
+                  <span>1</span>
+                </div>
+                <div>
+                  花艺摄影达人
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="box">
+              <div class="imgs line">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+              </div>
+              <div class="userInfo">
+                <div class="user line">
+                  <div class="userPic">
+                    <img
+                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+                    alt="">
+                  </div>
+                  <span>1</span>
+                </div>
+                <div>
+                  花艺摄影达人
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(function () {
+      $(".swiper-container").swiper({
+        // setWrapperSize:true,
+        slidesPerView: 3.4,
+        spaceBetween: 6,
+        slidesOffsetAfte:6,
+        slidesOffsetBefore:6,
+      });
+    })
+
+    // var mySwiper = new Swiper('.swiper-container', );
+  </script>
+</body>
+
+</html>
