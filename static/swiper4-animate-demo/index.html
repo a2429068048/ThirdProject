@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Swiper demo</title>
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <!-- Demo styles -->
+  <style>
+    * {
+	margin: 0;
+	padding: 0;
+	}
+	.blue-slide {
+		background: #4390EE;
+	}
+	.red-slide {
+		background: #CA4040;
+	}
+	.orange-slide {
+		background: #FF8604;
+	}
+	.swiper-slide {
+		line-height: 300px;
+		color: #fff;
+		font-size: 36px;
+		text-align: center;
+	}
+
+  </style>
+</head>
+<body>
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+    <div class="swiper-slide blue-slide"><p class="ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">内容</p></div>
+    <div class="swiper-slide red-slide"><p class="ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">内容</p></div>
+    <div class="swiper-slide orange-slide"><p class="ani" swiper-animate-effect="shake" swiper-animate-duration="1.5s" swiper-animate-delay="0s">内容</p></div>
+  </div>
+
+  </div>
+  <!-- Swiper JS -->
+  <script src="js/swiper.min.js"></script>
+  <script src="js/swiper.animate.min.js"></script>
+  <!-- Initialize Swiper -->
+  <script>
+    var mySwiper = new Swiper('.swiper-container',{
+    on:{
+      init: function(){
+        swiperAnimateCache(this); //隐藏动画元素 
+        this.emit('slideChangeTransitionEnd');//在初始化时触发一次slideChangeTransitionEnd事件
+      }, 
+      slideChangeTransitionEnd: function(){ 
+        swiperAnimate(this); //每个slide切换结束时运行当前slide动画
+		this.slides.eq(this.activeIndex).find('.ani').removeClass('ani');//动画只展示一次
+      } 
+    }
+  });
+
+  </script>
+</body>
+</html>
