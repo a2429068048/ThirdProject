@@ -4,8 +4,258 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="swiper4-animate-demo/css/swiper.min.css">
+    {{include "./commend.html"}}
+    <style>
+        body{
+            background-color: white;
+            overflow: auto;
+        }
+        header{
+            width: 100%;
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+        }
+        header::-webkit-scrollbar{
+            height: 0;
+        }
+        header ul{
+            width: 123%;
+            display: flex;
+            font-size: 12px;
+            padding: 12px 0 0 0;
+            background-color: white;
+        }
+        header ul li{
+            padding-right: 28px;
+            
+        }
+        header ul li:nth-last-of-type(1){
+            padding-right: 12px;
+        }
+        header ul li:nth-of-type(1){
+            font-weight: 600;
+            border-bottom: 2px solid black;
+            padding: 0 16px;
+            padding-bottom: 8px;
+            margin-right: 12px;
+        }
+        main{
+            margin-top: 40px;
+        }
+        .more ul li{
+            font-size: 0;
+        }
+        .more ul li img{
+            width: 25%;
+        }
+        .more ul li:nth-of-type(1) img:nth-of-type(1){
+            width: 50%;
+        }
+        .more ul li:nth-of-type(2) img{
+            height: 67px;
+        }
+        .activity{
+            margin: 24px 20px;
+            margin-bottom: 16px;
+        }
+        .activity img{
+            width: 115px;
+            height: 65px;
+            margin-right: 5px;
+        }
+        .activity li:nth-of-type(1){
+            margin: 12px 0;
+        }
+        .bannerOne img{
+            width: 100%;
+        }
+        .groupBuy_nav p{
+            margin: 0;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        .groupBuy_nav p,.groupBuy_nav span{
+            color: #888584;
+        }
+        .groupBuy{
+            width: 90%;
+            margin: 22px auto;
+        }
+        .groupBuy_nav{
+            display: flex;
+            justify-content: space-between;
+        }
+        .groupBuy_nav span{
+            display: inline-block;
+            margin-top: 22px;
+        }
+        .groupBuy_nav span:nth-of-type(1){
+            color: red;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .content{
+            position: static;
+        }
+        .swiper-container{
+          --swiper-theme-color: #ff6600;
+          --swiper-pagination-color: #00ff33;/* 两种都可以 */
+        }
+        .banner .swiper-wrapper img{
+            width: 100%;
+        }
+        .swiper-pagination-bullet-active{
+            background-color: white;
+            width: 22px !important;
+            opacity: 1 !important;
+        }
+        .swiper-pagination-bullet{
+            width: 11px;
+            height: 3px;
+            border-radius: 0;
+            background-color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            bottom: 30px;
+        }
+        .groupBuy_nav_img{
+            width: 152px;
+            height: 101px;
+            overflow: hidden;
+        }
+        .groupBuy_nav_img img{
+            width: 100%;
+            position: relative;
+            bottom: 35px;
+        }
+        .groupBuy .swiper-slide>ul{
+            display: flex;
+        }
+        .groupBuy_nav_icon{
+            display: inline-block !important;
+            width: 14px;
+        }
+        .groupBuy .swiper-slide>ul{
+            font-size: 12px;
+        }
+        .groupBuy .swiper-slide>ul p:nth-of-type(1){
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .groupBuy .swiper-slide>ul p span{
+            color: red;
+        }
+        .groupBuy .swiper-slide>ul li:nth-of-type(2){
+            margin-left: 18px;
+        }
+        .countdown{
+            margin: 0 0 0 8px;
+            position: relative;
+            bottom: 2px;
+        }
+    </style>
 </head>
 <body>
-    这是首页
+    <header>
+        <ul>
+            <li><span>推荐</span></li>
+            <li><span>包月鲜花</span></li>
+            <li><span>礼品花束</span></li>
+            <li><span>绿植多肉</span></li>
+            <li><span>F+物制所</span></li>
+            <li><span>家居生活</span></li>
+        </ul>
+    </header>
+    <main>
+        <div class="banner">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000002.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000003.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000004.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000005.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000006.jpg" alt=""></div>
+                    <div class="swiper-slide"><img src="img/index/推荐/ia_100000007.jpg" alt=""></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="more">
+            <ul>
+                <li>
+                    <img src="img/index/推荐/ia_100000008.png" alt="">
+                    <img src="img/index/推荐/ia_100000009.png" alt="">
+                    <img src="img/index/推荐/ia_100000010.png" alt="">
+                </li>
+                <li>
+                    <img src="img/index/推荐/ia_100000011.png" alt="">
+                    <img src="img/index/推荐/ia_100000012.png" alt="">
+                    <img src="img/index/推荐/ia_100000013.png" alt="">
+                    <img src="img/index/推荐/ia_100000014.png" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="activity">
+            <ul>
+                <li><b>活动专区</b></li>
+                <li>
+                    <img src="img/index/推荐/ia_100000015.png" alt="">
+                    <img src="img/index/推荐/ia_100000016.png" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="bannerOne">
+            <img src="img/index/推荐/ia_100000017.jpg" alt="">
+        </div>
+        <div class="groupBuy">
+            <div class="groupBuy_nav">
+                <section>
+                    <b>限时团购</b>
+                    <p>FLASH SALE</p>
+                </section>
+                <section>
+                    <span>1</span>
+                    <span>/17</span>
+                </section>
+            </div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="swiper-slide">
+                            <ul>
+                                <li class="groupBuy_nav_img"><img src="img/index/推荐/ia_100000018.png" alt=""></li>
+                                <li>
+                                    <div>
+                                        <img src="img/index/推荐/ia_100000078.svg" alt="" class="groupBuy_nav_icon">
+                                        <span class="countdown">天</span>
+                                    </div>
+                                    <p>年度首发！银柳30枝起</p>
+                                    <p><del>原价￥79.00</del><span>￥39.00</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination"></div> -->
+            </div>
+        </div>
+        
+    </main>
+    <script src="swiper4-animate-demo/js/swiper.min.js"></script>
+    <script language="javascript"> 
+        var mySwiper = new Swiper('.banner .swiper-container',{
+            autoplay:true,
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        })
+        var mySwiper = new Swiper('.swiper-container',{
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        })
+    </script>
 </body>
 </html>
