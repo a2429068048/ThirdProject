@@ -9,19 +9,41 @@
   {{include "./commend.html"}}
 
   <style>
-    .bar,
-    .content {
-      position: static;
+    img {
+      width: 100%;
+      vertical-align: top;
+    }
 
+    .com-bar {
+      position: static;
+    }
+
+    .head {
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .bar,
+    .bar .searchbar,
+    .top {
+      background-color: white;
+
+    }
+
+    .searchbar input {
+      background-color: #efeff4;
+      border-radius: 10px;
     }
 
     .searchbar>.line {
       align-items: center;
+      color: #999;
     }
 
     .line>.search-input {
       flex: 1;
-
     }
 
     .line>span {
@@ -29,33 +51,60 @@
       margin-left: 6px;
     }
 
-    .swiper-slide {
+    .head .swiper-container {
+      padding-bottom: 0;
+    }
+
+    .head .swiper-slide {
       background-color: white;
-      /* width: 100px !important; */
-      /* flex: 0; */
-      /* margin: 6px; */
       margin-top: 6px;
       padding: 6px;
       border-radius: 6px;
       font-size: 12px;
+      border: 1px solid #666;
     }
 
     .box img {
-      width: 40px;
-      height: 40px;
+      width: 46px;
+      height: 46px;
       border-radius: 6px;
       display: inline-block;
       vertical-align: top;
-      
+
     }
+
 
     .box .imgs {
       justify-content: center;
-
+      position: relative;
     }
 
-    .box .imgs img:first-child {
+    .box .imgs>img:first-child {
       margin-right: 10px;
+    }
+
+    .add {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 10%;
+      bottom: -15%;
+      box-shadow: 0 0 2px grey;
+    }
+
+    .box .add img {
+      width: 80%;
+      height: 80%;
+    }
+
+    .box .userInfo {
+      padding-left: 6px;
     }
 
     .box .userInfo img {
@@ -63,19 +112,234 @@
       width: 24px;
       height: 24px;
       /* position: relative; */
+      margin: 0;
     }
 
     .box .userInfo .userPic {
       /* padding: 2px; */
-      
-      border: 1px solid white;
-      border-radius: 50%;
+
+      padding: 6px 4px 4px 3px;
+      /* border-radius: 50%; */
       overflow: hidden;
       font-size: 0;
       /* box-sizing: content-box; */
-    }
-    .box .userInfo .user {
+      background: url(/img/discovery/userPicBg.png);
+      background-size: 100% 100%;
+      background-position: center center;
+      display: flex;
       justify-content: center;
+      align-items: center;
+
+    }
+
+    .box .userInfo .user {
+      /* justify-content: center; */
+      align-items: center;
+      margin: 10px 0;
+
+    }
+
+    .menue {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menue a {
+      color: #333;
+      display: block;
+      padding: 10px 0 7px;
+      font-weight: 200;
+      border-bottom: 3px solid transparent;
+    }
+
+    .menue li:first-child~li {
+      margin-left: 20px;
+    }
+
+    .menue li.active a {
+      color: black;
+      font-weight: 500;
+      border-bottom-color: #FF6772;
+    }
+
+    .content-body {
+      justify-content: space-between;
+      padding: 0 10px;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    .content-body>div {
+      flex: 1;
+    }
+
+    .content-body>div:first-child {
+      margin-right: 5px;
+    }
+
+    .content-body>div:last-child {
+      margin-left: 5px;
+    }
+
+    /* 信息盒子 */
+    .content-body .infos {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .content-body .text {
+      padding: 4px;
+    }
+
+    .content-body .label {
+      padding: 4px;
+    }
+
+    .content-body .label span {
+      padding: 2px 4px;
+      background-color: #fdeeef;
+      color: #f25c62;
+
+    }
+
+    .content-body .describe {
+      min-height: 34px;
+      font-weight: 500;
+      line-height: 16px;
+      color: #333333;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .content-body .user {
+      justify-content: space-between;
+      align-items: center;
+      margin: 6px 0;
+    }
+
+    .content-body .user img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .content-body .user .userInfo img {
+      border-radius: 50%;
+    }
+
+    .content-body .user .up {
+      align-items: center;
+    }
+
+    .content-body .user .up img {
+      width: 16px;
+      height: 16px;
+
+    }
+
+    /* 关注 */
+    .likeBox {
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .likeBox .likeTitle {
+
+      padding: 6px 4px;
+      justify-content: space-between;
+    }
+
+    .likeBox .likeTitle .line>span {
+      font-size: 14px
+    }
+
+    .likeBox .likeTitle .line .level {
+      color: orange;
+    }
+
+    .likeBox .likeTitle .titleRight {
+      position: relative;
+      right: 3px;
+      top: 10px;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid #030304;
+      border-right: 1px solid #030304;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+      z-index: 1;
+    }
+
+    .likeBox .likeTitle .line {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .likeBox .likeTitle img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
+
+    .likeBox .text {
+      font-size: 14px;
+      padding: 10px 10px 0;
+    }
+
+    .likeBox .label {
+      /* font-size: 14px; */
+      letter-spacing: 2px;
+    }
+
+    .likeBox .describe {
+      line-height: 20px;
+    }
+
+    .likeBox .time {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .likeBox .likeFoot {
+      padding: 20px 0;
+      align-items: center;
+      border-bottom: 1px solid rgb(217, 246, 255);
+    }
+
+    .likeBox .likeFoot .num {
+      position: relative;
+      top: -8px;
+      right: 4px;
+    }
+
+    .likeBox .likeFoot .up section {
+      margin-left: 4px;
+    }
+
+    .likeBox .comment p {
+      margin: 0;
+      padding: 0 10px 10px;
+      font-size: 14px;
+    }
+
+    .commentBar input {
+      flex: 5;
+      border: 1px solid #999;
+      border-radius: 10px;
+      font-size: 16px;
+      padding: 6px 10px;
+      margin-left: 20px;
+      font-size: 15px;
+    }
+
+    .commentBar span {
+      flex: 1;
+      color: #f25c62;
+      font-size: 15px;
     }
   </style>
 
@@ -83,121 +347,303 @@
 
 <body>
   <div class="page">
-    <div class="bar com-bar">
-      <div class="searchbar">
-        <form action="" class="line">
-          <div class="search-input">
-            <label class="icon icon-search" for="search"></label>
-            <input type="search" id='search' placeholder='输入关键字...' />
+    <div class="head">
+      <div class="bar com-bar">
+        <div class="searchbar">
+          <form action="" class="line">
+            <div class="search-input">
+              <label class="icon icon-search" for="search"></label>
+              <input type="search" id='search' placeholder='输入关键字...' />
+            </div>
+            <span>搜索</span>
+          </form>
+        </div>
+      </div>
+      <div class="top">
+        <div class="swiper-container">
+          <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide">
+              <div class="box">
+                <div class="imgs line">
+                  <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                  <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+                  <div class="add">
+                    <img src="/img/discovery/add.png" alt="">
+                  </div>
+                </div>
+                <div class="userInfo">
+                  <div class="user line">
+                    <div class="userPic">
+                      <img
+                        src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+                        alt="">
+                    </div>
+                    <span>1</span>
+                  </div>
+                  <div>
+                    花艺摄影达人
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <span>搜索</span>
-        </form>
+        </div>
+
+        <!-- 列表菜单 -->
+        <ul class="menue line">
+          <li class="like"><a href="javascript:;" >关注</a></li>
+          <li class="recomend"><a href="javascript:;" >推荐</a></li>
+          <li class="active new"><a href="javascript:;" >最新</a></li>
+        </ul>
       </div>
     </div>
-    <div class="content">
-      <div class="swiper-container">
-        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-          <div class="swiper-slide">
-            <div class="box">
-              <div class="imgs line">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+    {{include "./disBartab.html"}}
+    <nav class="bar bar-tab commentBar line" style="display:none;">
+      <a class="tab-item external active line">
+        <input type="text" class="tab-label" name="comment" placeholder="想说啥，听你的，哪怕点个赞也是可以的">
+        <span class="tab-label send">发送</span>
+      </a>
+    </nav>
+    <div class="content  pull-to-refresh-content" data-ptr-distance="55">
+      <div class="pull-to-refresh-layer" style="display: none;">
+        <div class="preloader"></div>
+      </div>
+      <div class="content-body line">
+        <div class="left" style="display: none;">
+          <div class="infos">
+            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060980071847.jpg!750" alt="">
+            <div class="text">
+              <div class="label"><span><i>#</i>收花打卡</span></div>
+              <div class="describe">
+                把迷藏高级货拿出来
+                很野兽派
+                其他给的啥不重要了
+                粉色凤梨🍍看着是冷库里出来的
+                要不要给她们消毒呢😂
               </div>
-              <div class="userInfo">
-                <div class="user line">
-                  <div class="userPic">
-                    <img
-                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+              <div class="user line">
+                <div class="userInfo line">
+                  <img
+                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
                     alt="">
-                  </div>
-                  <span>1</span>
+                  <span>connnie</span>
                 </div>
-                <div>
-                  花艺摄影达人
+                <div class="up line">
+                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                  <span>0</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="swiper-slide">
-            <div class="box">
-              <div class="imgs line">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
+          <div class="infos">
+            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060980071847.jpg!750" alt="">
+            <div class="text">
+              <div class="label"><span><i>#</i>收花打卡</span></div>
+              <div class="describe">
+                把迷藏高级货拿出来
+                很野兽派
+                其他给的啥不重要了
+                粉色凤梨🍍看着是冷库里出来的
+                要不要给她们消毒呢😂
               </div>
-              <div class="userInfo">
-                <div class="user line">
-                  <div class="userPic">
-                    <img
-                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
+              <div class="user line">
+                <div class="userInfo line">
+                  <img
+                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
                     alt="">
-                  </div>
-                  <span>1</span>
+                  <span>connnie</span>
                 </div>
-                <div>
-                  花艺摄影达人
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="box">
-              <div class="imgs line">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-              </div>
-              <div class="userInfo">
-                <div class="user line">
-                  <div class="userPic">
-                    <img
-                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
-                    alt="">
-                  </div>
-                  <span>1</span>
-                </div>
-                <div>
-                  花艺摄影达人
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="box">
-              <div class="imgs line">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-              </div>
-              <div class="userInfo">
-                <div class="user line">
-                  <div class="userPic">
-                    <img
-                    src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
-                    alt="">
-                  </div>
-                  <span>1</span>
-                </div>
-                <div>
-                  花艺摄影达人
+                <div class="up line">
+                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                  <span>0</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="right" style="display: none;">
+          <div class="infos">
+            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060958432689.jpg!750" alt="">
+            <div class="text">
+              <div class="label" style="display: none;"><span><i>#</i>收花打卡</span></div>
+              <div class="describe">
+                把迷藏高级货拿出来
+                很野兽派
+                其他给的啥不重要了
+                粉色凤梨🍍看着是冷库里出来的
+                要不要给她们消毒呢😂
+              </div>
+              <div class="user line">
+                <div class="userInfo line">
+                  <img
+                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
+                    alt="">
+                  <span>connnie</span>
+                </div>
+                <div class="up line">
+                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                  <span>0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="infos">
+            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060958432689.jpg!750" alt="">
+            <div class="text">
+              <div class="label" style="display: none;"><span><i>#</i>收花打卡</span></div>
+              <div class="describe">
+                把迷藏高级货拿出来
+                很野兽派
+                其他给的啥不重要了
+                粉色凤梨🍍看着是冷库里出来的
+                要不要给她们消毒呢😂
+              </div>
+              <div class="user line">
+                <div class="userInfo line">
+                  <img
+                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
+                    alt="">
+                  <span>connnie</span>
+                </div>
+                <div class="up line">
+                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                  <span>0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="likeBox" style="display:none;">
+          <div class="likeTitle line">
+            <div class="titleLeft line">
+              <img src="https://oss.flowerplus.cn/sns_user_image/20190701/15619648456774.jpg" alt="">
+              <span>FLŌWERPLUS</span>
+              <span class="level">Lv.1</span>
+            </div>
+            <div class="titleRight">
+
+            </div>
+          </div>
+          <div class="goodsImg">
+            <img src="https://oss.flowerplus.cn/sns_user_image/20200910/15997048019883.png!750" alt="">
+          </div>
+          <div class="text">
+            <div class="label"><span><i>#</i>收花打卡</span></div>
+            <div class="describe">
+              把迷藏高级货拿出来
+              很野兽派
+              其他给的啥不重要了
+              粉色凤梨🍍看着是冷库里出来的
+              要不要给她们消毒呢😂
+            </div>
+            <div class="user line likeFoot">
+              <div>
+                <span class="time">2020-09-10 10:27:48 </span>
+              </div>
+              <div class="up line">
+                <section class="collect">
+                  <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt="">
+                  <span class="num">0</span>
+                </section>
+                <section class="good">
+                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                  <span class="num">0</span>
+                </section>
+              </div>
+            </div>
+          </div>
+          <!-- 评论 -->
+          <div class="comment">
+            <p>添加评论....</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <script>
-    $(function () {
-      $(".swiper-container").swiper({
-        // setWrapperSize:true,
-        slidesPerView: 3.4,
-        spaceBetween: 6,
-        slidesOffsetAfte:6,
-        slidesOffsetBefore:6,
-      });
-    })
+    {{include "./script.html"}}
+    <script>
+      // $.init();
+      $(function () {
+        let height = $(".head").innerHeight();
+        $(".content").css({
+          marginTop: height
+        })
+        $(".head .swiper-container").swiper({
+          // setWrapperSize:true,
+          slidesPerView: 3.2,
+          spaceBetween: 6,
+          slidesOffsetAfte: 6,
+          slidesOffsetBefore: 6,
+        });
+        $.initPullToRefresh('.pull-to-refresh-content')
+        $(document).on('refresh', '.pull-to-refresh-content', function (e) {
+          $.pullToRefreshDone('.pull-to-refresh-content')
+        });
 
-    // var mySwiper = new Swiper('.swiper-container', );
-  </script>
+        // 滚动监听
+        // $(".content").scroll(function () {
+        //   if ($(this).scrollTop() > 200) {
+        //     // 记录高度
+        //     $(".head").slideUp(1000);
+        //     console.log($(".content:animated"));
+        //     if (!$(".content").is(":animated")) {
+        //       $(this).animate({
+        //         marginTop: 0
+        //       }, 1000, () => {
+        //         if ($(this).scrollTop() < 200) {
+        //           $(".head").slideDown(1000);
+        //           $(this).animate({
+        //             marginTop: height
+        //           }, 1000)
+        //         }
+        //       });
+        //     }
+
+        //   }
+        // })
+
+        // 头部菜单栏切换
+        $(".menue li").click(function () {
+          $.showIndicator("正在载入");
+          $(this).addClass("active").siblings().removeClass("active");
+          console.log($(this))
+          console.log($(this).hasClass("like"))
+          if ($(this).hasClass("like")) {
+            setTimeout(function () {
+              $(".content-body").children().hide();
+              $(".likeBox").show();
+              $.hideIndicator();
+            }, 2000);
+
+          } else {
+            setTimeout(function () {
+              $(".content-body").children().show();
+              $(".likeBox").hide();
+              $.hideIndicator();
+            }, 2000);
+          }
+        });
+
+        // 添加评论
+        $(".comment p").click(function () {
+          // 评论框显示
+          this.isclick = !this.isclick;
+          // console.log(this.click)
+          if (this.isclick) {
+            // footBar消失，评论框出现
+            $(".footBar").css("display", "none");
+            $(".commentBar").css("display", "flex");
+          } else {
+            $(".footBar").css("display", "flex");
+            $(".commentBar").css("display", "none");
+          }
+        })
+
+      });
+
+
+
+    </script>
 </body>
 
 </html>

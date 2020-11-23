@@ -1,0 +1,75 @@
+<style>
+  .bar-tab {
+    justify-content: space-around;
+    align-items: center;
+  }
+  .bar-tab .tab-item {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .bar-tab>.tab-item.active {
+    color: black;
+  }
+
+  #append {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #FF6772;
+    margin: 0;
+    margin: auto;
+    position: relative;
+    top: -10px;
+    z-index: 111;
+    /* position: relative; */
+  }
+  #append::before,
+  #append::after {
+    content:"";
+    position:absolute;
+    width: 50%;
+    height: 5%;
+    background-color: white;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #append::after {
+    height: 50%;
+    width: 5%;
+  }
+</style>
+<nav class="bar bar-tab line footBar">
+  <a class="tab-item external active" href="#" data-type="index">
+    <span class="tab-label">首页</span>
+  </a>
+  <a class="tab-item external" href="#" data-type="shop">
+    <span class="tab-label">商城</span>
+  </a>
+  <a class="tab-item external" href="#" data-type="self">
+    <span class="tab-label" id="append"></span>
+  </a>
+  <a class="tab-item external" href="#" data-type="message">
+    <span class="tab-label">消息</span>
+  </a>
+  <a class="tab-item external" href="#" data-type="me">
+    <span class="tab-label">我</span>
+  </a>
+</nav>
+
+<script>
+  (function () {
+    $(".tab-item").click(function () {
+      location.href = "/discovery/" + $(this).data("type");
+    })
+    $(".tab-item").each((inex, ele) => {
+      if ($(ele).data("type") == location.search.split("/").pop()) {
+        $(ele).addClass("active").siblings().removeClass("active");
+      }
+    })
+  }())
+</script>

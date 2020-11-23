@@ -30,6 +30,8 @@ app.use(body.urlencoded({extended:true}));
 app.use(require("./router/toPage"));
 
 // require("./db");
+// 发现路由接口
+app.use("/discovery",require("./router/discovery"));
 
 
 // 服务器端口监听
