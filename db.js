@@ -40,6 +40,7 @@ const shopCarSchema = new mongoose.Schema({
 })
 // ------- 商品列表 --------
 const goodsListSchema = new mongoose.Schema({
+    imgSrc:String,
     shopName:String,
     title:String,
     oldPrice:Number,
@@ -48,6 +49,8 @@ const goodsListSchema = new mongoose.Schema({
     info:String,
     countDown:String,
     sort:String
+},{
+    collection:'goodsList'
 })
 
 const Users = mongoose.model("User",userSchema);
