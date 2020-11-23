@@ -43,7 +43,7 @@
             margin-right: 12px;
         }
         main{
-            margin-top: 40px;
+            margin-top: 41px;
         }
         .more ul li{
             font-size: 0;
@@ -72,27 +72,33 @@
         .bannerOne img{
             width: 100%;
         }
-        .groupBuy_nav p{
+        /* 限时团购 */
+        .swiper-slide img{
+            width: 100%;
+        }
+        .groupBuy_nav p,.newpro_nav p{
             margin: 0;
             font-size: 12px;
             margin-top: 6px;
+            color: #888584;
         }
-        .groupBuy_nav p,.groupBuy_nav span{
+        .groupBuy_nav span,.newpro_nav span{
             color: #888584;
         }
         .groupBuy{
-            width: 90%;
             margin: 22px auto;
         }
-        .groupBuy_nav{
+        .groupBuy_nav,.newpro_nav{
             display: flex;
             justify-content: space-between;
+            padding: 0 20px;
+            margin-bottom: 15px;
         }
-        .groupBuy_nav span{
+        .groupBuy_nav span,.newpro_nav span{
             display: inline-block;
             margin-top: 22px;
         }
-        .groupBuy_nav span:nth-of-type(1){
+        .groupBuy_nav span:nth-of-type(1),.newpro_nav span:nth-of-type(1){
             color: red;
             font-size: 18px;
             font-weight: 600;
@@ -135,7 +141,7 @@
         }
         .groupBuy_nav_icon{
             display: inline-block !important;
-            width: 14px;
+            width: 14px !important;
         }
         .groupBuy .swiper-slide>ul{
             font-size: 12px;
@@ -150,10 +156,86 @@
         .groupBuy .swiper-slide>ul li:nth-of-type(2){
             margin-left: 18px;
         }
-        .countdown{
+        .groupBuy .countdown{
             margin: 0 0 0 8px;
             position: relative;
             bottom: 2px;
+        }
+        .groupBuy .swiper-slide{
+            padding: 0 20px;
+        }
+        .groupBuy .swiper-slide li p:nth-of-type(1){
+            margin: 23px 0 13px 0;
+        }
+        .groupBuy .swiper-slide li{
+            text-align: right;
+        }
+        /* 新品推荐 */
+        .newpro_nav_img img{
+            width: 255px;
+            height: 255px;
+            border-radius: 5px;
+        }
+        .newpro>.content p{
+            font-size: 12px;
+            width: 250px;
+            height: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .newpro>.content p:nth-of-type(1){
+            margin-top: 4px;
+        }
+        .newpro>.content b{
+            font-size: 14px;
+        }
+        .newpro .swiper-slide{
+            width: 255px;
+            margin: 0 15px;
+        }
+        /* 热卖专区 */
+        .hot img,.goodThings img{
+            width: 160px;
+            height: 208px;
+        }
+        p{
+            margin: 0;
+        }
+        .hot_main p,.hot_main b,.goodThings_main b{
+            font-size: 12px;
+        }
+        .hot_main li b:nth-of-type(1),.goodThings_main li b:nth-of-type(1){
+            font-size: 14px;
+        }
+        .hot_main p{
+            color: #272727b3;
+            margin: 0;
+            width: 155px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 14px;
+        }
+        .hot_main,.goodThings_main{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .hot_main li,.goodThings_main li{
+            margin: 8px 0 8px 12px;
+        }
+        .hot_nav,.goodThings_nav{
+            margin: 16px;
+        }
+        .hot_nav p,.goodThings_nav p{
+            font-size: 12px;
+        }
+        /* 底 */
+        .down p{
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+        }
+        .down{
+            margin: 36px 0 66px 0;
         }
     </style>
 </head>
@@ -220,42 +302,206 @@
                     <span>/17</span>
                 </section>
             </div>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="swiper-slide">
-                            <ul>
-                                <li class="groupBuy_nav_img"><img src="img/index/推荐/ia_100000018.png" alt=""></li>
-                                <li>
-                                    <div>
-                                        <img src="img/index/推荐/ia_100000078.svg" alt="" class="groupBuy_nav_icon">
-                                        <span class="countdown">天</span>
-                                    </div>
-                                    <p>年度首发！银柳30枝起</p>
-                                    <p><del>原价￥79.00</del><span>￥39.00</span></p>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="content">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                       
                     </div>
+                    <!-- <div class="swiper-pagination"></div> -->
+                    
                 </div>
-                <!-- <div class="swiper-pagination"></div> -->
             </div>
         </div>
-        
+        <div class="newpro">
+            <div class="newpro_nav">
+                <section>
+                    <b>新品推荐</b>
+                    <p>NEW ARRIVAL</p>
+                </section>
+                <section>
+                    <span>1</span>
+                    <span>/8</span>
+                </section>
+            </div>
+            <div class="content">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper"></div>
+                    <!-- <div class="swiper-pagination"></div> -->
+                </div>
+            </div>
+        </div>
+        <div class="hot">
+            <div class="hot_nav">
+                <section>
+                    <b>热卖专区</b>
+                    <p>ALL PRODUCTS</p>
+                </section>
+            </div>
+            <ul class="hot_main">
+
+            </ul>
+        </div>
+        <div class="goodThings">
+            <div class="goodThings_nav">
+                <section>
+                    <b>发现好物</b>
+                    <p>GOOD THINGS</p>
+                </section>
+            </div>
+            <ul class="goodThings_main">
+
+            </ul>
+        </div>
+        <div class="down">
+            <p>©2013-2020 上海分尚网络科技有限公司</p>
+            <p>
+                <span>沪ICP备13016979 </span> 
+                <img src="img/index/推荐/ia_100000057.png" alt="">
+                <span>沪公网安备 31011402005615号</span>
+            </p>
+        </div>
     </main>
+    {{include "./footer.html"}}
     <script src="swiper4-animate-demo/js/swiper.min.js"></script>
     <script language="javascript"> 
         var mySwiper = new Swiper('.banner .swiper-container',{
             autoplay:true,
             pagination: {
-                el: '.swiper-pagination',
+                el: '.banner .swiper-pagination',
             },
         })
-        var mySwiper = new Swiper('.swiper-container',{
-            pagination: {
-                el: '.swiper-pagination',
-            },
+        $.get('/groupBuy',(data)=>{
+            var str=''
+            data.forEach(item => {
+                str+=`
+                    <div class="swiper-slide">
+                        <ul>
+                            <li class="groupBuy_nav_img"><img src="${item.imgSrc}" alt=""></li>
+                            <li>
+                                <div>
+                                    <img src="img/index/推荐/ia_100000078.svg" alt="" class="groupBuy_nav_icon">
+                                    <span class="countdown"></span>
+                                </div>
+                                <p>${item.goodsInfo}</p>
+                                <p><del>原价￥${item.oldprice}</del><span>￥${item.newprice}</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            });
+            $('.groupBuy .swiper-wrapper').html(str)
         })
+        var mySwiper = new Swiper('.groupBuy .swiper-container',{
+                pagination: {
+                    el: '.groupBuy .swiper-pagination',
+                    type: 'fraction',
+                    renderFraction: function (currentClass, totalClass) {
+                    return '<span class="' + currentClass + '"></span>' +
+                            ' of ' +
+                            '<span class="' + totalClass + '"></span>';
+                    },
+                },
+            })
+        
+        // 新品推荐
+        $.get('/newpro',(data)=>{
+            var str=''
+            data.forEach(item => {
+                str+=`
+                    <div class="swiper-slide">
+                        <ul>
+                            <li class="newpro_nav_img"><img src="${item.imgSrc}" alt=""></li>
+                            <li>
+                                <b>${item.title}</b>
+                                <p>${item.goodsInfo}</p>
+                                <p><span>￥${item.info}</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                `
+            });
+            $('.newpro .swiper-wrapper').html(str)
+        })
+        var mySwiper = new Swiper('.newpro .swiper-container',{
+                pagination: {
+                    el: '.newpro .swiper-pagination',
+                    type: 'fraction',
+                    renderFraction: function (currentClass, totalClass) {
+                    return '<span class="' + currentClass + '"></span>' +
+                            ' of ' +
+                            '<span class="' + totalClass + '"></span>';
+                    },
+                },
+            })
+        // 热卖
+        $.get('/hot',(data)=>{
+            var str=''
+            data.forEach(item => {
+                str+=`
+                    <li>
+                        <div><img src="${item.imgSrc}"></div>
+                        <b>${item.title}</b>
+                        <p>${item.goodsInfo}</p>
+                        <b>￥${item.info}</b>
+                    <li>
+                `
+            });
+            $('.hot_main').html(str)
+        })
+        // 发现好物
+        $.get('/goodThings',(data)=>{
+            var str=''
+            data.forEach(item => {
+                str+=`
+                    <li>
+                        <div><img src="${item.imgSrc}"></div>
+                        <b>${item.title}</b>
+                        <p><b>${item.info}</b></p>
+                    <li>
+                `
+            });
+            $('.goodThings_main').html(str)
+        })
+        function showTime(){
+        // 这个是当前时间
+        var now = new Date().getTime()
+        // 获取目标时间
+        var targetTime = new Date('2020-12-3 00:00:00').getTime()
+        // console.log(now);
+        // console.log(targetTime);
+
+        // 计算时间差
+        var time = Math.floor((targetTime - now) / 1000)
+
+        var min = 60
+        var hour = 60 * min
+        var day = 24 * hour
+        // 天数
+        var days = Math.floor(time / day)
+        // console.log(days);
+
+        // 小时
+        var h= Math.floor(time%day/hour)
+
+        // 分钟
+        var m = Math.floor(time%hour/min)
+
+        // 秒数
+        var s = Math.floor(time%min)
+
+        h=h<10?'0'+h:h
+        m = m<10?'0'+m:m
+        s=s<10?'0'+s:s
+
+
+        var  str =days+'天'+h+'时'+m+'分'+s+'秒'
+
+        $('.countdown').html(str)
+
+        }
+        
+        setInterval(showTime, 10);
+        setInterval(showTime, 1000);
     </script>
 </body>
 </html>
