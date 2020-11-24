@@ -92,6 +92,39 @@
             color: #999;
             font-size: 13px;
         }
+        .topic .topics li span.selected {
+            background-color: #999;
+            color: white;
+            
+        }
+        .topic .slide {
+            text-align: center;
+            margin: 0;
+            padding: 6px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .topic .slide img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+            transition: all .2s linear;
+            transform: rotate(0deg);
+        }
+        .topic .slide img.transform {
+            /* transition: all .5s linear; */
+            transform: rotate(180deg);
+        }
+        .label {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: #fdeeef;
+            color: #f25c62;
+            border-radius: 5px;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 
@@ -104,7 +137,9 @@
                 <img src="" alt="" hidden>
                 <input type="file" name="pic"  accept="image/*">
             </div>
-            <p class="label"></p>
+            <p class="checkLabel">
+                <!-- <span class="label"><i>#</i>养护资讯</span> -->
+            </p>
            <!-- 话题 -->
            <div class="topic">
                <div class="topicHead line">
@@ -122,9 +157,17 @@
                         <span >#收花打卡</span>
                         <span >#植物点亮空间</span>
                     </li>
-                    <li class="line" hidden></li>
+                    <li class="line" hidden>
+                        <span >#旅途手记</span>
+                        <span >#森林瓜友会 - 打卡领券</span>
+                        <span >#养护咨询</span>
+                        <span >#今日份美食</span>
+                        <span >#心水好物</span>
+                        <span >#收花打卡</span>
+                        <span >#植物点亮空间</span>
+                    </li>
                </ul>
-               <p>展开 <img src="https://oss.flowerplus.cn/oss_svg/2019-07-17/15633290129212.svg" alt=""></p>
+               <p class="slide">展开 <img src="https://oss.flowerplus.cn/oss_svg/2019-07-17/15633290129212.svg" alt=""></p>
            </div>
         </div>
 
@@ -136,6 +179,23 @@
             $(":file").change(function () {
                 console.log(1)
                 
+            })
+            $(".topics li span").click(function () {
+                let str = `<span class="label"><i>#</i>${$(this).html().slice(1)}</span>`
+                $(".checkLabel").html(str);
+            })
+            $(".slide").click(function (){
+                // console.log(1)
+                this.isClick = !this.isClick;
+                // console.log( $("topics > li"))
+                if (this.isClick) {
+                    // $(this).prop()
+                    $(".topics > li").eq(1).removeAttr("hidden");
+                    $(this).find("img").addClass("transform")
+                }else {
+                    $(".topics > li").eq(1).attr("hidden", "true");
+                    $(this).find("img").removeClass("transform")
+                }
             })
         })
     </script>
