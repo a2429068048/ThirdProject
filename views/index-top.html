@@ -37,11 +37,19 @@
 </style>
 <header>
     <ul>
-        <li class="index"><span>推荐</span></li>
+        <li class="home"><span>推荐</span></li>
         <li class="monthlyFlowers"><span>包月鲜花</span></li>
-        <li class="index"><span>礼品花束</span></li>
-        <li class="index"><span>绿植多肉</span></li>
-        <li class="index"><span>F+物制所</span></li>
-        <li class="index"><span>家居生活</span></li>
+        <li class="gift"><span>礼品花束</span></li>
+        <li class="plants"><span>绿植多肉</span></li>
+        <li class="matter"><span>F+物制所</span></li>
+        <li class="furnishing"><span>家居生活</span></li>
     </ul>
 </header>
+<script>
+    $('.home').click(function(){
+        location.href='/'
+    })
+    $('.monthlyFlowers').click(function(){
+            location.href='/home/flower'
+    })
+</script>
