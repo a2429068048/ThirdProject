@@ -1,0 +1,47 @@
+<style>
+    body{
+            background-color: white;
+            overflow: auto;
+        }
+        header{
+            width: 100%;
+            overflow: auto;
+            position: fixed;
+            top: 0;
+            z-index: 2;
+        }
+        header::-webkit-scrollbar{
+            height: 0;
+        }
+        header ul{
+            width: 123%;
+            display: flex;
+            font-size: 12px;
+            padding: 12px 0 0 0;
+            background-color: white;
+        }
+        header ul li{
+            padding-right: 28px;
+            
+        }
+        header ul li:nth-last-of-type(1){
+            padding-right: 12px;
+        }
+        header ul li:nth-of-type(1){
+            font-weight: 600;
+            border-bottom: 2px solid black;
+            padding: 0 16px;
+            padding-bottom: 8px;
+            margin-right: 12px;
+        }
+</style>
+<header>
+    <ul>
+        <li class="index"><span>推荐</span></li>
+        <li class="monthlyFlowers"><span>包月鲜花</span></li>
+        <li class="index"><span>礼品花束</span></li>
+        <li class="index"><span>绿植多肉</span></li>
+        <li class="index"><span>F+物制所</span></li>
+        <li class="index"><span>家居生活</span></li>
+    </ul>
+</header>
