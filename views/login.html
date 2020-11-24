@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="./css/表单样式.css">
+    {{include "./commend.html"}}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header>img {
+            width: 100%;
+        }
+
+        form button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://oss.flowerplus.cn/oss_jpg/2019-04-26/15562601635260.jpg!60" alt="">
+    </header>
+
+    <form action="">
+        <div class="form-group">
+            <span></span>
+            <input type="text" placeholder="请输入账号名称" name="username">
+        </div>
+        <div class="form-group">
+            <span></span>
+            <input type="password" placeholder="请输入账号密码" name="psw">
+        </div>
+        <div class="form-group">
+            <button type="submit">登录</button>
+        </div>
+        <div class="form-group" id='reg'>
+            <button type="button">注册</button>
+        </div>
+    </form>
+
+    <script>
+        $('form').submit(function (e) {
+            e.preventDefault()
+            $.post('/myself/logins', $(this).serialize(), (data) => {
+                alert(data.msg)
+                if (data.code) {
+                    location.href = 'myselfs'
+                }
+            })
+        })
+        $('#reg').click(function () {
+            location.href = '/register'
+        })
+    </script>
+</body>
+
+</html>

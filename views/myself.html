@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花加</title>
+    {{include "./commend.html"}}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: content-box;
+        }
+
+        body {
+            background-color: white;
+            overflow: scroll;
+        }
+
+        header {
+            width: 100%;
+            height: 210px;
+            background: url(https://oss.flowerplus.cn/oss_png/2020-07-10/15943525894338.png) no-repeat top center;
+            background-size: 100% auto;
+            padding-top: 40px;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        .vip {
+            top: 50px;
+            right: 0;
+            display: inline-block;
+            font-size: 13px;
+            position: absolute;
+            padding: 4px 10px;
+            background-color: rgb(253, 233, 230);
+            border-radius: 15px 0 0 15px;
+        }
+
+        header>div {
+            background-color: white;
+            width: 90%;
+            margin: 0 auto;
+            height: 200px;
+            position: relative;
+            padding-top: 70px;
+            border-radius: 5px;
+            box-shadow: 0px 7px 8px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .text {
+            color: white;
+            background-color: rgb(153, 153, 153);
+            margin: 0 auto;
+            margin-top: 20px;
+            width: 50px;
+            display: block;
+            font-size: 10px;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 50%;
+        }
+
+        header>div>p {
+            margin: 10px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .titles {
+            text-align: center;
+            margin: 0 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .titles img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .titles p {
+            font-size: 12px;
+        }
+
+        header>div>p>i {
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .all-text {
+            margin-top: 20px;
+            font-size: 10px;
+            color: rgb(102, 102, 102)
+        }
+
+        main {
+            width: 90%;
+            margin: 90px auto;
+        }
+
+        main>p {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0 10px;
+        }
+
+        main>p {
+            font-size: 12px;
+            color: rgb(102, 102, 102)
+        }
+
+        main>p>b {
+            font-size: 14px;
+            color: black;
+        }
+
+        .banner img {
+            width: 100%;
+        }
+
+        main>section {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        main>section img {
+            width: 30px;
+            height: 30px;
+        }
+
+        main>section>div {
+            text-align: center;
+            width: 25%;
+        }
+
+        main>section>div>p {
+            font-size: 12px;
+        }
+
+        nav {
+            position: fixed !important;
+            bottom: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <p class="vip"><span>进入会员中心&ensp;<i class="icon icon-right"></i></span></p>
+            <span class="text">编辑</span>
+            <p>手机用户</p>
+            <section class="titles">
+                <div>
+                    <img src="https://static2.flowerplus.cn/Static//mall/images/center/pending_payment.svg" alt="">
+                    <p>代付款</p>
+                </div>
+                <div>
+                    <img src="https://static2.flowerplus.cn/Static//mall/images/center/in_service.svg" alt="">
+                    <p>服务中</p>
+                </div>
+                <div>
+                    <img src="https://static2.flowerplus.cn/Static//mall/images/center/evaluate.svg" alt="">
+                    <p>待评价</p>
+                </div>
+                <div>
+                    <img src="https://static2.flowerplus.cn/Static//mall/images/center/completed.svg" alt="">
+                    <p>已完成</p>
+                </div>
+            </section>
+            <p class="all-text">全部订单&ensp;<i class="icon icon-right"></i></p>
+        </div>
+    </header>
+    <main>
+        <p><b>收花日历</b><span>无服务中订单&ensp;<i class="icon icon-right"></i></span></p>
+        <p><b>近期福利</b><i class="icon icon-right"></i></span></p>
+        <div class="banner">
+            <img src="https://oss.flowerplus.cn/market_banner/2020-11-18/market_banner5fb48636b24df.jpg!60" alt="">
+        </div>
+        <p><b>我的服务</b></p>
+        <section>
+            <div>
+                <img src="https://oss.flowerplus.cn/oss_png/2019-05-29/15590952198549.png!750" alt="">
+                <p>悦已节赠品</p>
+            </div>
+            <div>
+                <img src="https://oss.flowerplus.cn/oss_svg/2019-06-13/15604105436168.svg" alt="">
+                <p>在线花艺课</p>
+            </div>
+            <div>
+                <img src="https://oss.flowerplus.cn/oss_png/2019-01-04/15465734822663.png!60" alt="">
+                <p>随花购</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/exchange_card.svg" alt="">
+                <p>兑换花卡</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/package_upgrade.svg" alt="">
+                <p>优惠升级</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/coupon.svg" alt="">
+                <p>我的优惠券</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/package_upgrade_png.png" alt="">
+                <p>当日达订单</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/help_center.svg" alt="">
+                <p>帮助与客服</p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <img src="https://oss.flowerplus.cn/service_list/15942683523478.png!60" alt="">
+                <p>花加G卡</p>
+            </div>
+        </section>
+        <p><b>其他帮助</b></p>
+        <section>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static/img/my/company_service.svg" alt="">
+                <p>企业服务</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/proposal.svg" alt="">
+                <p>产品建议</p>
+            </div>
+            <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/my_cx.svg" alt="">
+                <p>第三方查询</p>
+            </div>
+        </section>
+    </main>
+    {{include "./footer.html"}}
+
+    <script>
+        $('.text').click(function () {
+            location.href = '/edit'
+        })
+    </script>
+</body>
+
+</html>

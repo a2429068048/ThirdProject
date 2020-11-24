@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{include "./commend.html"}}
+    <script type='text/javascript' src='./dist/js/sm.js' charset='utf-8'></script>
+    <style>
+        html {
+            touch-action: none;
+        }
+
+        body {
+            background-color: white;
+        }
+
+        .form-group,
+        section {
+            margin: 0 20px;
+            padding: 10px 0;
+            font-size: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgb(247, 247, 247);
+        }
+
+        section>span {
+            text-align: center;
+            padding: 10px 0px;
+            display: inline-block;
+            width: 24%;
+            background-color: rgb(245, 245, 245);
+            font-size: 13px;
+            color: rgb(102, 102, 102);
+            border-radius: 3px;
+        }
+
+        .page,
+        .page-group {
+            background-color: white;
+        }
+
+        .form-group>span {
+            font-size: 15px;
+            display: inline-block;
+            width: 30%;
+        }
+
+        input {
+            text-align: right;
+            font-size: 15px;
+            color: rgb(153, 153, 153);
+            width: 60%;
+            border: none;
+        }
+
+        #button {
+            border-bottom: none;
+        }
+
+        #button>button {
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            padding: 15px 0;
+            background-color: rgb(255, 102, 114);
+            color: white;
+            text-align: center;
+        }
+
+        .info {
+            width: 100% !important;
+            font-size: 12px !important;
+            color: red;
+        }
+
+        .active,
+        .actives {
+            background-color: rgb(255, 102, 114);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="form-group">
+            <span class="info">请完善以下信息，有助于我们推荐符合您审美的鲜花套餐~</span>
+        </div>
+        <form action="">
+            <div class="form-group">
+                <span>性别</span>
+                <input type="text" id='picker' placeholder="---请选择---" name='sex' required />
+            </div>
+            <div class="form-group">
+                <span>出生年月</span>
+                <input type="text" data-toggle='date' id="my-input" placeholder="---请选择---" name='birdth' required />
+            </div>
+            <div class="form-group">
+                <span>学历</span>
+                <input type="text" id='picker1' placeholder="---请选择---" name='education' required />
+            </div>
+            <div class="form-group">
+                <span>职业</span>
+                <input type="text" id='picker2' placeholder="---请选择---" name='profession' required />
+            </div>
+            <div class="form-group">
+                <span>婚姻状况</span>
+                <input type="text" id='picker3' placeholder="---请选择---" name='marriage' required />
+            </div>
+            <div class="form-group">
+                <span>收入水平</span>
+                <input type="text" id='picker4' placeholder="---请选择---" name='incom' required />
+            </div>
+            <div class="form-group">
+                <span>是否生育</span>
+                <input type="text" id='picker5' placeholder="---请选择---" name='childrend' required />
+            </div>
+            <section class="buy">
+                <p>购买用途</p>
+                <span>送自己</span>
+                <span>送父母</span>
+                <span>送朋友</span>
+            </section>
+            <section class="use">
+                <p>使用场景</p>
+                <span>客厅</span>
+                <span>卧室</span>
+                <span>办公室</span>
+                <span>店铺</span>
+            </section>
+            <div class="form-group" id='button'>
+                <button type="submit">提交</button>
+            </div>
+        </form>
+    </div>
+
+    {{include "./script.html"}}
+    <script>
+        $("#picker").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['男', '女']
+                }
+            ]
+        });
+        $("#my-input").calendar({
+            value: ['2020-11-24']
+        });
+        $("#picker1").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['其他', '大专', '本科', '硕士', '博士']
+                }
+            ]
+        });
+        $("#picker2").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['白领', '学生', '自由职业者']
+                }
+            ]
+        });
+        $("#picker3").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['已婚', '恋爱', '单身贵族']
+                }
+            ]
+        });
+        $("#picker4").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['8000以上', '5000-8000', '3000-5000', '3000以下']
+                }
+            ]
+        });
+        $("#picker5").picker({
+            toolbarTemplate: '<header class="bar bar-nav">\
+                                    <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+            cols: [
+                {
+                    textAlign: 'center',
+                    values: ['是', '否']
+                }
+            ]
+        });
+
+        $('.buy span').click(function (e) {
+            e.preventDefault()
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active')
+            } else {
+                $(this).addClass('active')
+            }
+        })
+
+        $('.use span').click(function (e) {
+            e.preventDefault()
+            if ($(this).hasClass('actives')) {
+                $(this).removeClass('actives')
+            } else {
+                $(this).addClass('actives')
+            }
+        })
+        //表单提交
+        $("form").submit(function (e) {
+            e.preventDefault()
+            var buys = ''
+            var user = ''
+            $('.buy .active').each(function () {
+                buys += $(this).html() + ';'
+            })
+            $('.use .actives').each(function () {
+                user += $(this).html() + ';'
+            })
+            var infoss = $(this).serialize() + '&purpose=' + buys + '&scene=' + user
+            console.log(1);
+            $.post('/myself/infomation', infoss, (data) => {
+                alert(data.msg)
+                if (data.code) {
+                    location.href = 'myselfs'
+                } else {
+                    location.href = 'login'
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
