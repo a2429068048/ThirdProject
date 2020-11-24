@@ -67,7 +67,9 @@
       location.href = "/discovery/" + $(this).data("type");
     })
     $(".tab-item").each((inex, ele) => {
-      if ($(ele).data("type") == location.search.split("/").pop()) {
+      
+      if ($(ele).data("type") == location.href.split("/").pop()) {
+        console.log($(ele));
         $(ele).addClass("active").siblings().removeClass("active");
       }
     })
