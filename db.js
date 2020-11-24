@@ -30,7 +30,9 @@ const userSchema = new mongoose.Schema({
     incom: String,
     childrend: String,
     purpose: String,
-    scene: String
+    scene: String,
+    flowme: Number,
+    getGoods: Number
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({
@@ -56,6 +58,12 @@ const easyUserSchema = new mongoose.Schema({
     name: String,
     phone: Number,
     psw: String,
+})
+
+// ---- 帖子表 ----
+const topicSchema = new mongoose.Schema({
+    pic:String,
+    
 })
 
 const Users = mongoose.model("User", userSchema);

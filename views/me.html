@@ -121,11 +121,11 @@
     <div class="page">
         {{include "./disBartab.html"}}
         <header class="top">
-            <div class="headerMask">
+            <div class="headerMask" style="background:url({{img}})">
                 <div class="header line">
                     <div class="left">
-                        <img src="" alt="" onerror="picError(this)">
-                        <p>手机用户<span class="level">Lv1</span></p>
+                        <img src="{{pic}}" alt="" onerror="picError(this)">
+                        <p>{{name}}<span class="level">Lv1</span></p>
                     </div>
                     <div class="right">
                         <a href="/discovery/disEdit"><p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p></a>
@@ -133,15 +133,16 @@
                 </div>
                 <ul class="menu line">
                     <li>
-                        <span>5</span>
+                        <span>{{like ? like : 0}}</span>
                         <p>我关注的人</p>
                     </li>
                     <li>
-                        <span>5</span>
+                        {{flowme}}
+                        <span>{{flowme ? flowme : 0}}</span>
                         <p>关注我的人</p>
                     </li>
                     <li>
-                        <span>5</span>
+                        <span>{{getGoods? getGoods : 0}}</span>
                         <p>获赞和收藏</p>
                     </li>
                 </ul>
