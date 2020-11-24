@@ -11,6 +11,10 @@ router.get("/shop", (req, res) => {
     res.redirect("/");
 })
 
+router.get("/append", (req, res) => {
+    res.render("append");
+})
+
 router.get("/message",(req, res) => {
     res.render("message");
 })

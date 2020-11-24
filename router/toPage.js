@@ -13,6 +13,7 @@ router.get("/", (req, res) => {
 
 //------- 发现 ---------
 router.get("/discovery", (req, res) => {
+    console.log("测试")
     res.render("discovery");
 })
 
@@ -20,6 +21,8 @@ router.get("/discovery", (req, res) => {
 router.get("/community", (req, res) => {
     res.render("community");
 })
+
+
 
 
 
