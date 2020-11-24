@@ -52,6 +52,9 @@ router.get("/goodThings", (req, res) => {
 router.get("/flower", (req, res) => {
     res.render('monthlyFlowers')
 })
+router.get("/gift", (req, res) => {
+    res.render('gift')
+})
 
 
 module.exports = router;

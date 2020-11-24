@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
+    {{include "./commend.html"}}
+    <style>
+        body{
+            background-color: white;
+            font-size: 12px;
+            overflow: auto;
+        }
+        header img{
+            width: 100%;
+        }
+        .swiper-pagination-bullet-active{
+            background-color: rgba(0, 0, 0, 0.4) !important;
+            opacity: 1 !important;
+            border: 1px solid white;
+        }
+        .swiper-pagination-bullet{
+            background-color: white;
+            width: 0.25rem;
+            height: 0.25rem;
+            opacity: 1;
+        }
+        p{
+            margin: 0;
+        }
+        /* 导航栏 */
+        .navigation{
+            position: relative;
+        }
+        .navigation_top{
+            overflow: auto;
+            margin:1.1rem 0;
+            
+        }
+        .navigation_top::-webkit-scrollbar{
+            height: 0;
+        }
+        .navigation_top>ul{
+            display: flex;
+            width: 250%;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .navigation_top>ul li{
+            margin-left: 1.25rem;
+        }
+        .text_line{
+            width: 96%;
+            height: 2px;
+            background-color: black;
+            margin: auto;
+            margin-top: 2px;
+        }
+        .swiper-container{
+            padding-bottom: 0;
+        }
+        .navigation_top .front{
+            width: 0.8rem;
+            height: 1.45rem;
+            background-color: white;
+            position: absolute;
+            left: 0;
+            z-index: 1;
+        }
+        .navigation_top .after{
+            width: 1.7rem;
+            height: 1.45rem;
+            background-color: white;
+            position: absolute;
+            right: 0;
+            z-index: 3;
+            top: 0;
+            box-shadow: -0.1rem 0 0.1rem -0.1rem #ccc;
+        }
+        .navigation_top .after img{
+            width: 0.6rem;
+            height: 0.3rem;
+            margin: 0.08rem 0 0 0.5rem;
+        }
+        .navigation_top .nav_hide{
+            display: none;
+        }
+        .navigation_select{
+            position: absolute;
+            width: 100%;
+            display: none;
+            z-index: 3;
+            background-color: white;
+            top: 35px;
+            padding: 12px 0;
+        }
+        .navigation_select table{
+            font-size: 13px;
+            width: 92%;
+            margin: auto;
+            text-align: center;
+        }
+        .navigation_select table td{
+            line-height: 26px;
+        }
+        .anchor_mask {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0,0,0,.6);
+            display: none;
+        }
+        main img{
+            width: 100%;
+        }
+        /* 排行 */
+        .ranking b{
+            display: inline-block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .ranking>ul{
+            margin-top: 22px;
+        }
+        .ranking_top{
+            padding: 14px;
+            background-color: #333333;
+            color: white;
+            font-size: 13px;
+        }
+        .ranking_nav{
+            text-align: center;
+            margin-top: 8px;
+        }
+        .ranking_nav span{
+            font-size: 13px;
+        }
+        .ranking_nav p{
+            color: #33333380;
+            margin-bottom: 14px;
+        }
+        .buy{
+            font-size: 0;
+        }
+        .buy span{
+            display: inline-block;
+            border: 1px solid black;
+            padding: 4px 12px;
+        }
+        .buy_now{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 礼品花束 -->
+    <header>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000002.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000003.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000004.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000005.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000006.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="/img/index/礼品花束/ia_200000007.jpg" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </header>
+    <main>
+        <!-- 导航栏 -->
+        <div class="navigation">
+            <div class="navigation_top">
+                <div class="front"></div>
+                <ul class="nav_display">
+                    <li>
+                        <div><p>新品专区</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>鲜花2H达</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>鲜花预定</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>网红蛋糕</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>优选好礼</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>永生花</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>花礼周边</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>生日好礼</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>送爱人</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>送长辈领导</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                    <li>
+                        <div><p>更多推荐</p></div>
+                        <div class="text_line"></div>
+                    </li>
+                </ul>
+                <ul class="nav_hide">
+                    <li><p>切换分类</p></li>
+                </ul>
+                <div class="after">
+                    <img src="/img/index/礼品花束/ia_200000137.png" alt="">
+                </div>
+            </div>
+            <div class="navigation_select">
+                <table>
+                    <tr>
+                        <td>新品专区</td>
+                        <td>鲜花2H达</td>
+                        <td>鲜花预定</td>
+                        <td>网红蛋糕</td>
+                    </tr>
+                    <tr>
+                        <td>优选好礼</td>
+                        <td>永生花</td>
+                        <td>花礼周边</td>
+                        <td>生日好礼</td>
+                    </tr>
+                    <tr>
+                        <td>送爱人</td>
+                        <td>送长辈领导</td>
+                        <td>更多推荐</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="anchor_mask">
+
+            </div>
+        </div>
+        <!-- 排行 -->
+        <div class="ranking">
+            <ul>
+                <li class="ranking_top">
+                    <b>礼品TOP1销量王</b>
+                    <p>人见人爱 花见花开 送谁谁喜欢</p>
+                </li>
+                <li>
+                    <img src="/img/index/礼品花束/ia_200000008.jpg" alt="">
+                </li>
+                <li class="ranking_nav">
+                    <div>
+                        <span>巴黎午后</span>
+                        <div><b>女生最爱的色系，粉紫色时尚撞色款</b></div>
+                        <p>累计月销量3500束</p>
+                    </div>
+                    <div class="buy">
+                        <span>售价¥299.00</span>
+                        <span class="buy_now">立即购买></span>
+                    </div> 
+                </li>
+            </ul>
+            <ul>
+                <li class="ranking_top">
+                    <b>礼品TOP2人气王</b>
+                    <p>人气单品，买她买她买她</p>
+                </li>
+                <li>
+                    <img src="/img/index/礼品花束/ia_200000012.jpg" alt="">
+                </li>
+                <li class="ranking_nav">
+                    <div>
+                        <span>马天尼玫瑰系列</span>
+                        <div><b>20年网红款玫瑰网纱系列，梦幻示爱</b></div>
+                        <p>累计月销量3200束</p>
+                    </div>
+                    <div class="buy">
+                        <span>售价¥279.00</span>
+                        <span class="buy_now">立即购买></span>
+                    </div> 
+                </li>
+            </ul>
+            <ul>
+                <li class="ranking_top">
+                    <b>礼品TOP3好评王</b>
+                    <p>不知道送什么？选她不会错</p>
+                </li>
+                <li>
+                    <img src="/img/index/礼品花束/ia_200000010.jpg" alt="">
+                </li>
+                <li class="ranking_nav">
+                    <div>
+                        <span>恬梦芳华</span>
+                        <div><b>送妈妈、长辈，好友生日首选</b></div>
+                        <p>累计月销量3000束</p>
+                    </div>
+                    <div class="buy">
+                        <span>售价¥169.00</span>
+                        <span class="buy_now">立即购买></span>
+                    </div> 
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('header .swiper-container',{
+            autoplay:true,
+            pagination: {
+                el: 'header .swiper-pagination',
+            },
+        })
+        // 导航
+        var index=0
+        $('.after').click(function(){
+            index+=1
+            
+            if(index%2==1){
+                $('.nav_display').css('display','none')
+                $('.nav_hide').css('display','block') 
+                $('.after img').css('transform','rotateX(180deg)')
+                $(this).css('background-color','rgba(0,0,0,.0)')
+                $('.navigation_select').css('display','block') 
+                $('.anchor_mask').css('display','block') 
+                $('.after img').attr('src','/img/index/礼品花束/ia_200000138.png')
+            }else{
+                $('.nav_display').css('display','flex')
+                $('.nav_hide').css('display','none') 
+                $('.after img').css('transform','rotateX(0)')
+                $('.navigation_select').css('display','none')
+                $('.anchor_mask').css('display','none') 
+                $(this).css('background-color','white')
+                $('.after img').attr('src','/img/index/礼品花束/ia_200000137.png')
+            }
+            
+        })
+        // $(window).scroll(function(){
+        //     console.log($(this).scrollTop())
+        // })
+    </script>
+</body>
+</html>
