@@ -13,57 +13,63 @@ db.on("open", () => {
 
 //----- 用户表 -------
 const userSchema = new mongoose.Schema({
-    userId:Number,
-    name:String,
-    pic:String,
-    img:String,
-    selfInfo:String,
-    like:String,
-    designation:String,
-    phone:Number,
-    adress:String,
-    sex:String,
-    birdth:String,
-    education:String,
-    profession:String,
-    marriage:String,
-    incom:String,
-    childrend:String,
-    purpose:String,
-    scene:String
+    userId: Number,
+    name: String,
+    pic: String,
+    img: String,
+    selfInfo: String,
+    like: String,
+    designation: String,
+    phone: Number,
+    adress: String,
+    sex: String,
+    birdth: String,
+    education: String,
+    profession: String,
+    marriage: String,
+    incom: String,
+    childrend: String,
+    purpose: String,
+    scene: String
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({
-    userId:String,
-    goodsId:String,
-    time:Number
+    userId: String,
+    goodsId: String,
+    time: Number
 })
 // ------- 商品列表 --------
 const goodsListSchema = new mongoose.Schema({
-    imgSrc:String,
-    shopName:String,
-    title:String,
-    oldPrice:Number,
-    newPrice:Number,
-    goodsInfo:String,
-    info:String,
-    countDown:String,
-    sort:String
-},{
-    collection:'goodsList'
+    imgSrc: String,
+    shopName: String,
+    title: String,
+    oldPrice: Number,
+    newPrice: Number,
+    goodsInfo: String,
+    info: String,
+    countDown: String,
+    sort: String
+}, {
+    collection: 'goodsList'
+})
+const easyUserSchema = new mongoose.Schema({
+    name: String,
+    phone: Number,
+    psw: String,
 })
 
-const Users = mongoose.model("User",userSchema);
+const Users = mongoose.model("User", userSchema);
 const ShopCar = mongoose.model("GoodsList", shopCarSchema);
 const Goods = mongoose.model("Good", goodsListSchema);
-
+const EasyUser = mongoose.model("EasyUser", easyUserSchema);
 
 
 module.exports = {
     // 导出对应的对象
     Users,
     ShopCar,
-    Goods
+    Goods,
+    EasyUser
 }
 
 

@@ -1,11 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>我的主页</title>
+    {{include "./commend.html"}}
+    <style>
+        .top {
+            /* min-height: ; */
+            background-image: url(https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg!750);
+            background-size: cover;
+            background-position: center center;
+            padding: 0;
+        }
+
+        .headerMask {
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, .3);
+            min-height: 263px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .headerMask p {
+            margin: 0;
+        }
+
+        .header {
+            justify-content: space-between;
+            /* align-items: flex-start; */
+            padding-top: 20px;
+        }
+
+        .header .left {
+            text-align: center;
+        }
+
+        .header .left p {
+            padding-left: 14px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .header .left .level {
+            font-size: 14px;
+            color: orange;
+            margin-left: 4px;
+        }
+
+        .header .right {
+            font-size: 12px;
+        }
+        .header .right a {
+            color: white;
+        }
+
+        .header .right p {
+            padding: 6px 26px;
+            border: 1px solid white;
+            border-radius: 16px;
+
+        }
+
+        .header .right img {
+            width: 10px;
+            margin-right: 6px;
+        }
+
+        .menu {
+            justify-content: space-around;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .menu p {
+            font-size: 12px;
+        }
+
+        .nav-head {
+            justify-content: space-around;
+            background-color: white;
+            font-size: 16px;
+        }
+
+        .nav-head span {
+            display: inline-block;
+            padding: 10px 4px 7px;
+            vertical-align: middle;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-head li.active span {
+            border-bottom-color: #FF6772;
+        }
+
+        .noContent {
+            font-size: 13px;
+            text-align: center;
+            padding-top: 50px;
+            color: #C3C5C6;
+        }
+
+        .noContent img {
+            width: 60px;
+            margin-bottom: 14px;
+        }
+    </style>
+    <script>
+        function picError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png!57_57";
+        }
+    </script>
 </head>
+
 <body>
-    这是我
+    <div class="page">
+        {{include "./disBartab.html"}}
+        <header class="top">
+            <div class="headerMask">
+                <div class="header line">
+                    <div class="left">
+                        <img src="" alt="" onerror="picError(this)">
+                        <p>手机用户<span class="level">Lv1</span></p>
+                    </div>
+                    <div class="right">
+                        <a href="/discovery/disEdit"><p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p></a>
+                    </div>
+                </div>
+                <ul class="menu line">
+                    <li>
+                        <span>5</span>
+                        <p>我关注的人</p>
+                    </li>
+                    <li>
+                        <span>5</span>
+                        <p>关注我的人</p>
+                    </li>
+                    <li>
+                        <span>5</span>
+                        <p>获赞和收藏</p>
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav-head line">
+                <li class="active" data-type="topic"><span>帖子</span><small>(0)</small></li>
+                <li data-type="collect"><span>收藏</span><small>(0)</small></li>
+            </ul>
+        </header>
+        <div class="content">
+            <div class="noContent">
+                <section class="topic">
+                    <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287051119.svg" alt="">
+                    <p>点击下方的"+", 发布你的第一篇帖子吧</p>
+                </section>
+                <section class="collect" hidden>
+                    <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287126935.svg" alt="">
+                    <p>收藏夹空空如也</p>
+                </section>
+            </div>
+        </div>
+    </div>
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            $(".content").css("top", $(".top").innerHeight());
+
+            $(".nav-head li").click(function () {
+                // console.log(1)
+                $(this).addClass("active").siblings().removeClass("active");
+                $.showIndicator();
+                setTimeout( () => {
+                    $(`.${$(this).data("type")}`).show().siblings().hide();
+                    $.hideIndicator();
+                }, 2000);
+            })
+        })
+    </script>
 </body>
+
 </html>

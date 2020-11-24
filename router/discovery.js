@@ -23,5 +23,10 @@ router.get("/me", (req,  res) => {
     res.render("me");
 })
 
+// 编辑页面
+router.get("/disEdit", (req, res) => {
+    res.render("disEdit");
+})
+
 
 module.exports = router;
