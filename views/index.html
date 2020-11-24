@@ -7,41 +7,7 @@
     <link rel="stylesheet" href="swiper4-animate-demo/css/swiper.min.css">
     {{include "./commend.html"}}
     <style>
-        body{
-            background-color: white;
-            overflow: auto;
-        }
-        header{
-            width: 100%;
-            overflow: auto;
-            position: fixed;
-            top: 0;
-            z-index: 2;
-        }
-        header::-webkit-scrollbar{
-            height: 0;
-        }
-        header ul{
-            width: 123%;
-            display: flex;
-            font-size: 12px;
-            padding: 12px 0 0 0;
-            background-color: white;
-        }
-        header ul li{
-            padding-right: 28px;
-            
-        }
-        header ul li:nth-last-of-type(1){
-            padding-right: 12px;
-        }
-        header ul li:nth-of-type(1){
-            font-weight: 600;
-            border-bottom: 2px solid black;
-            padding: 0 16px;
-            padding-bottom: 8px;
-            margin-right: 12px;
-        }
+        
         main{
             margin-top: 41px;
         }
@@ -240,16 +206,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <ul>
-            <li><span>推荐</span></li>
-            <li><span>包月鲜花</span></li>
-            <li><span>礼品花束</span></li>
-            <li><span>绿植多肉</span></li>
-            <li><span>F+物制所</span></li>
-            <li><span>家居生活</span></li>
-        </ul>
-    </header>
+    {{include "./index-top.html"}}
     <main>
         <div class="banner">
             <div class="swiper-container">
@@ -370,7 +327,7 @@
                 el: '.banner .swiper-pagination',
             },
         })
-        $.get('/groupBuy',(data)=>{
+        $.get('/home/groupBuy',(data)=>{
             var str=''
             data.forEach(item => {
                 str+=`
@@ -404,7 +361,7 @@
             })
         
         // 新品推荐
-        $.get('/newpro',(data)=>{
+        $.get('/home/newpro',(data)=>{
             var str=''
             data.forEach(item => {
                 str+=`
@@ -434,7 +391,7 @@
                 },
             })
         // 热卖
-        $.get('/hot',(data)=>{
+        $.get('/home/hot',(data)=>{
             var str=''
             data.forEach(item => {
                 str+=`
@@ -449,7 +406,7 @@
             $('.hot_main').html(str)
         })
         // 发现好物
-        $.get('/goodThings',(data)=>{
+        $.get('/home/goodThings',(data)=>{
             var str=''
             data.forEach(item => {
                 str+=`
@@ -502,6 +459,11 @@
         
         setInterval(showTime, 10);
         setInterval(showTime, 1000);
+
+        $('.monthlyFlowers').click(function(){
+            location.href='/home/flower'
+        })
+        
     </script>
 </body>
 </html>
