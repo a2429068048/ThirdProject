@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的账号</title>
+    {{include "./commend.html"}}
+    <style>
+        body {
+            background-color: white;
+        }
+
+        p {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            padding: 10px 20px;
+            border-bottom: 1px solid rgb(229, 229, 229);
+        }
+
+        .info>span:nth-of-type(2) {
+            font-size: 10px;
+            color: red;
+        }
+
+        p i {
+            font-size: 15px;
+            color: rgb(203, 203, 208);
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .phone {
+            font-weight: bold;
+            font-size: 15px;
+            color: rgb(153, 153, 153);
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <span>绑定手机</span>
+        <span>
+            <span class="phone"></span>
+            <i class="icon icon-right"></i>
+        </span>
+    </p>
+    <p><span>常用地址</span><span><i class="icon icon-right"></i></span></p>
+    <p class="info">
+        <span>个人信息</span>
+        <span class="infos">
+            <span class="flowers">(完善信息推荐给您合适的花束)</span>
+            <i class="icon icon-right"></i>
+        </span>
+    </p>
+    <p><span>申请发票</span><span><i class="icon icon-right"></i></span></p>
+    <p><span class="out">刷新账号</span></p>
+
+    <script src="./js/jquery.cookie.js"></script>
+    <script>
+
+        var a = $.cookie('username')
+        function phone() {
+            $.post('./myself/phone', { username: a }, (data) => {
+                var tel = data.phone
+                tel = String(tel)
+                var tels = tel.substr(0, 3) + '****' + tel.substr(7)
+                $('.phone').html(tels)
+            })
+        }
+        phone();
+        $('.out').click(function () {
+            $.get('./myself/out', (data) => {
+                alert(data)
+                location.href = '/login'
+            })
+        })
+        $(".infos").click(function () {
+            $('/info', (data) => {
+                location.href = '/info';
+            })
+        })
+    </script>
+</body>
+
+</html>

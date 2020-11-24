@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: content-box;
+}
+
+form {
+    width: 90%;
+    margin: 0 auto;
+}
+
+form input {
+    height: 40px;
+    margin: 20px 0;
+    border: none;
+    background-color: rgb(245, 245, 245);
+    outline: none;
+    width: 100%;
+}
+
+form span {
+    display: inline-block;
+    margin: 20px 0;
+    width: 20px;
+    height: 40px;
+    background-color: rgb(245, 245, 245);
+}
+
+form>div {
+    display: flex;
+}
+
+form button {
+    width: 100%;
+    color: white !important;
+    background-color: rgb(204, 204, 204);
+    border: none;
+    height: 40px;
+}
