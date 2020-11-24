@@ -4,12 +4,16 @@ const exp = require("express");
 
 const router = exp.Router();
 
+
 const { Goods } = require('../db')
+
+
 
 // ------- 首页 -------
 router.get("/", (req, res) => {
     res.render("index");
 })
+
 // ---------限时团购---------
 router.get("/groupBuy", (req, res) => {
     Goods.find({ sort: "groupBuy" }, (err, data) => {
@@ -51,7 +55,6 @@ router.get("/goodThings", (req, res) => {
         }
     })
 })
-
 
 //------- 发现 ---------
 router.get("/discovery", (req, res) => {

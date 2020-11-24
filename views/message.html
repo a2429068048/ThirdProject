@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>我的消息</title>
+    {{include "./commend.html"}}
+    <style>
+        .content img {
+            width: 80px;
+            text-align: center;
+        }
+        .proposal {
+            position: fixed;
+            bottom: 6vh;
+            right: 0;
+        }
+        .noMessage {
+            text-align: center;
+            padding-top: 40px;
+            font-size: 14px;
+            color: #C3C5C6;
+        }
+    </style>
 </head>
 <body>
-    这是消息
+    <div class="page">
+        {{include "./disBartab.html"}}
+        <div class="content">
+            <div class="noMessage">
+                <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287179225.svg" alt="">
+                <p>暂无消息</p>
+            </div>
+
+            <img src="https://oss.flowerplus.cn/oss_png/2019-08-05/15649841367119.png!750" alt="" class="proposal">
+
+        </div>
+    </div>
+    {{include "./script.html"}}
 </body>
 </html>

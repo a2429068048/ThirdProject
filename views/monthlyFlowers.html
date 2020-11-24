@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{include "./commend.html"}}
+    <style>
+        body header ul li:nth-of-type(1){
+            font-weight: 100;
+            border: none;
+            padding: 0 16px;
+            padding-bottom: 8px;
+            margin-right: 0;
+        }
+        body header ul li:nth-of-type(2){
+            font-weight: 600;
+            border-bottom: 2px solid black;
+            padding: 0 16px;
+            padding-bottom: 8px;
+            margin-right: 12px;
+        }
+        main{
+            margin-top: 40px;
+            width: 100%;
+        }
+        .topic img{
+            width: 100%;
+            margin-top: 40px;
+        }
+        .main>ul{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+        .main>ul li{
+            width: 42%;
+            margin-left: 4%
+            
+        }
+        .main img{
+            width: 100%;
+            border-radius: 5px;
+        }
+        .main p{
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .main{
+            margin: 28px 0;
+        }
+        .main b{
+            height: 16px;
+            overflow: hidden;
+        }
+        .nav li{
+            width: 90%;
+            margin: 4px auto;
+        }
+        .nav li img{
+            width: 100%;
+        }
+        /* 底 */
+        .down p{
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+            margin: 4px 0;
+        }
+        .down{
+            margin: 36px 0 16px 0;
+        }
+        .down img{
+            width: 12px;
+            height: 12px;
+        }
+    </style>
+</head>
+<body>
+    {{include "./index-top.html"}}
+    <main>
+        <!-- 简花 -->
+        <div class="simple">
+            <div class="topic">
+                <img src="/img/index/包月鲜花/ia_100000000.png" alt="">
+            </div>
+            <div class="main">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000001.jpg" alt="">
+                        </div>
+                        <b>简花包月（品种可自选）</b>
+                        <p>¥99元起/月</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000002.jpg" alt="">
+                        </div>
+                        <b>自由拼</b>
+                        <p>¥24.9元/束起</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000003.jpg" alt="">
+                        </div>
+                        <b>挚爱•进口玫瑰</b>
+                        <p>¥399元起/月</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 混合 -->
+        <div class="blend">
+            <div class="topic">
+                <img src="/img/index/包月鲜花/ia_100000004.png" alt="">
+            </div>
+            <div class="main">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000005.jpg" alt="">
+                        </div>
+                        <b>悦花-混合鲜花包月套餐</b>
+                        <p>¥99元起/月</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000006.jpg" alt="">
+                        </div>
+                        <b>繁花-混合鲜花包月套餐</b>
+                        <p>¥1699元/月</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000007.jpg" alt="">
+                        </div>
+                        <b>小野-精致鲜花混合包月</b>
+                        <p>¥129元起/月</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000008.png" alt="">
+                        </div>
+                        <b>野逸包月</b>
+                        <p>¥199元起/月</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000009.jpg" alt="">
+                        </div>
+                        <b>「午后暇光」系列主题大师包月</b>
+                        <p>¥239元/束起</p>
+                    </li>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000010.jpg" alt="">
+                        </div>
+                        <b>谜藏-高端混合包月套餐</b>
+                        <p>¥399元/月</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- MINI -->
+        <div class="mini">
+            <div class="topic">
+                <img src="/img/index/包月鲜花/ia_100000011.png" alt="">
+            </div>
+            <div class="main">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="/img/index/包月鲜花/ia_100000012.jpg" alt="">
+                        </div>
+                        <b>简花包月（品种可自选）</b>
+                        <p>¥99元起/月</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 热门分类 -->
+        <div class="hot">
+            <div class="topic">
+                <img src="/img/index/包月鲜花/ia_100000013.png" alt="">
+            </div>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <img src="/img/index/包月鲜花/ia_100000014.png" alt="">
+                    </li>
+                    <li>
+                        <img src="/img/index/包月鲜花/ia_100000015.png" alt="">
+                    </li>
+                    <li>
+                        <img src="/img/index/包月鲜花/ia_100000016.png" alt="">
+                    </li>
+                    <li>
+                        <img src="/img/index/包月鲜花/ia_100000017.png" alt="">
+                    </li>
+                    <li>
+                        <img src="/img/index/包月鲜花/ia_100000018.png" alt="">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="down">
+            <p>©2013-2020 上海分尚网络科技有限公司</p>
+            <p>
+                <span>沪ICP备13016979 </span> 
+                <img src="/img/index/推荐/ia_100000057.png" alt="">
+                <span>沪公网安备 31011402005615号</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
