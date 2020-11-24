@@ -18,21 +18,21 @@
 </style>
 <!-- 底部工具栏导航 -->
 <nav class="bar bar-tab footBar">
-    <a class="tab-item external active" href="#">
+    <a class="tab-item external active" href="javascript:;" data-type="">
         <span class="icon">
             <img src="/img/discovery/bar-index.png" alt="">
             <img src="/img/discovery/bar-index-active.png" alt="">
         </span>
         <span class="tab-label">首页</span>
     </a>
-    <a class="tab-item external normal" href="#">
+    <a class="tab-item external normal" href="javascript:;" data-type="discovery">
         <span class="icon">
             <img src="/img/discovery/bar-dis.png" alt="">
             <img src="/img/discovery/bar-dis-active.png" alt="">
         </span>
         <span class="tab-label">发现</span>
     </a>
-    <a class="tab-item external normal" href="#">
+    <a class="tab-item external normal" href="javascript:;" data-type="self">
         <span class="icon">
             <img src="/img/discovery/bar-self.png" alt="">
             <img src="/img/discovery/bar-self-active.png" alt="">
@@ -44,8 +44,16 @@
 <!-- 事件绑定 -->
 <script>
     (function () {
-        $(".footBar>a").click(function () {
-            $(this).removeClass("normal").addClass("active").siblings().removeClass("active").addClass("normal");
-        });
+        $(".footBar>a").each((index, ele) => {
+            console.log($(ele).data("type"))
+            console.log(location.href.split("/").pop())
+            if ($(ele).data("type") == location.href.split("/").pop()) {
+                console.log(1)
+                $(ele).removeClass("normal").addClass("active").siblings().removeClass("active").addClass("normal")
+            }
+            $(ele).click(function () {
+                location.href = "/" + $(this).data("type");
+            })
+        })
     })()
 </script>
