@@ -254,7 +254,7 @@ router.get("/removeLike", (req, res) => {
                     return item;
                 }
             })
-            console.log(data);
+            // console.log(data);
             Users.findOneAndUpdate({
                 name: req.cookies.username
             }, data, err => {
@@ -296,10 +296,10 @@ router.get("/addLike", (req, res) => {
     }, (err, data) => {
         if (!err) {
             let id = data.id;
-            data.like = data.like.map(item => item);
-            // console.log(like, 1);
-            data.like.push(req.query.id);
-            // console.log( 2);
+            data.like = data.like || [];
+            if (!data.like.includes(req.query.id)) {
+                data.like.push(req.query.id);
+            }
             Users.findOneAndUpdate({
                 name: req.cookies.username
             }, data, err => {
@@ -309,7 +309,10 @@ router.get("/addLike", (req, res) => {
                         _id: req.query.id
                     }, (err, data) => {
                         if (!err) {
-                            data.flowme.push(id);
+                            data.flowme = data.flowme || [];
+                            if (!data.flowme.includes(id)) {
+                                data.flowme.push(id);
+                            }
                             Users.findOneAndUpdate({
                                     _id: req.query.id
                                 },data, err=> {
@@ -347,6 +350,7 @@ router.get("/flowme", (req, res) => {
         name: req.cookies.username
     }, (err, data) => {
         let id = data.id;
+        let me = data;
         if (!err) {
             let arr = [];
             // 遍历关注的我的
@@ -357,8 +361,7 @@ router.get("/flowme", (req, res) => {
                         _id: fuser
                     }, (err, user) => {
                         if (!err) {
-                            
-                            if (user.flowme.includes(id)) {
+                            if (user.flowme.includes(id) && me.like.includes(user.id)) {
                                 // 说明互相关注
                                 user.status = 1;
                             }
