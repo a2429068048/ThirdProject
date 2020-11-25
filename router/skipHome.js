@@ -64,6 +64,10 @@ router.get("/plants", (req, res) => {
 router.get("/matter", (req, res) => {
     res.render('matter')
 })
+// 家居生活
+router.get("/furnishing", (req, res) => {
+    res.render('furnishing')
+})
 
 
 module.exports = router;
