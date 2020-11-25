@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
+    {{include "./commend.html"}}
+    <style>
+        body{
+            background-color: white;
+            overflow: auto;
+            font-size: 13px;
+        }
+        img{
+            width: 100%;
+        }
+        .bar-header-secondary{
+            position: fixed;
+            top: 0;
+        }
+        .search-input input{
+            border-radius: 15px;
+        }
+        .bar .searchbar{
+            background:none;
+            background-color: #006e55;
+        }
+        .bar{
+            background: none;
+        }
+        .bar:after{
+            background:none;
+        }
+        #search{
+            padding-left: 1.8rem;
+            width: 96%;
+            margin: 0 auto;
+        }
+        .search-input .icon{
+            left: .7rem;
+        }
+        /* main */
+        main{
+            margin-top: 50px;
+        }
+        main>div{
+            width: 92%;
+            margin: auto;
+        }
+        p{
+            margin: 0;
+        }
+        .everybody span{
+            display: inline-block;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+        .everybody p span{
+            border: 1px solid #979797;
+            padding: 3px 8px;
+            color: rgb(173, 173, 173);
+        }
+        /* 好物推荐 */
+        .good>ul li{
+            width: 48%;
+        }
+        .good{
+            margin-top: 35px;
+        }
+        .good h5{
+            margin: 12px 0;
+        }
+        .good b{
+            display: inline-block;
+            margin: 8px 0;
+        }
+        .good del{
+            color: rgb(180, 180, 180);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="bar bar-header-secondary">
+            <div class="searchbar">
+            <a class="searchbar-cancel">取消</a>
+            <div class="search-input">
+                <label class="icon icon-search" for="search"></label>
+                <input type="search" id='search' placeholder='搜索商品'/>
+            </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="everybody">
+            <span>大家都在搜</span>
+            <p>
+                <span>绿萝</span>
+                <span>蒲河</span>
+                <span>茉莉花</span>
+            </p>
+        </div>
+        <div class="good">
+            <h5>本周好物推荐</h5>
+            <ul>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000030.jpg" alt=""></div>
+                    <b>青涩少年-栀子花</b>
+                    <p>￥19.90 <del>￥39.90</del></p>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

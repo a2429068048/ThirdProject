@@ -60,6 +60,10 @@ router.get("/gift", (req, res) => {
 router.get("/plants", (req, res) => {
     res.render('greenPlants')
 })
+// 绿植搜索
+router.get("/greenSearch", (req, res) => {
+    res.render('greenSearch')
+})
 // F+物制所
 router.get("/matter", (req, res) => {
     res.render('matter')

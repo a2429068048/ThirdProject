@@ -136,7 +136,15 @@
         .groupBuy .swiper-slide li{
             text-align: right;
         }
+        .groupBuy .swiper-pagination{
+            position: absolute;
+            bottom: -5rem;
+            left: 7rem;
+        }
         /* 新品推荐 */
+        .newpro{
+            position: relative;
+        }
         .newpro_nav_img img{
             border-radius: 5px;
         }
@@ -150,12 +158,22 @@
         .newpro>.content p:nth-of-type(1){
             margin-top: 4px;
         }
+        .newpro>.content p:nth-of-type(2){
+            margin-top: 14px;
+            color: black;
+            font-weight: 600;
+        }
         .newpro>.content b{
             font-size: 14px;
         }
         .newpro .swiper-wrapper>div{
-            width: 92% !important;
+            width: 75% !important;
             margin: 0 15px;
+        }
+        .newpro .swiper-pagination{
+            position: absolute;
+            bottom: 19.5rem;
+            left: 7rem;
         }
         /* 热卖专区 */
         .hot img,.goodThings img{
@@ -256,10 +274,7 @@
                     <b>限时团购</b>
                     <p>FLASH SALE</p>
                 </section>
-                <section>
-                    <span>1</span>
-                    <span>/17</span>
-                </section>
+                <div class="swiper-pagination"></div>
             </div>
             <div class="content">
                 <div class="swiper-container">
@@ -277,10 +292,7 @@
                     <b>新品推荐</b>
                     <p>NEW ARRIVAL</p>
                 </section>
-                <section>
-                    <span>1</span>
-                    <span>/8</span>
-                </section>
+                <div class="swiper-pagination"></div>
             </div>
             <div class="content">
                 <div class="swiper-container">
@@ -359,7 +371,7 @@
                     type: 'fraction',
                     renderFraction: function (currentClass, totalClass) {
                     return '<span class="' + currentClass + '"></span>' +
-                            ' of ' +
+                            ' / ' +
                             '<span class="' + totalClass + '"></span>';
                     },
                 },
@@ -388,14 +400,14 @@
         })
         setTimeout(() => {
             var mySwiper = new Swiper('.newpro .swiper-container',{
+                width:310,
                 pagination: {
-                    width:255,
                     loop:true,
                     el: '.newpro .swiper-pagination',
                     type: 'fraction',
                     renderFraction: function (currentClass, totalClass) {
                     return '<span class="' + currentClass + '"></span>' +
-                            ' of ' +
+                            ' / ' +
                             '<span class="' + totalClass + '"></span>';
                     },
                 },
