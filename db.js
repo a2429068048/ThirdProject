@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     pic: String,
     img: String,
     selfInfo: String,
-    like: String,
+    like: Array,
     designation: String,
     phone: Number,
     adress: String,
@@ -31,8 +31,9 @@ const userSchema = new mongoose.Schema({
     childrend: String,
     purpose: String,
     scene: String,
-    flowme: Number,
-    getGoods: Number
+    flowme: Array,
+    getGoods: Number,
+    topics: Array
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({

@@ -40,6 +40,12 @@
             text-align: center;
         }
 
+        .header .left img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
         .header .left p {
             padding-left: 14px;
             font-size: 16px;
@@ -55,6 +61,7 @@
         .header .right {
             font-size: 12px;
         }
+
         .header .right a {
             color: white;
         }
@@ -75,6 +82,10 @@
             justify-content: space-around;
             text-align: center;
             font-size: 16px;
+        }
+
+        .menu a {
+            color: white;
         }
 
         .menu p {
@@ -120,26 +131,32 @@
 <body>
     <div class="page">
         {{include "./disBartab.html"}}
-        <header class="top">
-            <div class="headerMask" style="background:url({{img}})">
+        <header class="top" style="background-image: url({{img}});">
+            <div class="headerMask">
                 <div class="header line">
                     <div class="left">
                         <img src="{{pic}}" alt="" onerror="picError(this)">
                         <p>{{name}}<span class="level">Lv1</span></p>
                     </div>
                     <div class="right">
-                        <a href="/discovery/disEdit"><p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p></a>
+                        <a href="/discovery/disEdit">
+                            <p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p>
+                        </a>
                     </div>
                 </div>
                 <ul class="menu line">
                     <li>
-                        <span>{{like ? like : 0}}</span>
-                        <p>我关注的人</p>
+                        <a href="/discovery/myfolow" class="myfolow">
+                            <span>{{like ? like.length : 0}}</span>
+                            <p>我关注的人</p>
+                        </a>
                     </li>
                     <li>
-                        {{flowme}}
-                        <span>{{flowme ? flowme : 0}}</span>
-                        <p>关注我的人</p>
+                        <a href="/discovery/flowme">
+                            <span>{{flowme ? flowme.length : 0}}</span>
+                            <p>关注我的人</p>
+                        </a>
+
                     </li>
                     <li>
                         <span>{{getGoods? getGoods : 0}}</span>
@@ -174,11 +191,12 @@
                 // console.log(1)
                 $(this).addClass("active").siblings().removeClass("active");
                 $.showIndicator();
-                setTimeout( () => {
+                setTimeout(() => {
                     $(`.${$(this).data("type")}`).show().siblings().hide();
                     $.hideIndicator();
                 }, 2000);
-            })
+            });
+
         })
     </script>
 </body>
