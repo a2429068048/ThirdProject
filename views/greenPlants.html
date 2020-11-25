@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
+    {{include "./commend.html"}}
+    <style>
+        body{
+            background-color: white;
+            overflow: auto;
+        }
+        img{
+            width: 100%;
+        }
+        header{
+            position: relative;
+        }
+        .bar-header-secondary{
+            position: fixed;
+            top: 0;
+        }
+        .search-input input{
+            border-radius: 15px;
+        }
+        .bar .searchbar{
+            background:none;
+        }
+        .bar{
+            background: none;
+        }
+        .bar:after{
+            background:none;
+        }
+        .header_down{ 
+            position: absolute;
+            bottom: 0.5rem;
+            text-align: center;
+        }
+        .header_down img{
+            width: 95%;
+            border-radius: 5px;
+        }
+        #search{
+            padding-left: 1.8rem;
+            width: 96%;
+            margin: 0 auto;
+        }
+        #search::placeholder{
+            color: black;
+        }
+        .search-input .icon{
+            left: .7rem;
+        }
+        /* main */
+        .banner>ul{
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner>ul li{
+            width: 48%;
+            font-size: 0;
+        }
+        .banner li:nth-of-type(1) div:nth-of-type(2){
+            margin-top: 4px;
+        }
+        main>div{
+            width: 92%;
+            margin: auto;
+        }
+        /* 活动专区 */
+        .activities img{
+            width: 48%;
+            margin-right: 4px;
+        }
+        .public h5{
+            margin: 14px 0;
+        }
+        .public{
+            margin-top: 28px;
+        }
+        /* 新品推荐 */
+        .new .swiper-slide>ul{
+            display: flex;
+            justify-content: space-between;
+        }
+        .new .swiper-slide li{
+            width: 31%; 
+        }
+        p{
+            font-size: 14px;
+            margin: 6px 0;
+            height: 16px;
+            overflow: hidden;
+        }
+        del{
+            font-size: 12px;
+            margin-left: 6px;
+            color: rgb(189, 189, 189);
+        }
+        span{
+            font-size: 12px;
+        }
+        .new .swiper-slide li p:nth-of-type(1),.hot_main li p:nth-of-type(1){
+            font-weight: 600;
+        }
+        .swiper-pagination-bullet{
+            width: 6px;
+            height: 6px;
+            opacity: 1;
+            background-color: #006e54;
+        }
+        .swiper-pagination-bullet-active{
+            border: 1px solid #006e54;
+            background-color: rgb(236, 235, 235);
+        }
+        /* 热卖 */
+        .hot_main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .hot_main li{
+            width: 48%;
+            margin-top: 22px;
+        }
+        .hot_main li span:nth-of-type(2){
+            margin-left: 12px;
+            color: rgb(189, 189, 189);
+        }
+        .hot_main li:nth-of-type(1),.hot_main li:nth-of-type(2){
+            margin-top: 0;
+        }
+        /* footer */
+        footer{
+            text-align: center;
+            margin: 28px 0 18px 0;
+        }
+        footer p{
+            color: rgb(170, 170, 170);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="/img/index/绿植多肉/ia_100000000.png" alt="">
+            <div class="bar bar-header-secondary">
+                <div class="searchbar">
+                <a class="searchbar-cancel">取消</a>
+                <div class="search-input">
+                    <label class="icon icon-search" for="search"></label>
+                    <input type="search" id='search' placeholder='搜索绿植..'/>
+                </div>
+                </div>
+            </div>
+            <div class="header_down">
+                <img src="/img/index/绿植多肉/ia_100000001.jpg" alt="">
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="banner">
+            <ul>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000002.png" alt=""></div>
+                    <div><img src="/img/index/绿植多肉/ia_100000003.png" alt=""></div>
+                </li>
+                <li><img src="/img/index/绿植多肉/ia_100000004.png" alt=""></li>
+            </ul>
+        </div>
+        <div class="activities public">
+            <h5>活动专区</h5>
+            <div>
+                <img src="/img/index/绿植多肉/ia_100000005.png" alt="">
+                <img src="/img/index/绿植多肉/ia_100000006.png" alt="">
+            </div>
+        </div>
+        <!-- 新品 -->
+        <div class="new public">
+            <h5>新品推荐</h5>
+            <div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000013.jpg" alt=""></div>
+                                    <p>宫粉梅 黄金蜡梅</p>
+                                    <p><span>￥59.90</span><del>￥79.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000014.jpg" alt=""></div>
+                                    <p>中国桔梗</p>
+                                    <p><span>￥39.90</span><del>￥59.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000015.jpg" alt=""></div>
+                                    <p>金边瑞香</p>
+                                    <p><span>￥49.90</span><del>￥69.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000013.jpg" alt=""></div>
+                                    <p>蜡梅盆栽</p>
+                                    <p><span>￥59.90</span><del>￥79.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000014.jpg" alt=""></div>
+                                    <p>诺贝松圣诞树</p>
+                                    <p><span>￥299.90</span><del>￥399.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000015.jpg" alt=""></div>
+                                    <p>珊瑚冬青</p>
+                                    <p><span>￥59.90</span><del>￥79.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000016.jpg" alt=""></div>
+                                    <p>松红梅盆栽</p>
+                                    <p><span>￥59.90</span><del>￥79.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000017.jpg" alt=""></div>
+                                    <p>落新妇盆栽</p>
+                                    <p><span>￥79.90</span><del>￥99.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000018.jpg" alt=""></div>
+                                    <p>绣线菊盆栽</p>
+                                    <p><span>￥49.90</span><del>￥69.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000019.jpg" alt=""></div>
+                                    <p>元气森活-耐养组合</p>
+                                    <p><span>￥99.90</span><del>￥129.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000020.jpg" alt=""></div>
+                                    <p>大丽花盆栽</p>
+                                    <p><span>￥59.90</span><del>￥99.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000021.jpg" alt=""></div>
+                                    <p>珍珠橙盆栽</p>
+                                    <p><span>￥49.90</span><del>￥69.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000022.jpg" alt=""></div>
+                                    <p>郁金香盆栽</p>
+                                    <p><span>￥59.90</span><del>￥79.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000023.jpg" alt=""></div>
+                                    <p>大花蕙兰</p>
+                                    <p><span>￥79.90</span><del>￥99.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000024.jpg" alt=""></div>
+                                    <p>大蝴蝶兰</p>
+                                    <p><span>￥49.90</span><del>￥69.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="swiper-slide">
+                            <ul>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000025.jpg" alt=""></div>
+                                    <p>脆皮金桔</p>
+                                    <p><span>￥99.90</span><del>￥129.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000026.jpg" alt=""></div>
+                                    <p>诺贝松圣诞挂壁切枝</p>
+                                    <p><span>￥59.90</span><del>￥99.90</del></p>
+                                </li>
+                                <li>
+                                    <div><img src="/img/index/绿植多肉/ia_100000027.jpg" alt=""></div>
+                                    <p>北美冬青盆栽</p>
+                                    <p><span>￥49.90</span><del>￥69.90</del></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 热卖 -->
+        <div class="hot public">
+            <h5>热卖专区</h5>
+            <ul class="hot_main">
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000037.jpg" alt=""></div>
+                    <p>蒲河盆栽</p>
+                    <p>
+                        <span>￥19.90</span><del>￥39.90</del>
+                        <span>月售38943</span>
+                    </p>
+                </li>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000038.png" alt=""></div>
+                    <p>mini-蝴蝶兰</p>
+                    <p>
+                        <span>￥29.90</span><del>￥49.90</del>
+                        <span>月售22543</span>
+                    </p>
+                </li>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000039.png" alt=""></div>
+                    <p>彩虹渐变月季</p>
+                    <p>
+                        <span>￥45.90</span><del>￥65.90</del>
+                        <span>月售38943</span>
+                    </p>
+                </li>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000040.png" alt=""></div>
+                    <p>风清财子</p>
+                    <p>
+                        <span>￥29.90</span><del>￥49.90</del>
+                        <span>月售22543</span>
+                    </p>
+                </li>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000041.png" alt=""></div>
+                    <p>治愈精灵-多肉组合</p>
+                    <p>
+                        <span>￥45.90</span><del>￥65.90</del>
+                    </p>
+                </li>
+                <li>
+                    <div><img src="/img/index/绿植多肉/ia_100000042.png" alt=""></div>
+                    <p>青涩少年-栀子花</p>
+                    <p>
+                        <span>￥19.90</span><del>￥49.90</del>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <p>©️2013-2020 上海分尚网络科技有限公司</p>
+    </footer>
+    <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.new .swiper-container',{
+            loop:true,
+            pagination: {
+                el: '.new .swiper-pagination',
+            },
+        })
+        $(window).scroll(function(){
+            if($(this).scrollTop()>50){
+                $('.bar .searchbar').css('background-color','#006e53')
+            }else{
+                $('.bar .searchbar').css('background','none')
+            }
+        })
+        $('.search-input').click(function(){
+            location.href='/home/greenSearch'
+        })
+    </script>
+</body>
+</html>
