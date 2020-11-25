@@ -138,8 +138,6 @@
         }
         /* 新品推荐 */
         .newpro_nav_img img{
-            width: 255px;
-            height: 255px;
             border-radius: 5px;
         }
         .newpro>.content p{
@@ -155,8 +153,8 @@
         .newpro>.content b{
             font-size: 14px;
         }
-        .newpro .swiper-slide{
-            width: 255px;
+        .newpro .swiper-wrapper>div{
+            width: 92% !important;
             margin: 0 15px;
         }
         /* 热卖专区 */
@@ -353,7 +351,8 @@
             });
             $('.groupBuy .swiper-wrapper').html(str)
         })
-        var mySwiper = new Swiper('.groupBuy .swiper-container',{
+        setTimeout(() => {
+            var mySwiper = new Swiper('.groupBuy .swiper-container',{
                 pagination: {
                     loop:true,
                     el: '.groupBuy .swiper-pagination',
@@ -365,6 +364,8 @@
                     },
                 },
             })
+        }, 100);
+        
         
         // 新品推荐
         $.get('/home/newpro',(data)=>{
@@ -385,8 +386,10 @@
             });
             $('.newpro .swiper-wrapper').html(str)
         })
-        var mySwiper = new Swiper('.newpro .swiper-container',{
+        setTimeout(() => {
+            var mySwiper = new Swiper('.newpro .swiper-container',{
                 pagination: {
+                    width:255,
                     loop:true,
                     el: '.newpro .swiper-pagination',
                     type: 'fraction',
@@ -397,6 +400,8 @@
                     },
                 },
             })
+        }, 100);
+        
         // 热卖
         $.get('/home/hot',(data)=>{
             var str=''

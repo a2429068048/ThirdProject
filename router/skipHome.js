@@ -52,8 +52,17 @@ router.get("/goodThings", (req, res) => {
 router.get("/flower", (req, res) => {
     res.render('monthlyFlowers')
 })
+// 礼品花束
 router.get("/gift", (req, res) => {
     res.render('gift')
+})
+// 绿植多肉
+router.get("/plants", (req, res) => {
+    res.render('greenPlants')
+})
+// F+物制所
+router.get("/matter", (req, res) => {
+    res.render('matter')
 })
 
 
