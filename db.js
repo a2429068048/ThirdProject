@@ -64,6 +64,13 @@ const easyUserSchema = new mongoose.Schema({
 // ---- 帖子表 ----
 const topicSchema = new mongoose.Schema({
     pic:String,
+    name:String,
+    getGoods:Number,
+    img:String,
+    nameId:String,
+    comment: Array,
+    content: String,
+    address: String
     
 })
 
@@ -71,14 +78,15 @@ const Users = mongoose.model("User", userSchema);
 const ShopCar = mongoose.model("GoodsList", shopCarSchema);
 const Goods = mongoose.model("Good", goodsListSchema);
 const EasyUser = mongoose.model("EasyUser", easyUserSchema);
-
+const Topic = mongoose.model("Topic", topicSchema);
 
 module.exports = {
     // 导出对应的对象
     Users,
     ShopCar,
     Goods,
-    EasyUser
+    EasyUser,
+    Topic
 }
 
 

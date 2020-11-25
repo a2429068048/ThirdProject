@@ -1,5 +1,6 @@
 let {
-    Users
+    Users,
+    Topic
 } = require("../db")
 const mult = require("multer");
 const fs = require("fs");
@@ -79,8 +80,10 @@ function sendInfo(res, coder = 0, msg = "", data = null) {
 
 const exp = require("express");
 const {
-    info
+    info, time
 } = require("console");
+const { mongo, Mongoose } = require("mongoose");
+const { send } = require("process");
 
 const router = exp.Router();
 
@@ -341,8 +344,6 @@ router.get("/addLike", (req, res) => {
         }
     })
 })
-
-
 // 关注我列表
 router.get("/flowme", (req, res) => {
     // 遍历自己的数组
@@ -388,5 +389,128 @@ router.get("/flowme", (req, res) => {
         }
     })
 })
+// 获得我的贴子
+router.get("/topic", (req, res) => {
+    // console.log(req.query);
+    // 查找我的帖子
+    Topic.find({nameId: req.query.id}, (err, data) => {
+        // console.log(data);
+        if (!err) {
+            // 更新名字和头像
+            if (data.length) {
+                data.forEach((info, index) => {
+                    Users.findOne({_id: info.nameId}, (err, user) => {
+                      if (!err) {
+                            info.name = user.name;
+                            info.pic = user.pic;
+                      } else {
+                          console.log("我的帖子更新名字失败");
+                          console.log(err);
+                      }
+                      if (index == data.length-1) {
+                        sendInfo(res, 1, "查看成功", data);
+                      }
+                    })
+                })
+            } else {
+                sendInfo(res, 1, "查看成功", data);
+            }
+            
+        } else {
+            console.log("查看我的帖子失败");
+            console.log(err);
+        }
+    })
+})
+// 获得我的收藏
+router.get("/collect", (req, res) => {
+    console.log(req.query);
+    Users.findOne({_id: req.query.id}, (err, data) => {
+        if (!err) {
+            let arr = []
+            data.topics = data.topics || arr;
+            if (data.topics.length) {
+                data.topics.forEach((info, index) => {
+                    // console.log(434)
+                    Topic.findOne({_id: info}, (err, msg) => {
+                        console.log(msg);
+                        if (!err) {
+                            // 更新数据的用户名和图片
+                            Users.findOne({_id: msg.nameId}, (err, user) => {
+                                if (!err) {
+                                    msg.name = user.name;
+                                    msg.pic = user.pic;
+                                    arr.push(msg);
+                                } else {
+                                    console.log("我的帖子更新名字失败");
+                                    console.log(err);
+                                }
+                                if (index == data.topics.length - 1) {
+                                    sendInfo(res, 1, "获取成功", arr);
+                                }
+                              })
+                            
+                        } else {
+                            console.log("帖子获取失败---collect");
+                            console.log(err);
+                        }
+                    })
+                })
+            } else {
+                console.log(1)
+                sendInfo(res, 1, "测试", [])
+            }
+        } else {
+            console.log("获得收藏数据库失败");
+            console.log(err);
+        }
+    })
+})
+
+
+// 帖子图片设置
+let topicStorage = mult.diskStorage({
+    destination:"static/topics",
+    filename:function (req, filse , callback) {
+        let time = Date.now();
+        let index = filse.originalname.lastIndexOf(".");
+        let name = time + req.cookies.username + filse.originalname.slice(index);
+        // console.log(name);
+        req.body.time = time;
+        req.body.img = name;
+        callback(null, name);
+    }
+})
+let topicUpload = mult({
+    storage:topicStorage
+})
+// 发布帖子
+router.post("/appendTopic", topicUpload.single("img"), (req, res) => {
+    Users.findOne({name: req.cookies.username}, (err, data) => {
+        if (!err) {
+            // console.log(data);
+            req.body.pic = data.pic;
+            req.body.nameId = data.id;
+            // console.log(req.body);
+            let topic = new Topic(req.body);
+            topic.save(err => {
+                if (!err) {
+                    sendInfo(res, 1, "发布成功");
+                } else {
+                    console.log("发布失败");
+                    console.log(err);
+                }
+            })
+            
+        } else {
+            console.log("查找用户失败---appendTopic1");
+            console.log(err);
+        }
+    })
+    
+})
+
+
+
 
 module.exports = router;
