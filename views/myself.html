@@ -243,9 +243,22 @@
     </main>
     {{include "./footer.html"}}
 
+    <script type='text/javascript' src='/js/jquery.cookie.js' charset='utf-8'></script>
     <script>
         $('.text').click(function () {
-            location.href = '/edit'
+            if ($.cookie('username') != null) {
+                location.href = '/edit'
+            } else {
+                location.href = '/login'
+            }
+
+        })
+        $('.titles>div').click(function () {
+            var text = $(this).children('p').text()
+            location.href = '/order?=' + text
+        })
+        $('.vip').click(function () {
+            location.href = '/vip'
         })
     </script>
 </body>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单列表</title>
+    {{include "./commend.html"}}
+    <style>
+        html {
+            touch-action: none;
+        }
+
+        .page,
+        .page-group {
+            background-color: rgb(245, 245, 245);
+        }
+
+        .content-block img {
+            display: block;
+            width: 26%;
+            margin: 40% auto 20px;
+            min-width: 96px;
+        }
+
+        .content-block p {
+            text-align: center;
+            font-size: 13px;
+            color: rgb(153, 153, 153);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <div class="buttons-tab">
+                <a href="#tab1" class="tab-link button">全部</a>
+                <a href="#tab2" class="tab-link button">待付款</a>
+                <a href="#tab3" class="tab-link button">服务中</a>
+                <a href="#tab4" class="tab-link button">待评价</a>
+                <a href="#tab5" class="tab-link button">已完成</a>
+            </div>
+            <div class="content-block">
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <div class="content-block">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
+                            <p>此分类中暂无订单</p>
+                        </div>
+                    </div>
+                    <div id="tab2" class="tab">
+                        <div class="content-block">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
+                            <p>此分类中暂无订单</p>
+                        </div>
+                    </div>
+                    <div id="tab3" class="tab">
+                        <div class="content-block">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
+                            <p>此分类中暂无订单</p>
+                        </div>
+                    </div>
+                    <div id="tab4" class="tab">
+                        <div class="content-block">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
+                            <p>此分类中暂无订单</p>
+                        </div>
+                    </div>
+                    <div id="tab5" class="tab">
+                        <div class="content-block">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
+                            <p>此分类中暂无订单</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {{include "./script.html"}}
+
+    <script>
+        var test = window.location.search;
+        test = decodeURIComponent(test.substring(2))
+        $('.tab-link').each(function (i, item) {
+            if ($(item).text() == test) {
+                $(this).addClass('active')
+            }
+        })
+        $('.tab-link').click(function () {
+            $(this).addClass('active').siblings('.tab-link').removeClass('active')
+        })
+    </script>
+</body>
+
+</html>

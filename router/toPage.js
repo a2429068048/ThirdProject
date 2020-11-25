@@ -88,9 +88,14 @@ router.get('/edit', (req, res) => {
 router.get('/info', (req, res) => {
     res.render('person')
 })
-
-
-
+//-----订单页面-----
+router.get('/order', (req, res) => {
+    res.render('order')
+})
+//-----会员页面------
+router.get('/vip', (req, res) => {
+    res.render('vip')
+})
 
 
 

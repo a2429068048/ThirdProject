@@ -8,7 +8,7 @@ var router = exp.Router()
 
 //------------注册----------------
 router.post('/reg', (req, res) => {
-    EasyUser.findOne({ phone: req.body.phone }, (err, data) => {
+    EasyUser.findOne({ name: req.body.name }, (err, data) => {
         if (!err) {
             if (data) {
                 res.send({
@@ -39,19 +39,24 @@ router.post('/reg', (req, res) => {
 
 //-------------登录---------------
 router.post('/logins', (req, res) => {
-    EasyUser.findOne({ name: req.body.username, psw: req.body.psw }, (err, data) => {
+    EasyUser.findOne({ name: req.body.username }, (err, data) => {
         if (!err) {
             if (data) {
-                var time = new Date()
-                time.setMonth(time.getMonth() + 1)
-                res.cookie('username', req.body.username, { expires: time })
-                res.send({
-                    msg: '登录成功',
-                    code: 1,
-                })
+                if (data.psw == req.body.psw) {
+                    var time = new Date()
+                    time.setMonth(time.getMonth() + 1)
+                    res.cookie('username', req.body.username, { expires: time })
+                    res.send({
+                        msg: '登录成功',
+                        code: 1,
+                    })
+                } else {
+                    res.send({ msg: '密码错误' })
+                }
+
             } else {
                 res.send({
-                    msg: '登录失败',
+                    msg: '该用户尚未注册',
                     code: 0
                 })
             }
@@ -122,6 +127,19 @@ router.post('/infomation', (req, res) => {
             msg: '请先登录'
         })
     }
+})
+
+//-----edit页面加载个人信息-----
+router.post('/edits', (req, res) => {
+    Users.findOne({ name: req.body.username }, (err, data) => {
+        if (!err) {
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
+            res.send(data)
+        } else {
+            console.log(err);
+        }
+    })
 })
 
 module.exports = router
