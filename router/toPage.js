@@ -96,6 +96,43 @@ router.get('/order', (req, res) => {
 router.get('/vip', (req, res) => {
     res.render('vip')
 })
+//-----我的奖励-----
+router.get('/prize', (req, res) => {
+    res.render('prize')
+})
+//-----我的证书-----
+router.get('/certificate', (req, res) => {
+    res.render("certificate")
+})
+//-----专区-----
+router.get('/area', (req, res) => {
+    res.render('area')
+})
+//-----活动-----
+router.get('/christmas', (req, res) => {
+    res.render('christmas')
+})
+//-----服务页面跳转-----
+router.get('/give', (req, res) => {
+    res.render('give')
+})
+router.get('/flower', (req, res) => {
+    res.render('my_flower')
+})
+router.get('/card', (req, res) => {
+    res.render('card')
+})
+router.get('/cheap', (req, res) => {
+    res.render('cheap')
+})
+//-----查询卡单-----
+router.get('/lookup', (req, res) => {
+    res.render('lookup')
+})
+//-----优选-----
+router.get('/good_select', (req, res) => {
+    res.render('good_select')
+})
 
 
 

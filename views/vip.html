@@ -185,6 +185,10 @@
             background-color: rgb(246, 246, 246);
         }
 
+        .power b {
+            display: none;
+        }
+
         .power img {
             width: 100%;
             display: block;
@@ -207,6 +211,11 @@
         .hide p {
             margin: 0;
             line-height: 41.6px;
+        }
+
+        .grow p b,
+        .hide p b {
+            display: none;
         }
 
         .grow img,
@@ -303,6 +312,10 @@
             font-size: 12px;
         }
 
+        .flower {
+            margin-bottom: 30px;
+        }
+
         .flower>div {
             margin-right: 20px;
             margin-bottom: 10px;
@@ -389,7 +402,7 @@
             border-bottom: 1px solid rgb(242, 242, 242);
         }
 
-        footer>div>button {
+        footer div button {
             width: 100%;
             text-align: center;
             background-color: black;
@@ -399,6 +412,11 @@
             margin-top: 35px;
             border-radius: 5px;
             font-size: 15px;
+        }
+
+        footer>div>div {
+            display: flex;
+            justify-content: space-between;
         }
 
         .sub {
@@ -426,6 +444,15 @@
             display: block;
             animation: dark_black 500ms ease 1 alternate;
             animation-fill-mode: forwards
+        }
+
+        .area {
+            display: none;
+            background-color: rgb(242, 92, 98);
+        }
+
+        .appear {
+            display: inline-block;
         }
 
 
@@ -722,10 +749,12 @@
                                 <div>
                                     <p>新人送花瓶</p>
                                     <img src="https://oss.flowerplus.cn/img/huaping.png" alt="">
+                                    <b>新用户首单购买大多数包月鲜花、单品鲜花，将收到平台免费赠送的花瓶</b>
                                 </div>
-                                <div>
+                                <div class="new_price">
                                     <p>新客价</p>
                                     <img src="https://oss.flowerplus.cn/img/newprice.png" alt="">
+                                    <b>新客首单享受包月鲜花、单品鲜花的新客优惠价</b>
                                 </div>
                             </div>
                         </div>
@@ -737,6 +766,9 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/buy.svg" alt="">
                             <span class="buy" id="buys">下单购物</span>
+                            <b>1、下单实际金额数值奖励对应成长值（所有成长值平均到每次配送计划完成后发放）<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励对应金额成长值<i class="icon icon-right"></i></span>
                     </div>
@@ -744,14 +776,19 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/info.svg" alt="">
                             <span class="buy">完善个人资料</span>
+                            <b>去个人中心-个人信息页完善个人信息即可获得15成长值</b>
                         </p>
                         <span class="grow_reword" id="person">奖励15成长值<i class="icon icon-right"></i></span>
-
                     </div>
                     <div>
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/onemonth.svg" alt="">
                             <span class="buy">首次完整收花一个月</span>
+                            <b>
+                                1、首次订阅包月套餐并完整收花1个月，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
 
@@ -760,6 +797,10 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/tuan.svg" alt="">
                             <span class="buy">分享团购二维码/链接拉用户下单</span>
+                            <b>
+                                1、购买团购商品并成功开团，邀请好友下单成功便可获取20个成长值<br>
+                                2、必须是主动邀请好友参团才算成功，被动由其他人参团的不算在内
+                            </b>
                         </p>
                         <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
 
@@ -770,6 +811,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/firstorder.svg" alt="">
                             <span class="buy">首次下单并收花成功</span>
+                            <b>
+                                1、首次下单付费>0元并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
 
@@ -778,6 +824,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/micang.svg" alt="">
                             <span class="buy">首次购买谜藏并收花成功</span>
+                            <b>
+                                1、首次购买谜藏包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值<br>
+                            </b>
                         </p>
                         <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
 
@@ -786,6 +837,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/dashi.svg" alt="">
                             <span class="buy">首次购买大师并收花成功</span>
+                            <b>
+                                1、首次购买大师包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值<br>
+                            </b>
                         </p>
                         <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
 
@@ -794,6 +850,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/zhiai.svg" alt="">
                             <span class="buy">首次购买挚爱并收花成功</span>
+                            <b>
+                                1、首次购买挚爱包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
 
@@ -802,6 +863,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/lite.svg" alt="">
                             <span class="buy">首次购买轻礼并收花成功</span>
+                            <b>
+                                1、首次购买轻礼系列产品，并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
 
@@ -810,6 +876,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/fplus.svg" alt="">
                             <span class="buy">首次购买F+</span>
+                            <b>
+                                1、首次购买F+系列产品，并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
 
@@ -818,6 +889,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/threemonth.svg" alt="">
                             <span class="buy">包月套餐3个月</span>
+                            <b>
+                                1、累计完成3个月包月套餐收花（2束/月、4束/月），则获得40成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励40成长值<i class="icon icon-right"></i></span>
 
@@ -826,6 +902,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/sixmonth.svg" alt="">
                             <span class="buy">包月套餐满6个月</span>
+                            <b>
+                                1、累计完成6个月包月套餐收花（2束/月、4束/月），则获得80成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励80成长值<i class="icon icon-right"></i></span>
                     </div>
@@ -833,6 +914,11 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/oneyear.svg" alt="">
                             <span class="buy">包月套餐满12个月</span>
+                            <b>
+                                1、累计完成12个月包月套餐收花（2束/月、4束/月），则获得160成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
                         </p>
                         <span class="grow_reword">奖励160成长值<i class="icon icon-right"></i></span>
 
@@ -841,6 +927,9 @@
                         <p>
                             <img src="https://oss.flowerplus.cn/img/mission/mobile.svg" alt="">
                             <span class="buy">绑定手机号</span>
+                            <b>
+                                去个人中心绑定手机号即可获得15成长值
+                            </b>
                         </p>
                         <span class="finish">已完成</span>
 
@@ -889,7 +978,10 @@
                 <p class="up"></p>
                 <div>
                     <span class="sub"></span><br>
-                    <button class="remove">我知道了</button>
+                    <div>
+                        <button class="remove">我知道了</button>
+                        <button class="area">进入专区</button>
+                    </div>
                 </div>
             </footer>
         </div>
@@ -901,7 +993,15 @@
         if ($.cookie('username')) {
             var a = "Hi " + ' ' + $.cookie('username')
             $('.login').text(a)
+        } else {
+            $(".login").click(function () {
+                location.href = '/login'
+            })
         }
+        $('.reword').click(function () {
+            location.href = '/prize'
+        })
+
         $('.btn_father').click(function () {
             var text = $('.text').text()
             var btn = $(".btn")
@@ -922,6 +1022,7 @@
             }
         })
 
+        //-----下拉框-----
         $('.flower>div').click(function () {
             var up = $(this).children().children('p').text()
             var sub = $(this).children().children('b').text()
@@ -930,13 +1031,61 @@
             $('footer').addClass('move')
             $('.one').addClass('dark')
         })
+
         $(".remove").click(function () {
             $('footer').removeClass('move')
             $('.one').removeClass('dark')
+            $('.area').removeClass('appear')
         })
+
+        $('.power>div').click(function () {
+            var up = $(this).children('p').text()
+            var sub = $(this).children('b').text()
+            $('.sub').text(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+
+        $('.new_price').click(function () {
+            $('footer div button').css('width', '40%')
+            $(".area").addClass('appear')
+        })
+
+        $(".grow>div>p").click(function () {
+            console.log(1);
+            var up = $(this).children('span').text()
+            var sub = $(this).children('b').html()
+            $('.sub').html(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+        $(".hide>div>p").click(function () {
+            console.log(1);
+            var up = $(this).children('span').text()
+            var sub = $(this).children('b').html()
+            $('.sub').html(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+
+
+
+        //-----个人-----
         $('#person').click(function () {
             location.href = '/info'
         })
+        //-----证书-----
+        $('.book').click(function () {
+            location.href = '/certificate'
+        })
+        //-----专区-----
+        $('.area').click(function () {
+            location.href = '/area'
+        })
+
 
 
         $(function () {

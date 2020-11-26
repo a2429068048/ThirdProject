@@ -178,13 +178,13 @@
     </header>
     <main>
         <p><b>收花日历</b><span>无服务中订单&ensp;<i class="icon icon-right"></i></span></p>
-        <p><b>近期福利</b><i class="icon icon-right"></i></span></p>
+        <p class="christmas"><b>近期福利</b><i class="icon icon-right"></i></span></p>
         <div class="banner">
             <img src="https://oss.flowerplus.cn/market_banner/2020-11-18/market_banner5fb48636b24df.jpg!60" alt="">
         </div>
         <p><b>我的服务</b></p>
         <section>
-            <div>
+            <div class="give">
                 <img src="https://oss.flowerplus.cn/oss_png/2019-05-29/15590952198549.png!750" alt="">
                 <p>悦已节赠品</p>
             </div>
@@ -192,17 +192,17 @@
                 <img src="https://oss.flowerplus.cn/oss_svg/2019-06-13/15604105436168.svg" alt="">
                 <p>在线花艺课</p>
             </div>
-            <div>
+            <div class="flower">
                 <img src="https://oss.flowerplus.cn/oss_png/2019-01-04/15465734822663.png!60" alt="">
                 <p>随花购</p>
             </div>
-            <div>
+            <div class="cards">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/exchange_card.svg" alt="">
                 <p>兑换花卡</p>
             </div>
         </section>
         <section>
-            <div>
+            <div class="cheap">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/package_upgrade.svg" alt="">
                 <p>优惠升级</p>
             </div>
@@ -257,8 +257,28 @@
             var text = $(this).children('p').text()
             location.href = '/order?=' + text
         })
+        $('.all-text').click(function () {
+            location.href = '/order?=全部'
+        })
         $('.vip').click(function () {
             location.href = '/vip'
+        })
+
+        $(".christmas").click(function () {
+            location.href = '/christmas'
+        })
+        //-----服务页面跳转-----
+        $('.give').click(function () {
+            location.href = '/give'
+        })
+        $('.flower').click(function () {
+            location.href = '/flower'
+        })
+        $(".cards").click(function () {
+            location.href = '/card'
+        })
+        $('.cheap').click(function () {
+            location.href = '/cheap'
         })
     </script>
 </body>
