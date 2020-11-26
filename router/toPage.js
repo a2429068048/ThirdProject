@@ -62,10 +62,7 @@ router.get("/discovery", (req, res) => {
     res.render("discovery");
 })
 
-//------- 社区 ----------
-router.get("/community", (req, res) => {
-    res.render("community");
-})
+
 
 //------- 登录 ----------
 router.get('/login', (req, res) => {

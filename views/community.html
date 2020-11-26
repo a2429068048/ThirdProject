@@ -9,6 +9,9 @@
   {{include "./commend.html"}}
 
   <style>
+    /* html {
+      touch-action: none;
+    } */
     img {
       width: 100%;
       vertical-align: top;
@@ -205,9 +208,10 @@
     }
 
     .content-body .describe {
-      min-height: 34px;
+      max-height: 40px;
       font-weight: 500;
-      line-height: 16px;
+      line-height: 20px;
+      margin: 10px 0;
       color: #333333;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -230,21 +234,43 @@
       border-radius: 50%;
     }
 
-    .content-body .user .up {
+    .content-body .user .up,
+    .content-body .user .collect {
       align-items: center;
     }
 
-    .content-body .user .up img {
+    .content-body .user .up img,
+    .content-body .user .collect img {
       width: 16px;
       height: 16px;
 
     }
+
+    .content-body .user .collect img {
+      position: relative;
+      top: -2px;
+
+    }
+
+    .newAndRe {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .newAndRe>div {
+      flex-basis: 48%;
+
+    }
+
+
+
 
     /* 关注 */
     .likeBox {
       border-radius: 10px;
       overflow: hidden;
       background-color: white;
+      margin: 10px 0;
     }
 
     .likeBox .likeTitle {
@@ -297,6 +323,7 @@
 
     .likeBox .describe {
       line-height: 20px;
+
     }
 
     .likeBox .time {
@@ -360,41 +387,52 @@
         </div>
       </div>
       <div class="top">
+        {{if topUsers.length}}
         <div class="swiper-container">
           <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+            {{each topUsers user}}
+            {{if user.topics.length}}
             <div class="swiper-slide">
               <div class="box">
                 <div class="imgs line">
-                  <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                  <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt="">
-                  <div class="add">
-                    <img src="/img/discovery/add.png" alt="">
+                  {{each user.topics topic index}}
+                  {{if index < 2}}
+
+                  <img src="/topics/{{topic.img}}" alt="">
+                  {{/if}}
+                  {{/each}}
+                  <!-- <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt=""> -->
+                  <div class="add {{user.isLike ? 'selected' : ''}}" data-id="{{user.id}}">
+
+                    <img src="/img/discovery/add.png" alt="" style="display: {{user.isLike ? 'none' : 'inline-block'}}">
+                    <img src="https://oss.flowerplus.cn/oss_png/2019-06-21/15611156361378.png!750" alt=""
+                      style="display: {{user.isLike ? 'inline-block' : 'none'}}">
                   </div>
                 </div>
+
                 <div class="userInfo">
                   <div class="user line">
                     <div class="userPic">
-                      <img
-                        src="https://wxlogo.flowerplus.cn/mmopen/vi_32/DYAIOgq83ephgP2Y2fn6TlZA2MH1aM385OqJraV670Hg729FiciaokuaXiaKhEkibia4gNKybib9HFAflOKmo0AENfeQ/132"
-                        alt="">
+                      <img src="{{user.pic}}" alt="">
                     </div>
-                    <span>1</span>
+                    <span>{{user.name}}</span>
                   </div>
                   <div>
-                    花艺摄影达人
+                    {{user.designation}}
                   </div>
                 </div>
               </div>
             </div>
-
+            {{/if}}
+            {{/each}}
           </div>
         </div>
-
+        {{/if}}
         <!-- 列表菜单 -->
         <ul class="menue line">
-          <li class="like"><a href="javascript:;" >关注</a></li>
-          <li class="recomend"><a href="javascript:;" >推荐</a></li>
-          <li class="active new"><a href="javascript:;" >最新</a></li>
+          <li class="like"><a href="javascript:;">关注</a></li>
+          <li class="recomend"><a href="javascript:;">推荐</a></li>
+          <li class="active new"><a href="javascript:;">最新</a></li>
         </ul>
       </div>
     </div>
@@ -409,160 +447,169 @@
       <div class="pull-to-refresh-layer" style="display: none;">
         <div class="preloader"></div>
       </div>
-      <div class="content-body line">
-        <div class="left" style="display: none;">
-          <div class="infos">
-            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060980071847.jpg!750" alt="">
-            <div class="text">
-              <div class="label"><span><i>#</i>收花打卡</span></div>
-              <div class="describe">
-                把迷藏高级货拿出来
-                很野兽派
-                其他给的啥不重要了
-                粉色凤梨🍍看着是冷库里出来的
-                要不要给她们消毒呢😂
-              </div>
-              <div class="user line">
-                <div class="userInfo line">
-                  <img
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
-                    alt="">
-                  <span>connnie</span>
-                </div>
-                <div class="up line">
-                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
-                  <span>0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="infos">
-            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060980071847.jpg!750" alt="">
-            <div class="text">
-              <div class="label"><span><i>#</i>收花打卡</span></div>
-              <div class="describe">
-                把迷藏高级货拿出来
-                很野兽派
-                其他给的啥不重要了
-                粉色凤梨🍍看着是冷库里出来的
-                要不要给她们消毒呢😂
-              </div>
-              <div class="user line">
-                <div class="userInfo line">
-                  <img
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
-                    alt="">
-                  <span>connnie</span>
-                </div>
-                <div class="up line">
-                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
-                  <span>0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right" style="display: none;">
-          <div class="infos">
-            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060958432689.jpg!750" alt="">
-            <div class="text">
-              <div class="label" style="display: none;"><span><i>#</i>收花打卡</span></div>
-              <div class="describe">
-                把迷藏高级货拿出来
-                很野兽派
-                其他给的啥不重要了
-                粉色凤梨🍍看着是冷库里出来的
-                要不要给她们消毒呢😂
-              </div>
-              <div class="user line">
-                <div class="userInfo line">
-                  <img
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
-                    alt="">
-                  <span>connnie</span>
-                </div>
-                <div class="up line">
-                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
-                  <span>0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="infos">
-            <img src="https://oss.flowerplus.cn/sns_post_image/20201123/16060958432689.jpg!750" alt="">
-            <div class="text">
-              <div class="label" style="display: none;"><span><i>#</i>收花打卡</span></div>
-              <div class="describe">
-                把迷藏高级货拿出来
-                很野兽派
-                其他给的啥不重要了
-                粉色凤梨🍍看着是冷库里出来的
-                要不要给她们消毒呢😂
-              </div>
-              <div class="user line">
-                <div class="userInfo line">
-                  <img
-                    src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJk6gubDRgEDSntModHndnYqVJl3vpu9hfvfoPy7NHW64vqeHuWQh9aMnnehj5DTicK4ZiaXC78PHRg/132"
-                    alt="">
-                  <span>connnie</span>
-                </div>
-                <div class="up line">
-                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
-                  <span>0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="likeBox" style="display:none;">
-          <div class="likeTitle line">
-            <div class="titleLeft line">
-              <img src="https://oss.flowerplus.cn/sns_user_image/20190701/15619648456774.jpg" alt="">
-              <span>FLŌWERPLUS</span>
-              <span class="level">Lv.1</span>
-            </div>
-            <div class="titleRight">
+      <div class="content-body">
+        <!-- {{content}} -->
+        <div class="newAndRe line">
+          <div class="left">
 
-            </div>
           </div>
-          <div class="goodsImg">
-            <img src="https://oss.flowerplus.cn/sns_user_image/20200910/15997048019883.png!750" alt="">
+          <div class="right">
+
           </div>
-          <div class="text">
-            <div class="label"><span><i>#</i>收花打卡</span></div>
-            <div class="describe">
-              把迷藏高级货拿出来
-              很野兽派
-              其他给的啥不重要了
-              粉色凤梨🍍看着是冷库里出来的
-              要不要给她们消毒呢😂
-            </div>
-            <div class="user line likeFoot">
-              <div>
-                <span class="time">2020-09-10 10:27:48 </span>
+
+        </div>
+        <div class="myLike" hidden>
+          <div class="likeBox">
+            <div class="likeTitle line">
+              <div class="titleLeft line">
+                <img src="https://oss.flowerplus.cn/sns_user_image/20190701/15619648456774.jpg" alt="">
+                <span>FLŌWERPLUS</span>
+                <span class="level">Lv.1</span>
               </div>
-              <div class="up line">
-                <section class="collect">
-                  <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt="">
-                  <span class="num">0</span>
-                </section>
-                <section class="good">
-                  <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
-                  <span class="num">0</span>
-                </section>
+              <div class="titleRight">
+
               </div>
             </div>
-          </div>
-          <!-- 评论 -->
-          <div class="comment">
-            <p>添加评论....</p>
+            <div class="goodsImg">
+              <img src="https://oss.flowerplus.cn/sns_user_image/20200910/15997048019883.png!750" alt="">
+            </div>
+            <div class="text">
+              <div class="label"><span><i>#</i>收花打卡</span></div>
+              <div class="describe">
+                把迷藏高级货拿出来
+                很野兽派
+                其他给的啥不重要了
+                粉色凤梨🍍看着是冷库里出来的
+                要不要给她们消毒呢😂
+              </div>
+              <div class="user line likeFoot">
+                <div>
+                  <span class="time">2020-09-10 10:27:48 </span>
+                </div>
+                <div class="up line">
+                  <section class="collect">
+                    <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt="">
+                    <span class="num">0</span>
+                  </section>
+                  <section class="good up">
+                    <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="">
+                    <span class="num">0</span>
+                  </section>
+                </div>
+              </div>
+            </div>
+            <!-- 评论 -->
+            <div class="comment">
+              <p>添加评论....</p>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
     {{include "./script.html"}}
     <script>
-      // $.init();
+      // 最新页面初始化请求
+      getNews();
+      function getNews() {
+        $.get("/discovery/getTopics", data => {
+          let strLeft = "";
+          let strRight = "";
+          console.log(data);
+          data.data.forEach((topic, index) => {
+            if (index % 2 == 0) {
+              strLeft += `
+              <div class="infos">
+                <img src="/topics/${topic.img}" alt="">
+                <div class="text">
+                  <div class="label" ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
+                  <div class="describe">
+                    ${topic.content}
+                  </div>
+                  <div class="user line">
+                    <div class="userInfo line">
+                      <img src="${topic.pic}" alt="">
+                      <span>${topic.name}</span>
+                    </div>
+                    <div class="up line ${topic.status ? "checked" : ""}" data-id="${topic._id}">
+                      <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="" ${topic.status ? "" : "hidden"}>
+                      <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="" ${topic.status ? "hidden" : ""}>
+                      <span>${topic.getGoods ? topic.getGoods.length : 0}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `
+            } else {
+              strRight += `
+              <div class="infos">
+                <img src="/topics/${topic.img}" alt="">
+                <div class="text">
+                  <div class="label"  ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
+                  <div class="describe">
+                    ${topic.content}
+                  </div>
+                  <div class="user line">
+                    <div class="userInfo line">
+                      <img src="${topic.pic}" alt="">
+                      <span>${topic.name}</span>
+                    </div>
+                    <div class="up line ${topic.status ? "checked" : ""}" data-id="${topic._id}">
+                      <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="" ${topic.status ? "" : "hidden"}>
+                      <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="" ${topic.status ? "hidden" : ""}>
+                      <span>${topic.getGoods ? topic.getGoods.length : 0}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              `
+            };
+            $(".newAndRe .left").html(strLeft);
+            $(".newAndRe .right").html(strRight);
+          })
+        })
+      }
+      // 点赞事件绑定
+      $(document).on("click", ".up", function () {
+        if (document.cookie) {
+          $(this).find("img").toggle();
+          let num = $(this).find("span").text().trim() * 1;
+          num = $(this).hasClass("checked") ? --num : ++num;
+          $(this).find("span").text(num);
+          // 发送请求
+          // 添加或者取消点赞
+          $.get(`/discovery/${$(this).hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id")}`, data => {
+            console.log(data);
+          })
+          $(this).toggleClass("checked");
+        } else {
+          $.alert("请先登录", () => {
+            location.href = "/login";
+          })
+        }
+
+      })
+      // 收藏事件绑定
+      $(document).on("click", ".collect", function () {
+          if (document.cookie) {
+            $(this).find("img").toggle();
+            let num = $(this).find("span").text().trim() * 1;
+            num = $(this).hasClass("collected") ? --num : ++num;
+            $(this).find("span").text(num);
+            // 发送请求
+            // 添加或者取消点赞
+            $.get(`/discovery/${$(this).hasClass("collected") ? "removeCollect" : "addCollect"}?id=${$(this).data("id")}`, data => {
+              console.log(data);
+            })
+            $(this).toggleClass("collected");
+          } else {
+            $.alert("请先登录", () => {
+              location.href = "/login";
+            })
+          }
+        })
+        
+
       $(function () {
         let height = $(".head").innerHeight();
         $(".content").css({
@@ -579,46 +626,106 @@
         $(document).on('refresh', '.pull-to-refresh-content', function (e) {
           $.pullToRefreshDone('.pull-to-refresh-content')
         });
-
-        // 滚动监听
-        // $(".content").scroll(function () {
-        //   if ($(this).scrollTop() > 200) {
-        //     // 记录高度
-        //     $(".head").slideUp(1000);
-        //     console.log($(".content:animated"));
-        //     if (!$(".content").is(":animated")) {
-        //       $(this).animate({
-        //         marginTop: 0
-        //       }, 1000, () => {
-        //         if ($(this).scrollTop() < 200) {
-        //           $(".head").slideDown(1000);
-        //           $(this).animate({
-        //             marginTop: height
-        //           }, 1000)
-        //         }
-        //       });
-        //     }
-
-        //   }
-        // })
-
+        // 添加关注
+        $(document).on("click", ".add", function () {
+          if (document.cookie) {
+            $.get(`/discovery/${$(this).hasClass("selected") ? "removeLike" : "addLike"}?id=${$(this).data("id")}`, data => {
+              console.log(data);
+            })
+            $(this).toggleClass("selected");
+            $(this).find("img").toggle();
+          } else {
+            $.alert("请先进行登录", () => {
+              location.href = "/login";
+            })
+          }
+        })
+        
         // 头部菜单栏切换
         $(".menue li").click(function () {
           $.showIndicator("正在载入");
           $(this).addClass("active").siblings().removeClass("active");
-          console.log($(this))
-          console.log($(this).hasClass("like"))
+          // console.log($(this))
+          // console.log($(this).hasClass("like"))
           if ($(this).hasClass("like")) {
             setTimeout(function () {
-              $(".content-body").children().hide();
-              $(".likeBox").show();
-              $.hideIndicator();
-            }, 2000);
+              if ($.cookie("username")) {
+                $(".myLike").show().siblings().hide();
+                $.get("/discovery/getFlowTopic", data => {
+                  console.log(data);
+                  let str = "";
+                  if (data.data.length) {
+                    data.data.forEach(topic => {
+                      // console.log(topic)
+                      // console.log(new Date(topic.time * 1))
+                      topic.time = moment(new Date(topic.time * 1)).format("YYYY-MM-DD HH:mm:ss")
+                      str += ` 
+                          <div class="likeBox" >
+                            <div class="likeTitle line">
+                              <div class="titleLeft line">
+                                <img src="https://oss.flowerplus.cn/sns_user_image/20190701/15619648456774.jpg" alt="">
+                                <span>FLŌWERPLUS</span>
+                                <span class="level">Lv.1</span>
+                              </div>
+                              <div class="titleRight">
+                  
+                              </div>
+                            </div>
+                            <div class="goodsImg">
+                              <img src="/topics/${topic.img}" alt="">
+                            </div>
+                            <div class="text">
+                              <div class="label"><span><i>#</i>${topic.label}</span></div>
+                              <div class="describe">
+                                ${topic.content}
+                              </div>
+                              <div class="user line likeFoot">
+                                <div>
+                                  <span class="time">${topic.time}</span>
+                                </div>
+                                <div class="line">
+                                  <section class="collect line ${topic.isCollect ? "collected" : ""}" data-id="${topic._id}">
+                                    <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt="" ${topic.isCollect ? "hidden" : ""}>
+                                    <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023157102.svg" ${topic.isCollect ? "" : "hidden"}>
+                                    <span class="num">${topic.getCollect ? topic.getCollect.length : 0}</span>
+                                  </section>
+                                  <section class="up good line ${topic.status ? "checked" : ""}" data-id="${topic._id}">
+                                    <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="" ${topic.status ? "" : "hidden"}>
+                                    <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="" ${topic.status ? "hidden" : ""}>
+                                    <span class="num">${topic.getGoods ? topic.getGoods.length : 0}</span>
+                                  </section>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- 评论 -->
+                            <div class="comment">
+                              <p>添加评论....</p>
+                            </div>
+                          </div>
+                          `
+                    })
+                  } else {
+                    str += "<p style='text-align:center'>您暂时没有关注的人。</p>"
+                  }
+
+                  $(".myLike").html(str);
+                })
+
+
+                $.hideIndicator();
+              } else {
+                $.alert("请先登录", () => {
+                  location.href = "/login";
+                })
+              }
+
+            }, 1000);
 
           } else {
             setTimeout(function () {
-              $(".content-body").children().show();
-              $(".likeBox").hide();
+              $(".myLike").hide().siblings().css("display", "flex");
+              // $(".newAndRe").show();
+              getNews();
               $.hideIndicator();
             }, 2000);
           }
@@ -640,7 +747,7 @@
         })
 
       });
-      
+
 
 
     </script>

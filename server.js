@@ -41,7 +41,6 @@ app.use("/discovery", require("./router/discovery"));
 app.use("/home", require("./router/skipHome"));
 
 
-
 // 服务器端口监听
 app.listen(3000, () => {
     console.log("server is runing...")
