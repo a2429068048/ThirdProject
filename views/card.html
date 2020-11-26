@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLŌWERPLUS 花加 - 兑换码</title>
+    {{include "./commend.html"}}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            touch-action: none;
+        }
+
+        .page {
+            background-color: white;
+        }
+
+        nav {
+            padding: 20px 15px;
+            font-size: 12px;
+            background-color: rgb(255, 227, 229);
+            color: red;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        form {
+            margin: 20px 10px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+        form label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        form label span {
+            color: rgb(153, 153, 153);
+            font-weight: 100;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 5px 10px;
+            font-size: 14px;
+            height: 80px;
+            border-radius: 5px;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+        button {
+            font-weight: bold;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            background-color: rgb(251, 165, 178);
+            font-size: 16px;
+            color: white;
+            margin: 20px 0;
+            border-radius: 40px;
+        }
+
+        footer {
+            margin: 0 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .turn {
+            color: rgb(51, 122, 183);
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <nav>
+                <p>重要通知:</p>
+                <p>受天气影响，东北，西北11月28日起即将暂停鲜花、绿植、花市等产品的配送，预计明年3月初起恢复收货，感谢您的理解！</p>
+            </nav>
+            <img src="https://static2.flowerplus.cn/Static/img/flower_dh.jpg" alt="">
+            <form action="">
+                <div class="form-group">
+                    <label for="">兑换码&nbsp;<span>Redemption Code</span></label><br>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label for="">收花人&nbsp;<span>Consignee</span></label><br>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label for="">手机号码&nbsp;<span>Mobile</span></label><br>
+                    <input type="text" placeholder="座机格式:021-88888888">
+                </div>
+                <div class="form-group">
+                    <label for="">省/市/区&nbsp;<span>Province/City/District</span></label><br>
+                    <input type="text" id='city-picker' />
+                </div>
+                <div class="form-group">
+                    <label for="">详细地址&nbsp;<span>Detail Address</span></label><br>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">确认兑换(Confirm)</button>
+                </div>
+            </form>
+            <footer>
+                <p>搜索并关注“花加”公众号，可享受更多优惠及服务 </p>
+                <p class="turn">有效期查询</p>
+            </footer>
+        </div>
+    </div>
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            $("#city-picker").cityPicker({
+                toolbarTemplate: '<header class="bar bar-nav">\
+                    <button class="button button-link pull-right close-picker">确定</button>\
+                    <h1 class="title">选择收货地址</h1>\
+                    </header>'
+            });
+            $.init();
+        })
+        $('.turn').click(function () {
+            location.href = '/lookup'
+        })
+    </script>
+</body>
+
+</html>

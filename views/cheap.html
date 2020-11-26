@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优惠换购</title>
+    {{include "./commend.html"}}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(245, 245, 245);
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        main {
+            padding: 30px 0 60px;
+            text-align: center;
+            color: rgb(153, 153, 153);
+            font-size: 14px;
+        }
+
+        .look {
+            background-color: white;
+            margin: 40px 10px;
+            padding: 8px;
+            color: black;
+            font-size: 14px;
+        }
+
+        footer {
+            margin: 10px;
+            text-align: right;
+        }
+
+        button {
+            border: 1px solid black;
+            padding: 10px;
+            background-color: rgb(245, 245, 245);
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://oss.flowerplus.cn/oss_jpg/2017-11-08/15101301045444.jpg" alt="">
+    <main>
+        <p>没有可升级的套餐</p>
+        <p class="look">去花店看看</p>
+    </main>
+    <footer>
+        <button>进入优选升级》</button>
+    </footer>
+
+    {{include "./script.html"}}
+    <script>
+        $('button').click(function () {
+            location.href = '/good_select'
+        })
+    </script>
+</body>
+
+</html>
