@@ -52,6 +52,26 @@ router.get("/goodThings", (req, res) => {
 router.get("/flower", (req, res) => {
     res.render('monthlyFlowers')
 })
+// 礼品花束
+router.get("/gift", (req, res) => {
+    res.render('gift')
+})
+// 绿植多肉
+router.get("/plants", (req, res) => {
+    res.render('greenPlants')
+})
+// 绿植搜索
+router.get("/greenSearch", (req, res) => {
+    res.render('greenSearch')
+})
+// F+物制所
+router.get("/matter", (req, res) => {
+    res.render('matter')
+})
+// 家居生活
+router.get("/furnishing", (req, res) => {
+    res.render('furnishing')
+})
 
 
 module.exports = router;

@@ -71,9 +71,10 @@ router.post('/phone', (req, res) => {
         if (!err) {
             if (data) {
                 res.send(data)
-            } else {
-                console.log(data);
-            }
+            } 
+            // else {
+            //     console.log(data);
+            // }
         } else {
             console.log(err);
         }

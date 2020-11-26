@@ -40,6 +40,12 @@
             text-align: center;
         }
 
+        .header .left img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
         .header .left p {
             padding-left: 14px;
             font-size: 16px;
@@ -54,6 +60,10 @@
 
         .header .right {
             font-size: 12px;
+        }
+
+        .header .right a {
+            color: white;
         }
 
         .header .right p {
@@ -72,6 +82,10 @@
             justify-content: space-around;
             text-align: center;
             font-size: 16px;
+        }
+
+        .menu a {
+            color: white;
         }
 
         .menu p {
@@ -95,16 +109,76 @@
             border-bottom-color: #FF6772;
         }
 
-        .noContent {
+        .contentBody {
             font-size: 13px;
             text-align: center;
-            padding-top: 50px;
             color: #C3C5C6;
         }
 
-        .noContent img {
+        .contentBody img {
             width: 60px;
             margin-bottom: 14px;
+        }
+
+        .noInfo {
+            padding-top: 50px;
+        }
+
+        .info {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+
+        .info p {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            padding: 0 10px;
+            color: black;
+        }
+
+        .info>div {
+            flex-basis: 48%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+        }
+
+        .card-footer a.link {
+            color: black;
+
+        }
+
+        .card-footer img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin: 0;
+            margin-right: 10px;
+        }
+
+        .card-footer {
+            font-size: 12px;
+        }
+
+        .card-cover {
+            height: 120px;
+        }
+
+        .card-footer .good img {
+            margin-right: 4px;
+            border-radius: 0;
+            width: 16px;
+            height: 16px;
+            vertical-align: middle;
+            position: relative;
+            top: -2px;
         }
     </style>
     <script>
@@ -115,66 +189,150 @@
 </head>
 
 <body>
-    <div class="page">
+    <div class="page" data-id="{{_id}}">
         {{include "./disBartab.html"}}
-        <header class="top">
+        <header class="top" style="background-image: url({{img}});">
             <div class="headerMask">
                 <div class="header line">
                     <div class="left">
-                        <img src="" alt="" onerror="picError(this)">
-                        <p>手机用户<span class="level">Lv1</span></p>
+                        <img src="{{pic}}" alt="" onerror="picError(this)">
+                        <p>{{name}}<span class="level">Lv1</span></p>
                     </div>
                     <div class="right">
-                        <p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p>
+                        <a href="/discovery/disEdit">
+                            <p><img src="https://oss.flowerplus.cn/oss_svg/2019-02-19/15505426447364.svg"></inm>编辑</p>
+                        </a>
                     </div>
                 </div>
                 <ul class="menu line">
                     <li>
-                        <span>5</span>
-                        <p>我关注的人</p>
+                        <a href="/discovery/myfolow" class="myfolow">
+                            <span>{{like ? like.length : 0}}</span>
+                            <p>我关注的人</p>
+                        </a>
                     </li>
                     <li>
-                        <span>5</span>
-                        <p>关注我的人</p>
+                        <a href="/discovery/flowme">
+                            <span>{{flowme ? flowme.length : 0}}</span>
+                            <p>关注我的人</p>
+                        </a>
+
                     </li>
                     <li>
-                        <span>5</span>
+                        <span>{{getGoods? getGoods : 0}}</span>
                         <p>获赞和收藏</p>
                     </li>
                 </ul>
             </div>
             <ul class="nav-head line">
-                <li class="active" data-type="topic"><span>帖子</span><small>(0)</small></li>
-                <li data-type="collect"><span>收藏</span><small>(0)</small></li>
+                <li class="active" data-type="topic" dasta-id="_id"><span>帖子</span><small>(0)</small></li>
+                <li data-type="collect" dasta-id="_id"><span>收藏</span><small>({{topics ? topics.length : 0}})</small></li>
             </ul>
         </header>
         <div class="content">
-            <div class="noContent">
+            <div class="contentBody">
                 <section class="topic">
-                    <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287051119.svg" alt="">
-                    <p>点击下方的"+", 发布你的第一篇帖子吧</p>
+                    <div class="noInfo">
+                        <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287051119.svg" alt="">
+                        <p>点击下方的"+", 发布你的第一篇帖子吧</p>
+                    </div>
+                    <div class="info line">
+                        <!-- <div class="card demo-card-header-pic">
+                            <div valign="bottom" class="card-header color-white no-border no-padding">
+                                <img class='card-cover' src="/topics/1606300148044tong.jpeg" alt="">
+                            </div>
+                            <div class="card-content">
+                                <p>则是内容</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="link">
+                                    <img src="/topics/1606300148044tong.jpeg" alt="">
+                                    <span>用户名</span>
+                                </a>
+                                <a href="#" class="link good">
+                                    <div>
+                                        <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg"
+                                            alt="">
+                                    </div>
+                                    <span>1</span>
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
                 </section>
                 <section class="collect" hidden>
-                    <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287126935.svg" alt="">
-                    <p>收藏夹空空如也</p>
+                    <div class="noInfo">
+                        <img src="https://oss.flowerplus.cn/oss_svg/2019-03-01/15514287126935.svg" alt="">
+                        <p>收藏夹空空如也</p>
+                    </div>
+                    <div class="info line"></div>
                 </section>
             </div>
         </div>
     </div>
     {{include "./script.html"}}
     <script>
+        let id = $(".page").data("id").replaceAll("\"", "");
+        // 发送获得帖子的请求
+        getMessage("topic");
+        function getMessage(target) {
+            $.get(`/discovery/${target}?id=${id}`, data => {
+                console.log(data.data,target);
+                if (data.data.length) {
+                    $(`.${$(".nav-head .active").data("type")}`).find(".noInfo").hide()
+                    $("li.active small").html(`(${data.data.length})`)
+                    let str = "";
+                    data.data.forEach(item => {
+                        str += `
+                        <div class="card demo-card-header-pic">
+                            <div valign="bottom" class="card-header color-white no-border no-padding">
+                                <img class='card-cover'
+                                    src="/topics/${item.img}"
+                                    alt="">
+                            </div>
+                            <div class="card-content">
+                                <p>${item.content}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="link">
+                                    <img src="${item.pic}" alt="">
+                                    <span>${item.name}</span>
+                                </a>
+                                <a href="#" class="link good">
+                                    <div>
+                                        <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="">
+                                    </div>
+                                    <span>1</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        `
+                    });
+                    // console.log($("li.active").data("type"))
+                    // console.log(str);
+                    $(`.${$(".nav-head .active").data("type")}`).find(".info").html(str);
+                } else {
+                    console.log(1)
+                    $(`.${$(".nav-head .active").data("type")}`).find(".noInfo").show();
+                }
+            })
+        }
         $(function () {
             $(".content").css("top", $(".top").innerHeight());
 
             $(".nav-head li").click(function () {
+
                 // console.log(1)
                 $(this).addClass("active").siblings().removeClass("active");
                 $.showIndicator();
-                setTimeout( () => {
+                setTimeout(() => {
                     $(`.${$(this).data("type")}`).show().siblings().hide();
+                    getMessage($(this).data("type"));
                     $.hideIndicator();
                 }, 2000);
-            })
+            });
+
         })
     </script>
 </body>

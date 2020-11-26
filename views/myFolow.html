@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>花加社区</title>
+    {{include "./commend.html"}}
+    <style>
+        p {
+            margin: 0;
+            text-align: center;
+        }
+
+        .content>ul {
+            background-color: white;
+            padding: 8px;
+        }
+
+        .content>ul>li>a {
+            justify-content: space-between;
+            align-items: center;
+            color: #333333;
+            font-size: 13px;
+            /* text-align: center; */
+        }
+
+        .content>ul>li>a img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .content .userInfo {
+            align-items: center;
+        }
+        .content .userInfo p {
+            margin: 2px;
+            text-align: left;
+        }
+        .content .userInfo p:nth-child(3) {
+            font-size: 12px;
+            color: #999;
+        }
+        .content .btns {
+            width: 52px;
+            height: 25px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #999999;
+            line-height: 25px;
+            text-align: center;
+            position: relative;
+            border: 0.5px solid #9D9D9D;
+            border-radius: 10px;
+            letter-spacing: 0.5px;
+        }
+        .content .btns.active {
+            border-color: #FF6772;
+            color: #FF6772;
+        }
+
+        .content > p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <ul {{data.length ? "" : "hidden" }}>
+                {{each data user}}
+                <li>
+                    <a href="" class="line">
+                        <div class="userInfo line">
+                            <img src="{{user.pic}}" alt="">
+                            <section>
+                                <p class="name">{{user.name}}</p>
+                                <p class="likes">{{user.flowme ? user.flowme.length : 0}}人关注Ta</p>
+                                <p class="topics">{{user.topics ? user.topics.length : 0}}篇帖子</p>
+                            </section>
+                        </div>
+                        <div class="btns {{user.status?'':'active'}}" data-id="{{user.id}}">
+                            <span {{user.status ? "" : "hidden"}}>已关注</span>
+                            <span {{user.status ? "hidden" : ""}}>关注</span>
+                        </div>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+            <p>- 哎呀, 到底了 -</p>
+        </div>
+    </div>
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            $(".btns").click(function () {
+                $(this).toggleClass("active");
+                $(this).find("span").toggle();
+                if ($(this).hasClass("active")) {
+                    $.get("/discovery/removeLike",{id:$(this).data("id")}, data => {
+                        console.log(data);
+                    })
+                } else {
+                    $.get("/discovery/addLike", {id: $(this).data("id")}, data => {
+                        console.log(data);
+                    })
+                    console.log("关注")
+                }
+                // 
+            })
+        })
+    </script>
+</body>
+
+</html>

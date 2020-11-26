@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑个人信息</title>
+    {{include "./commend.html"}}
+    <style>
+        .page {
+            background-color: white;
+        }
+
+        .userInfo {
+            padding: 0px 10px;
+        }
+
+        .userInfo li {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0 13px;
+            font-size: 13px;
+            border-bottom: 2px solid rgb(231, 231, 231);
+            align-items: center;
+            padding-right: 10px;
+        }
+
+        .pic img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .img img {
+            width: 60px;
+            vertical-align: middle;
+        }
+
+        .img section {
+            font-weight: bold;
+            color: #999;
+        }
+
+        .name span:last-child {
+            color: #999;
+        }
+
+        .sure {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 0 10px 10px;
+        }
+
+        .sure a {
+            padding: 6px 16px;
+            border-radius: 4px;
+            color: black;
+            font-size: 14px;
+        }
+
+        .sure a:first-child {
+            background-color: white;
+        }
+
+        .sure a:last-child {
+            background-color: rgb(101, 221, 101);
+            margin-left: 10px;
+            color: white;
+        }
+
+        #img {
+            position: absolute;
+            background-color: #f6f6f6;
+            width: 100%;
+            height: 100%;
+        }
+
+        #img img {
+            width: 100%;
+        }
+
+        #img .sure {
+            position: fixed;
+            bottom: 0px;
+        }
+
+        #self {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(240, 240, 240);
+
+        }
+
+        #self .text {
+            font-size: 13px;
+            color: #999;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        #self .text textarea {
+            resize: none;
+            color: #999;
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: none;
+            min-height: 135px;
+        }
+
+        #self .text span {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+    <script>
+        function picError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png!57_57";
+        }
+        function imgError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg!750"
+        }
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="conent">
+            <ul class="userInfo">
+                <li class="pic">
+                    <span>头像</span>
+                    <form action="">
+                        <img src="{{pic}}" alt="" onerror="picError(this)">
+                        <input type="file" accept="image/*" name="pic" hidden>
+                    </form>
+                </li>
+                <li class="img">
+                    <span>封面</span>
+                    <section>
+                        <img src="{{img}}" alt="" onerror="imgError(this)">
+                        <span class="icon icon-right"></span>
+                    </section>
+                </li>
+                <li class="name">
+                    <span>昵称</span>
+                    <span>{{name}}</span>
+                </li>
+                <li class="self">
+                    <span>个性签名</span>
+                    <span class="icon icon-right"></span>
+                </li>
+            </ul>
+            <section id="img" hidden>
+                <form action="">
+                    <img src="{{pic}}" alt="" onerror="picError(this)">
+
+                    <input type="file" accept="image/*" hidden name="img">
+
+
+                    <div class="sure" style="display: none;">
+                        <a href="javascript:;">取消</a>
+                        <a href="javascript:;">保存</a>
+                    </div>
+                </form>
+            </section>
+            <section id="self" hidden>
+                <div class="text">
+                    <textarea name="" placeholder="有趣的个人介绍会得到更多关注哦~">{{selfInfo}}</textarea>
+                    <span>最多输入30个字</span>
+                </div>
+                <div class="sure">
+                    <a href="javascript:;">取消</a>
+                    <a href="javascript:;">保存</a>
+                </div>
+            </section>
+        </div>
+    </div>
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            // 修改头像
+            $(".pic img").click(function () {
+                // console.log(1)
+                let $this = $(this);
+                $(this).siblings("input").click();
+                // console.log($(".pic :file"))
+                $(".pic :file").unbind().change(function () {
+                    console.log(1)
+                    $this.attr("src", URL.createObjectURL(this.files[0]));
+                    // 像后台修改数据
+                    // console.log($(this).closest("form"))
+                    let form = $(this).closest("form")[0];
+                    $.ajax({
+                        method: "post",
+                        url: "/discovery/editPic",
+                        data: new FormData(form),
+                        processData: false,
+                        contentType: false
+                    }).done(data => {
+                        console.log(data);
+                    })
+
+                })
+            });
+
+            // 修改封面
+            $(".img").click(function () {
+                show($(`#img`));
+                // console.log($(this))
+                $("#img").find("img").attr("src", $(this).find("img").attr("src"));
+                $("#img").find("img").click(function () {
+                    let $this = $(this);
+                    $(this).siblings('input').click();
+                    $(this).siblings('input').unbind().change(function () {
+                        $this.attr("src", URL.createObjectURL(this.files[0]));
+                        $("#img .sure").css("display", "flex");
+                    })
+                })
+            });
+
+            // 修改封面section
+            $("#img .sure a").eq(1).click(function () {
+
+                // 发送信息
+                $.showIndicator();
+
+                let form = $(this).closest("form")[0];
+                // console.log(form);
+                $.ajax({
+                    method: "post",
+                    url: "/discovery/editImg",
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false
+                }).done(data => {
+                    console.log(data);
+                    if (data.coder) {
+                        setInterval(() => {
+                            location.reload();
+                            $.hideIndicator();
+                        }, 500)
+                    }
+                })
+            })
+
+            $("section .sure a:first-child").click(function () {
+                location.reload();
+            })
+
+            // 修改名字
+            $(".name").click(function () {
+                let name = $(this).find("span").eq(1);
+                $.prompt(
+                    "请输入新的用户名",
+                    function (value) {
+                        name.html(value);
+                        $.get("/discovery/editName?name=" + value, data => {
+                            console.log(data);
+                            $.alert(data.msg);
+                        })
+                    }
+                )
+            })
+
+            // 修改个性签名
+            $(".self").click(function () {
+                show($("#self"));
+            })
+
+            $("#self .sure a").eq(1).click(function () {
+                if ($("textarea").val().length <= 30) {
+                    $.post("/discovery/editSelf", {
+                        selfInfo: $("textarea").val()
+                    }, data => {
+                        $.alert(data.msg, function () {
+                            location.reload();
+                        })
+                    })
+                } else {
+                    $.alert("最多输入30个字", () => {})
+                }
+
+            })
+
+
+            function show(origin) {
+                origin.show().siblings().hide();
+            }
+        })
+    </script>
+</body>
+
+</html>

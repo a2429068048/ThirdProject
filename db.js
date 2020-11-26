@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     pic: String,
     img: String,
     selfInfo: String,
-    like: String,
+    like: Array,
     designation: String,
     phone: Number,
     adress: String,
@@ -30,7 +30,10 @@ const userSchema = new mongoose.Schema({
     incom: String,
     childrend: String,
     purpose: String,
-    scene: String
+    scene: String,
+    flowme: Array,
+    getGoods: Number,
+    topics: Array
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({
@@ -58,18 +61,32 @@ const easyUserSchema = new mongoose.Schema({
     psw: String,
 })
 
+// ---- 帖子表 ----
+const topicSchema = new mongoose.Schema({
+    pic:String,
+    name:String,
+    getGoods:Number,
+    img:String,
+    nameId:String,
+    comment: Array,
+    content: String,
+    address: String
+    
+})
+
 const Users = mongoose.model("User", userSchema);
 const ShopCar = mongoose.model("GoodsList", shopCarSchema);
 const Goods = mongoose.model("Good", goodsListSchema);
 const EasyUser = mongoose.model("EasyUser", easyUserSchema);
-
+const Topic = mongoose.model("Topic", topicSchema);
 
 module.exports = {
     // 导出对应的对象
     Users,
     ShopCar,
     Goods,
-    EasyUser
+    EasyUser,
+    Topic
 }
 
 
