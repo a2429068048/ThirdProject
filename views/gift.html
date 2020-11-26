@@ -387,178 +387,69 @@
                 <p>最新最IN的好礼，第一时间拥有</p>
             </div>
             <ul>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000014.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>糖果森林|mini桌面圣诞树</p>
-                        <span>【新款】办公桌装饰，亲子互动，领券再省10</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥69.00 <del>￥89.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000016.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>童话森林|家居圣诞树</p>
-                        <span>【爆款】家庭装饰，圣诞伴手礼，领券再省￥10</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥99.00 <del>￥119.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000018.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>圣诞花环</p>
-                        <span>爆款松果花环，30cm适合各类家居装饰不占空间，配饰丰富赠挂钩，无需组装成品发货，拆箱即用</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥69.00 <del>￥89.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000020.jpg" alt=""></div>
-                    <div class="present">
-                        <p>每日优享|微醺甜梦</p>
-                        <span>“郁” 见 TA，就 是 幸福的开始。</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥119.00 <del>￥139.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
+                {{each shop item}}
+                    {{if item.sort=='gift-newArrival'}}
+                        <li data-id="{{item.id}}">
+                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                            <div  class="present">
+                                <p>{{item.shopName}}</p>
+                                <span>{{item.goodsInfo}}</span>
+                            </div>
+                            <div class="buy">
+                                <span>¥{{item.newPrice}}<del>￥{{item.oldPrice}}</del></span>
+                                <span class="buy_now">立即购买></span>
+                            </div> 
+                        </li>
+                    {{/if}}
+                {{/each}}
             </ul>
         </div>
-        <!-- 礼品鲜花2h -->
+        <!-- 礼品鲜花2h soon -->
         <div class="detailed">
             <div class="ranking_top">
                 <b>礼品鲜花2H送到</b>
                 <p>从下单到送达最快2小时搞定，再也不担心送不到</p>
             </div>
             <ul>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000022.jpg" alt=""></div>
-                    <div class="present">
-                        <p>糖果森林|「缪斯花园」射手座生日花</p>
-                        <span>射手生日花，高级蓝调为射手幸运色。生日最佳好礼，带来好运气。</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥299.00 <del>￥399.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000024.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「巴黎花园」射手座生日花</p>
-                        <span>射手生日抱抱桶，轻松打理无负担。 适宜生日送礼，送闺蜜好友</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥299.00 <del>￥399.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000026.png" alt=""></div>
-                    <div  class="present">
-                        <p>怦然心动-心形玫瑰礼盒</p>
-                        <span>高端心形玫瑰花礼，送出体面感</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥299.00 <del>￥599.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000028.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「小心意」花篮花礼</p>
-                        <span>好评款创意花篮花礼，日常轻礼品花。</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥189.00 <del>￥289.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000922.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>怦然心动-心形玫瑰礼盒</p>
-                        <span>高端心形玫瑰花礼，送出体面感</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥299.00 <del>￥599.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000923.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「小心意」花篮花礼</p>
-                        <span>好评款创意花篮花礼，日常轻礼品花。</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥189.00 <del>￥289.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
+                {{each shop item}}
+                    {{if item.sort=='gift-soon'}}
+                        <li data-id="{{item.id}}">
+                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                            <div  class="present">
+                                <p>{{item.shopName}}</p>
+                                <span>{{item.goodsInfo}}</span>
+                            </div>
+                            <div class="buy">
+                                <span>¥{{item.newPrice}}<del>￥{{item.oldPrice}}</del></span>
+                                <span class="buy_now">立即购买></span>
+                            </div> 
+                        </li>
+                    {{/if}}
+                {{/each}}
             </ul>
         </div>
-        <!-- 预约 -->
+        <!-- 预约 order -->
         <div class="detailed">
             <div class="ranking_top">
                 <b>预约下单，方便快捷</b>
                 <p>下单48小时内发货，1-2天送达，G卡可用，省心省钱</p>
             </div>
             <ul>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000924.jpg" alt=""></div>
-                    <div class="present">
-                        <p>小温暖 | 感恩节主题花</p>
-                        <span>感恩首选高级花礼，时令搭配礼盒包装</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥99.00 <del>￥199.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000925.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>恋岛|每日收花礼盒</p>
-                        <span>送给心爱的ta首选</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥149.00 <del>￥199.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000926.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>桃露|每日收花礼盒</p>
-                        <span>送闺蜜/妈妈甜蜜推荐</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥159.00 <del>￥219.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000927.jpg" alt=""></div>
-                    <div class="present">
-                        <p>曦光|每日收花礼盒</p>
-                        <span>送长辈领导好感倍增</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥149.00 <del>￥199.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
+                {{each shop item}}
+                {{if item.sort=='gift-order'}}
+                    <li data-id="{{item.id}}">
+                        <div><img src="{{item.imgSrc}}" alt=""></div>
+                        <div  class="present">
+                            <p>{{item.shopName}}</p>
+                            <span>{{item.goodsInfo}}</span>
+                        </div>
+                        <div class="buy">
+                            <span>¥{{item.newPrice}}<del>￥{{item.oldPrice}}</del></span>
+                            <span class="buy_now">立即购买></span>
+                        </div> 
+                    </li>
+                {{/if}}
+            {{/each}}
             </ul>
         </div>
         <!-- 生日派对蛋糕 -->
@@ -568,147 +459,45 @@
                 <p>高颜值网红蛋糕，生日派对全搞定</p>
             </div>
             <ul>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000928.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「暗夜极光」</p>
-                        <span>【派悦坊】天蝎专属生日蛋糕</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥249.00 <del>￥249.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000929.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「天蝎座」星球蛋糕</p>
-                        <span>【BONCAKE】天蝎宝宝专属生日蛋糕</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥269.00 <del>￥399.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000930.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「女神的花冠」主题蛋糕</p>
-                        <span>【BONCAKE】经典款女神蛋糕</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥239.00 <del>￥239.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000931.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「十里春风」纸杯蛋糕</p>
-                        <span>【BONCAKE】野餐必备甜品</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥219.00 <del>￥219.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000932.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「环游世界」主题蛋糕</p>
-                        <span>【诺心】5星好评 9种口味一次满足！</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥239.00 <del>￥239.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000933.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「佛罗伦萨之春」</p>
-                        <span>【BONCAKE】用花语表达爱意～</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥219.00 <del>￥219.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
+                {{each shop item}}
+                    {{if item.sort=='gift-birthday'}}
+                        <li data-id="{{item.id}}">
+                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                            <div  class="present">
+                                <p>{{item.shopName}}</p>
+                                <span>{{item.goodsInfo}}</span>
+                            </div>
+                            <div class="buy">
+                                <span>¥{{item.newPrice}}<del>￥{{item.oldPrice}}</del></span>
+                                <span class="buy_now">立即购买></span>
+                            </div> 
+                        </li>
+                    {{/if}}
+                {{/each}}
             </ul>
         </div>
-        <!-- 优选好礼 -->
+        <!-- 优选好礼  select -->
         <div class="detailed">
             <div class="ranking_top">
                 <b>优选好礼</b>
                 <p>专业买手筛选，更多好玩好看的心意好礼</p>
             </div>
             <ul>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000934.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「八音狂想」音乐盒</p>
-                        <span>【若来】原创插画设计拼装八音盒</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥249.00 <del>￥249.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000935.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「凯西」花房</p>
-                        <span>【若来】hi，欢迎光临我的花房</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥269.00 <del>￥399.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000936.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「场景」沙漏</p>
-                        <span>【马鹿】圣诞节专属沙漏，把雪景变成一种景观～</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥239.00 <del>￥239.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000937.jpg" alt=""></div>
-                    <div class="present">
-                        <p>「祈福达摩」套组摆件</p>
-                        <span>【中川政七】始于1716年的日本百年品牌</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥219.00 <del>￥219.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000938.jpg" alt=""></div>
-                    <div  class="present">
-                        <p>「珐琅猫头」香薰蜡烛</p>
-                        <span>【赫本猫】名媛猫造型 送给心中的女神</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥239.00 <del>￥239.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
-                <li>
-                    <div><img src="/img/index/礼品花束/ia_200000939.jpg" alt=""></div>
-                    <div class="present">
-                        <p>动物造型保温杯</p>
-                        <span>【all-joint】让宝宝爱上喝水</span>
-                    </div>
-                    <div class="buy">
-                        <span>¥219.00 <del>￥219.00</del></span>
-                        <span class="buy_now">立即购买></span>
-                    </div> 
-                </li>
+                {{each shop item}}
+                    {{if item.sort=='gift-select'}}
+                        <li data-id="{{item.id}}">
+                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                            <div  class="present">
+                                <p>{{item.shopName}}</p>
+                                <span>{{item.goodsInfo}}</span>
+                            </div>
+                            <div class="buy">
+                                <span>¥{{item.newPrice}}<del>￥{{item.oldPrice}}</del></span>
+                                <span class="buy_now">立即购买></span>
+                            </div> 
+                        </li>
+                    {{/if}}
+                {{/each}}
             </ul>
         </div>
         <!-- 永生花礼盒 -->
