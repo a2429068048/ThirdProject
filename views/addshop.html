@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {{include "./commend.html"}}
+    <style>
+        body{
+            background-color: white;
+            text-align: center;
+        }
+        header{
+            margin: 25px 0;
+        }
+        form label{
+            display: inline-block;
+            width: 120px;
+            text-align: right;
+        }
+        button{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h3>商品添加</h3>
+    </header>
+    <form action="/home/addshop">
+        <label for="">图片路径：</label><input type="text" name="imgSrc" placeholder="请输入图片路径"><br>
+        <label for="">商品名称：</label><input type="text" name="shopName"><br>
+        <label for="">标题：</label><input type="text" name="title"><br>
+        <label for="">原价：</label><input type="text" name="oldPrice"><br>
+        <label for="">折后价：</label><input type="text" name="newPrice"><br>
+        <label for="">商品描述：</label><input type="text" name="goodsInfo"><br>
+        <label for="">优惠描述：</label><input type="text" name="info"><br>
+        <label for="">优惠到期时间：</label><input type="text" name="countdown"><br>
+        <label for="">类别：</label><input type="text" name="sort"><br>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

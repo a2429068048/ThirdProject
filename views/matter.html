@@ -95,48 +95,17 @@
             </div>
             <div class="main">
                 <ul>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000001.jpg" alt="">
-                        </div>
-                        <b>F+GELATO冰淇凌系列香氛</b>
-                        <p>¥29.9 <del>￥69</del></p>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000002.jpg" alt="">
-                        </div>
-                        <b>F+小白瓶香氛(果香)</b>
-                        <p>¥49 <del>￥79</del></p>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000003.jpg" alt="">
-                        </div>
-                        <b>F+小白瓶香氛(花香)</b>
-                        <p>¥49 <del>￥79</del></p>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000004.jpg" alt="">
-                        </div>
-                        <b>F+小银瓶无火香氛</b>
-                        <p>¥39.9 <del>￥69</del></p>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000005.jpg" alt="">
-                        </div>
-                        <b>柚子与海盐精油护手霜</b>
-                        <p>¥29三支 <del>￥49</del></p>
-                    </li>
-                    <li>
-                        <div>
-                            <img src="/img/index/F+物制所/ia_200000006.png" alt="">
-                        </div>
-                        <b>氨基酸洁面慕斯</b>
-                        <p>¥99三瓶 <del>￥99</del></p>
-                    </li>
+                    {{each shop item}}
+                        {{if item.sort=='matter-thing'}}
+                            <li  data-id="{{item.id}}">
+                                <div><img src="{{item.imgSrc}}" alt=""></div>
+                                <b>{{item.shopName}}</b>
+                                <p>
+                                    ￥{{item.newPrice}}<del>￥{{item.oldPrice}}</del>
+                                </p>
+                            </li>
+                        {{/if}}
+                    {{/each}}
                 </ul>
             </div>
         </div>

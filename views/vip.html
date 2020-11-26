@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>FLŌWERPLUS 花加</title>
+    {{include "./commend.html"}}
+    <style type="text/css">
+        html {
+            touch-action: none;
+        }
+
+        body {
+            background-color: rgb(246, 248, 250);
+            overflow: scroll;
+        }
+
+        p {
+            font-size: 14px;
+
+        }
+
+        .wrap {
+            margin-top: 30px;
+            width: 3.75rem;
+            height: 3.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list {
+            width: 3600px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .list li {
+            width: 300px;
+            margin: 0 30px;
+            height: 2.8rem;
+            float: left;
+            background-color: white;
+            border-radius: 10px 10px;
+            font-size: 14px;
+            box-shadow: 0px 4px 10px 0px #d7dfe7;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .pic {
+            position: absolute;
+            bottom: 0;
+            width: 3.75rem;
+            left: 1rem;
+        }
+
+        .pic a {
+            float: left;
+            margin: 0.1rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .pic a.light {
+            background: rgb(249, 228, 221);
+        }
+
+        nav {
+            /* position: absolute;
+            top: 0;
+            width: 100%; */
+            padding: 8px 10px;
+            background-color: rgb(251, 231, 227);
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .login {
+            font-size: 14px;
+        }
+
+        .reword {
+            font-size: 12px;
+        }
+
+        .rule span {
+            color: black;
+            font-size: 13px;
+            padding: 5px;
+            border: 1px solid rgb(203, 203, 203);
+            border-radius: 3px;
+        }
+
+        .rule {
+            text-align: right;
+        }
+
+        .vip {
+            margin: 10px 10px 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .vip>div {
+            width: 48%;
+        }
+
+        .lock {
+            font-size: 11px;
+            color: white;
+            background-color: rgb(193, 193, 193);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .big {
+            color: rgb(112, 112, 112);
+            font-size: 13px;
+            margin: 2px 0;
+        }
+
+        .book {
+            color: black;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .vip section {
+            font-size: 20px;
+            color: rgb(237, 237, 237);
+            text-align: center;
+            border-radius: 50%;
+            padding: 48px 0;
+            width: 130px;
+            /* height: 100px; */
+            margin: 0 auto;
+            margin-top: 30px;
+            border: 3px solid rgb(237, 237, 237);
+        }
+
+        .last {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 10px;
+        }
+
+        .last>div:nth-of-type(1) {
+            font-size: 12px;
+            line-height: 74px;
+            width: 80%;
+            border-top: 1px solid rgb(238, 238, 238);
+        }
+
+        .last>div:nth-of-type(2) {
+            width: 20%;
+        }
+
+        .black {
+            color: black !important;
+        }
+
+        main {
+            margin-left: 30px;
+        }
+
+        .power {
+            display: flex;
+        }
+
+        .power p {
+            width: 100%;
+            position: absolute;
+            font-size: 12px;
+            padding: 5px 8px;
+            margin: 0;
+            background-color: rgb(246, 246, 246);
+        }
+
+        .power b {
+            display: none;
+        }
+
+        .power img {
+            width: 100%;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .power>div {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            margin-right: 10px;
+        }
+
+        .grow,
+        .hide {
+            font-size: 14px;
+        }
+
+        .grow p,
+        .hide p {
+            margin: 0;
+            line-height: 41.6px;
+        }
+
+        .grow p b,
+        .hide p b {
+            display: none;
+        }
+
+        .grow img,
+        .hide img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .grow div,
+        .hide div {
+            padding: 10px 10px 0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: rgb(250, 231, 225);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .buy {
+            margin-left: 5px;
+            display: inline-block;
+            width: 142px;
+            height: 41.6px;
+            line-height: 20px;
+            font-size: 13px;
+        }
+
+        .grow_reword i {
+            font-weight: bold;
+        }
+
+        .grow_reword {
+            display: inline-block;
+            height: 41.6px;
+            line-height: 21.6px;
+            padding: 10px 12px;
+            font-size: 12px;
+            background-color: white;
+            border-radius: 30px;
+        }
+
+        #buys {
+            width: 130px;
+        }
+
+        .finish {
+            line-height: 41.6px;
+            margin-right: 20px;
+            font-size: 13px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: url(https://oss.flowerplus.cn/oss_svg/2019-08-13/15656964303644.svg);
+            background-position-x: -14px;
+        }
+
+        .acc {
+            transform: rotate(180deg);
+        }
+
+        .text {
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+        }
+
+        .btn_father {
+            margin: 0 auto;
+            width: 64px;
+            text-align: center;
+            font-size: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hide img {
+            opacity: 0;
+        }
+
+        .hide .turn {
+            animation: color_turn 500ms ease 1 alternate;
+            animation-fill-mode: forwards
+        }
+
+        .flower p {
+            font-size: 12px;
+        }
+
+        .flower {
+            margin-bottom: 30px;
+        }
+
+        .flower>div {
+            margin-right: 20px;
+            margin-bottom: 10px;
+            background-color: white;
+            height: 109px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 12px;
+        }
+
+        .flower>div>div {
+            width: 100%;
+            position: relative;
+        }
+
+        .flower>div>div>p {
+            font-weight: bold;
+            font-size: 13px;
+            position: absolute;
+            top: 20%;
+            left: 2%;
+        }
+
+        .flower>div>div>b {
+            position: absolute;
+            display: inline-block;
+            top: 40%;
+            left: 2%;
+            width: 100%;
+        }
+
+
+        .flower b {
+            font-size: 11px;
+            font-weight: 100;
+            display: inline-block;
+        }
+
+        .flower img {
+            width: 109px;
+            height: 109px;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .flower p {
+            margin: 0;
+            height: 20px;
+        }
+
+        .white {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 8px 12px;
+            background: url(https://oss.flowerplus.cn/oss_png/2019-08-13/15656961603010.png);
+            background-size: 100% 100%;
+            font-size: 10px;
+            color: #F8D8CE;
+        }
+
+        footer {
+            width: 100%;
+            position: fixed;
+            bottom: -200px;
+            height: 200px;
+            font-size: 14px;
+            padding: 10px 0;
+            background-color: white;
+            border-radius: 10px 10px 0 0;
+            z-index: 99;
+        }
+
+        footer>div {
+            margin: 0 15px;
+            font-size: 13px;
+        }
+
+        footer>p {
+            margin: 0;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            border-bottom: 1px solid rgb(242, 242, 242);
+        }
+
+        footer div button {
+            width: 100%;
+            text-align: center;
+            background-color: black;
+            color: white;
+            padding: 8px 0;
+            border: none;
+            margin-top: 35px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        footer>div>div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sub {
+            display: inline-block;
+            height: 40px;
+        }
+
+        .move {
+            animation: footer_move 500ms ease 1 alternate;
+            animation-fill-mode: forwards
+        }
+
+        .one {
+            display: none;
+            width: 100%;
+            height: 1383.56px;
+            position: absolute;
+            color: rgba(0, 0, 0, 0.3);
+            z-index: 50;
+            top: 0;
+            left: 0;
+        }
+
+        .dark {
+            display: block;
+            animation: dark_black 500ms ease 1 alternate;
+            animation-fill-mode: forwards
+        }
+
+        .area {
+            display: none;
+            background-color: rgb(242, 92, 98);
+        }
+
+        .appear {
+            display: inline-block;
+        }
+
+
+        @keyframes color_turn {
+            form {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes dark_black {
+            form {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+
+            to {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+        }
+
+        @keyframes footer_move {
+            form {
+                bottom: -200px;
+            }
+
+            to {
+                bottom: 0px;
+            }
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        (function () {
+            var html = document.documentElement;
+            html.style.fontSize = html.clientWidth / 3.75 + 'px';
+        })();
+        document.addEventListener('touchstart', function (e) {
+            e.preventDefault();
+        })
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="one">
+
+        </div>
+        <div class='content'>
+            <nav>
+                <span class='login'>请登录</span>
+                <span class="reword">我的奖励</span>
+            </nav>
+            <section class="wrap">
+                <ul class="list">
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section class="black">15p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>水晶花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">距离下一等级&ensp;:&ensp;6p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>51p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>白银花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;36p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>401p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>铂金花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;386p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>2001p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>砖石花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;1986p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>8001p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>皇冠花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;7986p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section class="black">15p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>水晶花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">距下一等级&ensp;:&ensp;36p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>51p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>白银花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;36p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>401p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>铂金花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;386p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>2001p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>砖石花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;1986p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                    <li>
+                        <section class="vip">
+                            <div>
+                                <section>8001p</section>
+                            </div>
+                            <div>
+                                <p class="rule"><span>查看规则</span></p>
+                                <p>皇冠花粉</p>
+                                <span class="lock">待解锁</span>
+                                <p class="big">还需成长&ensp;:&ensp;7986p</p>
+                                <span class="book">我的证书<i class="icon icon-right"></i></span>
+                            </div>
+                        </section>
+                        <section class="last">
+                            <div>
+                                关注1年,感谢您的陪伴!
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-08-14/15657500881838.png!750" alt="">
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+                <div class="pic">
+                    <a class="light" href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </div>
+            </section>
+            <main>
+                <p>我的权益</p>
+                <div class="swiper-container" data-space-between='10'>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="power">
+                                <div>
+                                    <p>新人送花瓶</p>
+                                    <img src="https://oss.flowerplus.cn/img/huaping.png" alt="">
+                                    <b>新用户首单购买大多数包月鲜花、单品鲜花，将收到平台免费赠送的花瓶</b>
+                                </div>
+                                <div class="new_price">
+                                    <p>新客价</p>
+                                    <img src="https://oss.flowerplus.cn/img/newprice.png" alt="">
+                                    <b>新客首单享受包月鲜花、单品鲜花的新客优惠价</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>如何获取成长值</p>
+                <section class="grow">
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/buy.svg" alt="">
+                            <span class="buy" id="buys">下单购物</span>
+                            <b>1、下单实际金额数值奖励对应成长值（所有成长值平均到每次配送计划完成后发放）<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励对应金额成长值<i class="icon icon-right"></i></span>
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/info.svg" alt="">
+                            <span class="buy">完善个人资料</span>
+                            <b>去个人中心-个人信息页完善个人信息即可获得15成长值</b>
+                        </p>
+                        <span class="grow_reword" id="person">奖励15成长值<i class="icon icon-right"></i></span>
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/onemonth.svg" alt="">
+                            <span class="buy">首次完整收花一个月</span>
+                            <b>
+                                1、首次订阅包月套餐并完整收花1个月，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/tuan.svg" alt="">
+                            <span class="buy">分享团购二维码/链接拉用户下单</span>
+                            <b>
+                                1、购买团购商品并成功开团，邀请好友下单成功便可获取20个成长值<br>
+                                2、必须是主动邀请好友参团才算成功，被动由其他人参团的不算在内
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                </section>
+                <section class="hide">
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/firstorder.svg" alt="">
+                            <span class="buy">首次下单并收花成功</span>
+                            <b>
+                                1、首次下单付费>0元并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/micang.svg" alt="">
+                            <span class="buy">首次购买谜藏并收花成功</span>
+                            <b>
+                                1、首次购买谜藏包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值<br>
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/dashi.svg" alt="">
+                            <span class="buy">首次购买大师并收花成功</span>
+                            <b>
+                                1、首次购买大师包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值<br>
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/zhiai.svg" alt="">
+                            <span class="buy">首次购买挚爱并收花成功</span>
+                            <b>
+                                1、首次购买挚爱包月鲜花，并完成首次收花，则获得20成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励20成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/lite.svg" alt="">
+                            <span class="buy">首次购买轻礼并收花成功</span>
+                            <b>
+                                1、首次购买轻礼系列产品，并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/fplus.svg" alt="">
+                            <span class="buy">首次购买F+</span>
+                            <b>
+                                1、首次购买F+系列产品，并完成收花，则获得10成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励10成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/threemonth.svg" alt="">
+                            <span class="buy">包月套餐3个月</span>
+                            <b>
+                                1、累计完成3个月包月套餐收花（2束/月、4束/月），则获得40成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励40成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/sixmonth.svg" alt="">
+                            <span class="buy">包月套餐满6个月</span>
+                            <b>
+                                1、累计完成6个月包月套餐收花（2束/月、4束/月），则获得80成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励80成长值<i class="icon icon-right"></i></span>
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/oneyear.svg" alt="">
+                            <span class="buy">包月套餐满12个月</span>
+                            <b>
+                                1、累计完成12个月包月套餐收花（2束/月、4束/月），则获得160成长值<br>
+                                2、使用礼品卡/兑换码/优惠券抵扣的金额不算成长值<br>
+                                3、订单退款则扣去相应发放的成长值
+                            </b>
+                        </p>
+                        <span class="grow_reword">奖励160成长值<i class="icon icon-right"></i></span>
+
+                    </div>
+                    <div>
+                        <p>
+                            <img src="https://oss.flowerplus.cn/img/mission/mobile.svg" alt="">
+                            <span class="buy">绑定手机号</span>
+                            <b>
+                                去个人中心绑定手机号即可获得15成长值
+                            </b>
+                        </p>
+                        <span class="finish">已完成</span>
+
+                    </div>
+                </section>
+                <div class="btn_father">
+                    <span class="btn"></span><span class="text">展开</span>
+                </div>
+                <p>下一等级权益</p>
+                <section class="flower">
+                    <div>
+                        <img src="https://oss.flowerplus.cn/img/hunhehua.png" alt="">
+                        <div>
+                            <div class="white">白银花粉</div>
+                            <p>混合花自选</p>
+                            <b>订购繁花包月套餐，在订单中点击[升级指定]，即可免费选择指定花束</b>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://oss.flowerplus.cn/img/uplevel.png" alt="">
+                        <div>
+                            <div class="white">白银花粉</div>
+                            <p>鲜花升级</p>
+                            <b>订购包月鲜花套餐，可以优惠差价升级到其它鲜花套餐。</b>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://oss.flowerplus.cn/img/levelpack.png" alt="">
+                        <div>
+                            <div class="white">白银花粉</div>
+                            <p>白银升级大礼包</p>
+                            <b>首次升级为白银会员可得组合优惠券礼包：...</b>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="https://oss.flowerplus.cn/img/suihuagou.png" alt="">
+                        <div>
+                            <div class="white">白银花粉</div>
+                            <p>优惠随花购物</p>
+                            <b>订购简花、悦花、繁花、谜藏产品，服务中订单无加购商品的，可以优惠价随花加购商品。</b>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <footer>
+                <p class="up"></p>
+                <div>
+                    <span class="sub"></span><br>
+                    <div>
+                        <button class="remove">我知道了</button>
+                        <button class="area">进入专区</button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    {{include "./script.html"}}
+
+    <script type='text/javascript' src='/js/jquery.cookie.js' charset='utf-8'></script>
+    <script type="text/javascript">
+        if ($.cookie('username')) {
+            var a = "Hi " + ' ' + $.cookie('username')
+            $('.login').text(a)
+        } else {
+            $(".login").click(function () {
+                location.href = '/login'
+            })
+        }
+        $('.reword').click(function () {
+            location.href = '/prize'
+        })
+
+        $('.btn_father').click(function () {
+            var text = $('.text').text()
+            var btn = $(".btn")
+            if (text == '展开') {
+                text = '收起';
+                $('.text').text(text);
+                $(".btn").addClass('acc');
+                $('.hide').css('display', 'block');
+                setTimeout(function () {
+                    $('.hide img').addClass('turn')
+                }, 500)
+            } else {
+                text = '展开'
+                $('.text').text(text)
+                $('.btn').removeClass('acc')
+                $('.hide').css('display', 'none')
+                $('.hide img').removeClass('turn')
+            }
+        })
+
+        //-----下拉框-----
+        $('.flower>div').click(function () {
+            var up = $(this).children().children('p').text()
+            var sub = $(this).children().children('b').text()
+            $('.sub').text(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+
+        $(".remove").click(function () {
+            $('footer').removeClass('move')
+            $('.one').removeClass('dark')
+            $('.area').removeClass('appear')
+        })
+
+        $('.power>div').click(function () {
+            var up = $(this).children('p').text()
+            var sub = $(this).children('b').text()
+            $('.sub').text(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+
+        $('.new_price').click(function () {
+            $('footer div button').css('width', '40%')
+            $(".area").addClass('appear')
+        })
+
+        $(".grow>div>p").click(function () {
+            console.log(1);
+            var up = $(this).children('span').text()
+            var sub = $(this).children('b').html()
+            $('.sub').html(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+        $(".hide>div>p").click(function () {
+            console.log(1);
+            var up = $(this).children('span').text()
+            var sub = $(this).children('b').html()
+            $('.sub').html(sub);
+            $('.up').text(up)
+            $('footer').addClass('move')
+            $('.one').addClass('dark')
+        })
+
+
+
+        //-----个人-----
+        $('#person').click(function () {
+            location.href = '/info'
+        })
+        //-----证书-----
+        $('.book').click(function () {
+            location.href = '/certificate'
+        })
+        //-----专区-----
+        $('.area').click(function () {
+            location.href = '/area'
+        })
+
+
+
+        $(function () {
+            var wrap = document.querySelector('.wrap');
+            var list = document.querySelector('.list');
+            var pic = document.querySelectorAll('a');
+            var disX = 0;
+            //获取到父元素的左边距
+            var oList = 0;
+            var num = 0;
+            //获取容器的宽度
+            var len = wrap.offsetWidth;
+            //li的个数
+            var listLen = list.children.length;
+            var n = 0;
+            //给元素绑定事件
+            list.addEventListener('touchstart', start);
+            list.addEventListener('touchmove', move);
+            list.addEventListener('touchend', end);
+            function start(ev) {
+                var e = ev.changedTouches[0];
+                disX = e.pageX;
+                oList = this.offsetLeft;
+                list.style.transition = 'none';
+                if (num == 0) {
+                    num = pic.length;
+                    oList = -num * len;
+                }
+                if (-num == listLen - 1) {
+                    num = pic.length - 1;
+                    oList = -num * len;
+                }
+            }
+            function move(ev) {
+                var e = ev.changedTouches[0];
+                list.style.left = e.pageX - disX + oList + 'px';
+            }
+            function end() {
+                oList = this.offsetLeft;
+                num = Math.round(oList / len);
+                list.style.transition = '.5s';
+                list.style.left = num * len + 'px';
+                //滑块的控制
+                pic[n % pic.length].className = '';
+                pic[-num % pic.length].className = 'light';
+                n = -num;
+            }
+            $.init();
+        });
+    </script>
+</body>
+
+</html>

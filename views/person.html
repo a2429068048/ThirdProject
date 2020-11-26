@@ -96,31 +96,32 @@
         <form action="">
             <div class="form-group">
                 <span>性别</span>
-                <input type="text" id='picker' placeholder="---请选择---" name='sex' required />
+                <input type="text" id='picker' placeholder="---请选择---" name='sex' class="sex" required />
             </div>
             <div class="form-group">
                 <span>出生年月</span>
-                <input type="text" data-toggle='date' id="my-input" placeholder="---请选择---" name='birdth' required />
+                <input type="text" data-toggle='date' id="my-input" placeholder="---请选择---" name='birdth' class="birdth"
+                    required />
             </div>
             <div class="form-group">
                 <span>学历</span>
-                <input type="text" id='picker1' placeholder="---请选择---" name='education' required />
+                <input type="text" id='picker1' placeholder="---请选择---" name='education' class="education" required />
             </div>
             <div class="form-group">
                 <span>职业</span>
-                <input type="text" id='picker2' placeholder="---请选择---" name='profession' required />
+                <input type="text" id='picker2' placeholder="---请选择---" name='profession' class="profession" required />
             </div>
             <div class="form-group">
                 <span>婚姻状况</span>
-                <input type="text" id='picker3' placeholder="---请选择---" name='marriage' required />
+                <input type="text" id='picker3' placeholder="---请选择---" name='marriage' class="marriage" required />
             </div>
             <div class="form-group">
                 <span>收入水平</span>
-                <input type="text" id='picker4' placeholder="---请选择---" name='incom' required />
+                <input type="text" id='picker4' placeholder="---请选择---" name='incom' class="incom" required />
             </div>
             <div class="form-group">
                 <span>是否生育</span>
-                <input type="text" id='picker5' placeholder="---请选择---" name='childrend' required />
+                <input type="text" id='picker5' placeholder="---请选择---" name='childrend' class="childrend" required />
             </div>
             <section class="buy">
                 <p>购买用途</p>
@@ -142,6 +143,7 @@
     </div>
 
     {{include "./script.html"}}
+    <script type='text/javascript' src='/js/jquery.cookie.js' charset='utf-8'></script>
     <script>
         $("#picker").picker({
             toolbarTemplate: '<header class="bar bar-nav">\
@@ -218,6 +220,40 @@
                 }
             ]
         });
+
+        //加载判断是否有编辑个人信息
+        if ($.cookie('username')) {
+            var username = $.cookie('username')
+            $.post('/myself/edits', { username }, (data) => {
+                if (data.length !== 0) {
+                    $('.sex').val(data.sex)
+                    $('.birdth').val(data.birdth)
+                    $('.education').val(data.education)
+                    $('.profession').val(data.profession)
+                    $('.marriage').val(data.marriage)
+                    $('.incom').val(data.incom)
+                    $(".childrend").val(data.childrend)
+                    var purpose = data.purpose.split(';')
+                    var scene = data.scene.split(';')
+                    var buy = $(".buy span")
+                    var use = $('.use span')
+                    purpose.forEach(function (item, i) {
+                        $(buy).each(function (j, items) {
+                            if (item == $(items).text()) {
+                                $(items).addClass('active')
+                            }
+                        })
+                    });
+                    scene.forEach(function (item, i) {
+                        $(use).each(function (j, items) {
+                            if (item == $(items).text()) {
+                                $(items).addClass('actives')
+                            }
+                        })
+                    });
+                }
+            })
+        }
 
         $('.buy span').click(function (e) {
             e.preventDefault()
