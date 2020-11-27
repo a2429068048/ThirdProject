@@ -77,7 +77,7 @@ const topicSchema = new mongoose.Schema({
 })
 
 const Users = mongoose.model("User", userSchema);
-const ShopCar = mongoose.model("GoodsList", shopCarSchema);
+const ShopCar = mongoose.model("Shop", shopCarSchema);
 const Goods = mongoose.model("Good", goodsListSchema);
 const EasyUser = mongoose.model("EasyUser", easyUserSchema);
 const Topic = mongoose.model("Topic", topicSchema);

@@ -16,3 +16,4 @@
     <script>xxx<script>
     </body>
 ```
+> 8. manage 文件夹放到是管理员操作页面

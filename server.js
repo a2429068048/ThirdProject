@@ -36,9 +36,10 @@ app.use('/myself', require("./router/user"));
 // 发现路由接口
 app.use("/discovery", require("./router/discovery"));
 
-app.use("/discovery", require("./router/discovery"));
-// 数据库接口
+
 app.use("/home", require("./router/skipHome"));
+
+app.use("/manager", require("./router/manager"));
 
 
 // 服务器端口监听
