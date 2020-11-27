@@ -33,7 +33,8 @@ const userSchema = new mongoose.Schema({
     scene: String,
     flowme: Array,
     getGoods: Number,
-    topics: Array
+    // 收藏列表
+    topics: Array,
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({
@@ -46,8 +47,8 @@ const goodsListSchema = new mongoose.Schema({
     imgSrc: String,
     shopName: String,
     title: String,
-    oldPrice: Number,
-    newPrice: Number,
+    oldPrice: String,
+    newPrice: String,
     goodsInfo: String,
     info: String,
     countDown: String,
@@ -65,13 +66,14 @@ const easyUserSchema = new mongoose.Schema({
 const topicSchema = new mongoose.Schema({
     pic:String,
     name:String,
-    getGoods:Number,
+    getGoods:Array,
+    getCollect:Array,
     img:String,
     nameId:String,
     comment: Array,
     content: String,
-    address: String
-    
+    address: String,
+    time:String
 })
 
 const Users = mongoose.model("User", userSchema);

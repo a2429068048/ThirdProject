@@ -185,21 +185,15 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <ul>
-                                <li>
-                                    <div><img src="/img/index/绿植多肉/ia_100000013.jpg" alt=""></div>
-                                    <p>宫粉梅 黄金蜡梅</p>
-                                    <p><span>￥59.90</span><del>￥79.90</del></p>
-                                </li>
-                                <li>
-                                    <div><img src="/img/index/绿植多肉/ia_100000014.jpg" alt=""></div>
-                                    <p>中国桔梗</p>
-                                    <p><span>￥39.90</span><del>￥59.90</del></p>
-                                </li>
-                                <li>
-                                    <div><img src="/img/index/绿植多肉/ia_100000015.jpg" alt=""></div>
-                                    <p>金边瑞香</p>
-                                    <p><span>￥49.90</span><del>￥69.90</del></p>
-                                </li>
+                                {{each shop item}}
+                                    {{if item.sort=='green-new-1'}}
+                                        <li  data-id="{{item.id}}">
+                                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                                            <p>{{item.shopName}}</p>
+                                            <p><span>￥{{item.newPrice}}</span><del>￥{{item.oldPrice}}</del></p>
+                                        </li>
+                                    {{/if}}
+                                {{/each}}
                             </ul>
                         </div>
                         <div class="swiper-slide">
@@ -306,52 +300,18 @@
         <div class="hot public">
             <h5>热卖专区</h5>
             <ul class="hot_main">
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000037.jpg" alt=""></div>
-                    <p>蒲河盆栽</p>
-                    <p>
-                        <span>￥19.90</span><del>￥39.90</del>
-                        <span>月售38943</span>
-                    </p>
-                </li>
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000038.png" alt=""></div>
-                    <p>mini-蝴蝶兰</p>
-                    <p>
-                        <span>￥29.90</span><del>￥49.90</del>
-                        <span>月售22543</span>
-                    </p>
-                </li>
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000039.png" alt=""></div>
-                    <p>彩虹渐变月季</p>
-                    <p>
-                        <span>￥45.90</span><del>￥65.90</del>
-                        <span>月售38943</span>
-                    </p>
-                </li>
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000040.png" alt=""></div>
-                    <p>风清财子</p>
-                    <p>
-                        <span>￥29.90</span><del>￥49.90</del>
-                        <span>月售22543</span>
-                    </p>
-                </li>
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000041.png" alt=""></div>
-                    <p>治愈精灵-多肉组合</p>
-                    <p>
-                        <span>￥45.90</span><del>￥65.90</del>
-                    </p>
-                </li>
-                <li>
-                    <div><img src="/img/index/绿植多肉/ia_100000042.png" alt=""></div>
-                    <p>青涩少年-栀子花</p>
-                    <p>
-                        <span>￥19.90</span><del>￥49.90</del>
-                    </p>
-                </li>
+                {{each shop item}}
+                    {{if item.sort=='green-hot'}}
+                        <li  data-id="{{item.id}}">
+                            <div><img src="{{item.imgSrc}}" alt=""></div>
+                            <p>{{item.shopName}}</p>
+                            <p>
+                                <span>￥{{item.newPrice}}</span><del>￥{{item.oldPrice}}</del>
+                                <span>{{item.goodsInfo}}</span>
+                            </p>
+                        </li>
+                    {{/if}}
+                {{/each}}
             </ul>
         </div>
     </main>

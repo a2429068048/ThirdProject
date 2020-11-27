@@ -84,14 +84,151 @@ const {
 } = require("console");
 const { mongo, Mongoose } = require("mongoose");
 const { send } = require("process");
+const { resolve } = require("path");
+const { rejects } = require("assert");
 
 const router = exp.Router();
 
+// dis首页
 router.get("/index", (req, res) => {
-    res.render("community");
+    let userId;
+    let send = {
+        topUsers:[],
+        content:[]
+    }
+    new Promise((resolve,rejects) => {
+        Users.findOne({name: req.cookies.username}, (err, data) => {
+            if (!err){
+                if (data) {
+                    userId = data.id;
+                }
+                resolve();
+            } else {
+                console.log("获取用户表失败---index");
+                console.log(err);
+            }
+        })
+    }).then(() => {
+        Users.find((err, users) => {
+            if (!err) {
+                if (users.length) {
+                    users.forEach((user, index) => {
+                        user.flowme = user.flowme || [];
+                        user.flowme.map(id => {
+                            if (id == userId) {
+                                // 说明已经关注了
+                                user.isLike = true;
+                                return true;
+                            }
+                        })
+                        Topic.find({nameId:user.id}, (err, data) => {
+                            if (!err && data) {
+                                send.topUsers.push({
+                                    designation:user.designation,
+                                    pic:user.pic,
+                                    name:user.name,
+                                    topics:data,
+                                    id:user.id,
+                                    isLike:user.isLike
+                                })
+                            } else {
+                                console.log(data);
+                                console.log("获取topic失败---index")
+                                console.log(err);
+                            }
+                            if (index == users.length - 1) {
+                                Topic.find((err, data) => {
+                                    if (!err) {
+                                        send.content = data;
+                                        // console.log(1);
+                                        res.render("community", send);
+                                    } else {
+                                        console.log("获取topic失败2----index")
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                        })
+                    })
+                
+                } else {
+                    console.log(1);
+                    res.render("community", send)
+                }
+                
+            } else {
+                console.log("用户表访问失败---index");
+                console.log(err);
+            }
+        })
+        
+    })
+    
+})
+// 获得所有帖子
+router.get("/getTopics", (req, res) => {
+    Users.findOne({name: req.cookies.username}, (err,data) =>{
+        if (!err) {
+            let id = data ? data.id : "";
+            Topic.find((err, data) =>{
+                if (!err) {
+                    // 判断是否已经点赞过了
+                    data.forEach((topic, index) => {
+                        isGood(req,topic, id);
+                    })
+                    sendInfo(res, 1, "获得成功", data);
+                } else {
+                    console.log("帖子表获得失败----getTopics")
+                    console.log(err);
+                }
+            }).lean();
+        }else {
+            console.log(err);
+            console.log("获取登录用户失败---getTopics");
+        }
+    })
+})
+// 获得关注的人发布的帖子
+router.get("/getFlowTopic", (req, res) => {
+    // 先找到关注的人
+    Users.findOne({name: req.cookies.username}, (err, user) => {
+        let id = user.id;
+        if (!err) {
+            let arr = [];
+            if (user.like) {
+                user.like.forEach((userId, index) => {
+                    Topic.find({nameId:userId}, (err, data) => {
+                        if (!err) {
+                            if (data) {
+                                data.forEach(topic => {
+                                    // 判断是否已经点赞
+                                    isGood(req, topic, id);
+                                    arr.push(topic);
+                                })
+                            }
+                        } else {
+                            console.log("访问帖子表失败---getFlowTopic");
+                            console.log(err);
+                        }
+                        if (index == user.like.length -1) {
+                            sendInfo(res, 1, "查询成功", arr);
+                        }
+                    }).lean();
+                })
+            } else {
+                sendInfo(res, 1, "查询成功", arr);
+            }
+            
+        } else {
+            console.log("访问用户表失败---getFlowTopic");
+            console.log(err);
+        }
+    })
 })
 
 
+
+// 商城跳转
 router.get("/shop", (req, res) => {
     res.redirect("/");
 })
@@ -396,9 +533,21 @@ router.get("/topic", (req, res) => {
     Topic.find({nameId: req.query.id}, (err, data) => {
         // console.log(data);
         if (!err) {
+            // console.log(data);
             // 更新名字和头像
             if (data.length) {
                 data.forEach((info, index) => {
+                    info.getGoods = info.getGoods || [];
+                    if (info.getGoods.length) {
+                        // console.log(1)
+                        info.getGoods.forEach(userId => {
+                            if (userId == req.query.id) {
+                                // console.log(true)
+                                info.status = 1;
+                            } 
+                        })
+                    }
+                    // console.log(info);
                     Users.findOne({_id: info.nameId}, (err, user) => {
                       if (!err) {
                             info.name = user.name;
@@ -420,20 +569,30 @@ router.get("/topic", (req, res) => {
             console.log("查看我的帖子失败");
             console.log(err);
         }
-    })
+    }).lean();
 })
 // 获得我的收藏
 router.get("/collect", (req, res) => {
-    console.log(req.query);
+    // console.log(req.query);
+    // 当前用户
     Users.findOne({_id: req.query.id}, (err, data) => {
         if (!err) {
             let arr = []
+            // 收藏列表
             data.topics = data.topics || arr;
             if (data.topics.length) {
                 data.topics.forEach((info, index) => {
                     // console.log(434)
                     Topic.findOne({_id: info}, (err, msg) => {
-                        console.log(msg);
+                        // console.log(msg);
+                        msg.getGoods = msg.getGoods || [];
+                        if (msg.getGoods.length) {
+                            msg.getGoods.forEach(userId => {
+                                if (userId == req.query.id) {
+                                    msg.status = 1;
+                                }
+                            })
+                        }
                         if (!err) {
                             // 更新数据的用户名和图片
                             Users.findOne({_id: msg.nameId}, (err, user) => {
@@ -454,7 +613,7 @@ router.get("/collect", (req, res) => {
                             console.log("帖子获取失败---collect");
                             console.log(err);
                         }
-                    })
+                    }).lean();
                 })
             } else {
                 console.log(1)
@@ -467,6 +626,143 @@ router.get("/collect", (req, res) => {
     })
 })
 
+
+// 点赞
+router.get("/addGood", (req, res) => {
+    // 找到当前用户的id
+    addLAC(req, res, "getGoods");
+    
+})
+// 取消点赞
+router.get("/removeGood", (req, res) =>{
+   reLAC(req, res, "getGoods")
+})
+
+// 收藏
+router.get("/addCollect" ,(req, res) => {
+    addLAC(req, res, "getCollect");
+})
+router.get("/removeCollect", (req, res) => {
+    reLAC(req, res, "getCollect");
+})
+
+
+// 点赞和收藏的方法
+function addLAC(req, res, target) {
+    Users.findOne({name:req.cookies.username}, (err, user) => {
+        let id = user.id;
+        // 收藏和点赞总量
+        user.getGoods = user.getGoods || 0;
+        user.topics = user.topics || [].push;
+         // 找到对应的帖子
+        if (!err) {
+            // console.log(req.query.id);
+            Topic.findOne({_id: req.query.id}, (err, data) => {
+                if (!err) {
+                    // 添加对应的id
+                    data[target] = data[target] || [];
+                    data[target].push(id);
+                    if (target == "getCollect") {
+                        user.topics.push(data.id);
+                    }
+                    // 更新数据库
+                    Topic.findOneAndUpdate({_id: req.query.id}, data, err => {
+                        if (!err) {
+                            sendInfo(res, 1, "点赞/收藏成功");
+                            user.getGoods++;
+                            Users.update({_id: id}, user, (err) => {
+                                if (err) {
+                                    console.log("更新用户表失败---addGood")
+                                }
+                            });
+                        } else {
+                            console.log("更新数据库失败---addGood")
+                            console.log(err);
+                        }
+                    }); 
+                } else {
+                    console.log(err);
+                    console.log("addGood 查找数据库失败");
+                }
+            })
+        } else {
+            console.log("查找数据库失败---addGood");
+            console.log(err);
+        }
+    })
+}
+// 取消点赞和收藏的方法
+function reLAC(req, res, target) {
+    Users.findOne({name:req.cookies.username}, (err, user) => {
+        let id = user.id;
+        // user.getGoods = user.getGoods;
+         // 找到对应的帖子
+        if (!err) {
+            Topic.findOne({_id: req.query.id}, (err, data) => {
+                if (!err) {
+                    // 移除对应的id
+                    data[target] = data[target].filter(userId => {
+                        return userId != id;
+                    })
+                    if (target == "getCollect") {
+                        user.topics = user.topics.filter(topic => {
+                            return topic != req.query.id;
+                        })
+                    }
+                    Topic.findOneAndUpdate({_id: req.query.id}, data, err => {
+                        if (!err) {
+                            sendInfo(res, 1, "取消点赞/收藏成功");
+                            user.getGoods--;
+                            Users.update({_id: id}, user, (err) => {
+                                if (err) {
+                                    console.log("更新用户表失败---removeGood")
+                                }
+                            })
+                        } else {
+                            console.log("更新数据库失败---removeGood")
+                            console.log(err);
+                        }
+                    }); 
+                    
+                } else {
+                    console.log(err);
+                    console.log("removeGood 查找数据库失败");
+                }
+            })
+        } else {
+            console.log("查找数据库失败---addGood");
+            console.log(err);
+        }
+    })
+    
+}
+
+
+
+// 查看是否有点赞和收藏
+function isGood(req,topic,id) {
+    topic.getGoods = topic.getGoods || [];
+    topic.getCollect = topic.getCollect || [];
+    if (topic.getGoods.length) {
+        topic.getGoods.forEach(userId => {
+            if (userId == id) {
+                topic.status = 1;
+            }
+        })
+    }
+    if (topic.getCollect.length) {
+        topic.getCollect.forEach(userId => {
+            if (userId == id) {
+                topic.isCollect = 1;
+            }
+        })
+    }
+    
+}
+// 查看是否有关注
+function isLike() {
+
+}
 
 // 帖子图片设置
 let topicStorage = mult.diskStorage({
@@ -491,6 +787,7 @@ router.post("/appendTopic", topicUpload.single("img"), (req, res) => {
             // console.log(data);
             req.body.pic = data.pic;
             req.body.nameId = data.id;
+            req.body.name = req.cookies.username;
             // console.log(req.body);
             let topic = new Topic(req.body);
             topic.save(err => {
