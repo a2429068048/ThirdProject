@@ -125,15 +125,25 @@ router.get('/card', (req, res) => {
 router.get('/cheap', (req, res) => {
     res.render('cheap')
 })
+router.get('/flower_cards', (req, res) => {
+    res.render('flower_cards')
+})
+
+
 //-----查询卡单-----
 router.get('/lookup', (req, res) => {
     res.render('lookup')
 })
+
 //-----优选-----
 router.get('/good_select', (req, res) => {
     res.render('good_select')
 })
 
+//-----当日订单-----
+router.get('/dayOrder', (req, res) => {
+    res.render('dayOrder')
+})
 
 
 
