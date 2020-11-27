@@ -128,6 +128,12 @@ router.get('/flower_cards', (req, res) => {
 router.get('/myServer', (req, res) => {
     res.render('myserver')
 })
+router.get('/myHelp', (req, res) => {
+    res.render('myHelp')
+})
+router.get('/myAdvise', (req, res) => {
+    res.render('myAdvise')
+})
 
 
 //-----查询卡单-----

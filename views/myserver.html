@@ -11,6 +11,11 @@
             touch-action: none;
         }
 
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+
         .wrap,
         .wraps {
             width: 3.75rem;
@@ -19,9 +24,13 @@
             overflow: hidden;
         }
 
+        .wraps {
+            height: 850px;
+        }
+
         .list,
         .lists {
-            width: 4320px;
+            width: 2160px;
             position: absolute;
             left: 0;
             top: 0;
@@ -38,6 +47,10 @@
             box-shadow: 0px 4px 10px 0px #d7dfe7;
         }
 
+        .lists li {
+            height: 840px;
+        }
+
         img {
             width: 100%;
         }
@@ -50,8 +63,12 @@
             left: 1.5rem;
         }
 
+        .page {
+            background-color: white;
+        }
+
         .pic a,
-        .pics a {
+        .pics span {
             float: left;
             margin: 5px;
             width: 10px;
@@ -63,8 +80,14 @@
             border-radius: 5px;
         }
 
+        .pics span {
+            background-color: rgba(0, 0, 0, 0);
+        }
+
+
+
         .pic a.light,
-        .pics a.lights {
+        .pics span.light {
             background: white;
             padding: 1px 5px;
             border-left: 4px solid rgba(255, 255, 255, 1);
@@ -84,15 +107,43 @@
             width: 33.3%;
         }
 
-        .flexs img {
-            width: 154px;
-            height: 196px;
+        .fiexs {
+            display: flex;
+            justify-content: space-between;
         }
 
-        .flexs {
+        .fiexs img {
+            width: 154px;
+            height: 194px;
+        }
+
+        .fiexs p {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .lists li {
+            padding: 0 15px;
+            background-color: white;
+        }
+
+        .coo {
             font-size: 14px;
             font-weight: bold;
             display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: rgb(246, 245, 245);
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .coo span:nth-of-type(2) {
+            display: inline-block;
+            padding: 0px 2.5px;
+            border-radius: 50%;
+            color: white;
+            background-color: black;
         }
     </style>
     <script type="text/javascript">
@@ -135,17 +186,19 @@
                         <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892683082515.jpg" alt="">
                     </li>
                 </ul>
-                <div class="pics">
+                <div class="pic">
                     <a class="light" href="javascript:;"></a>
                     <a href="javascript:;"></a>
                     <a href="javascript:;"></a>
                 </div>
             </section>
-            <!-- <section class="wraps">
+            <section class="wraps">
                 <ul class="lists">
                     <li>
-                        <p>鲜花花卡</p>
-                        <div class="flexs">
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">鲜花花卡</span>
+                        </p>
+                        <div class="fiexs">
                             <div>
                                 <img src="https://oss.flowerplus.cn/green_banner_image/20200721/15953169331288.jpg"
                                     alt="">
@@ -159,6 +212,185 @@
                                 <p>￥99</p>
                             </div>
                         </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">定制花卡</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">商务花卡解决方案</span>
+                        </p>
+                        <div>
+                            <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887609852172.jpg!60" alt="">
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">鲜花采购</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">批量鲜花解决方案</span>
+                        </p>
+                        <div>
+                            <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887611811685.jpg!60" alt="">
+                        </div>
+                    </li>
+                    <li>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">精品绿植</span>
+                        </p>
+                        <div class="fiexs" style="margin-bottom:20px;">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200513/15893610593621.jpg"
+                                    alt="">
+                                <p>薄荷盆栽</p>
+                                <p>￥39.9</p>
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200810/15970446754814.jpg"
+                                    alt="">
+                                <p>春林绿影·桌面屏风</p>
+                                <p>￥69</p>
+                            </div>
+                        </div>
+                        <div class="fiexs">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200810/15970454246414.jpg"
+                                    alt="">
+                                <p>森林合唱团</p>
+                                <p>￥69</p>
+                            </div>
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">商业美陈</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">商业空间鲜花服务</span>
+                        </p>
+                        <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887608886916.jpg!60" alt="">
+                    </li>
+                    <li>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">商务合作</span><br>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">BUSINESS</span>
+                        </p>
+                        <div class="coo">
+                            <span class="bla">商务线-商业合作</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">社区团长招募</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">媒体采访&平牌合作</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">加盟合作</span><br>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">COOPERATION</span>
+                        </p>
+                        <div class="coo">
+                            <span class="bla">线下店加盟</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">花店合作申请</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo" style="margin-bottom: 30px;">
+                            <span class="bla">商家入驻</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                    </li>
+                    <li>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">鲜花花卡</span>
+                        </p>
+                        <div class="fiexs">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200721/15953169331288.jpg"
+                                    alt="">
+                                <p>鲜花礼品包月卡</p>
+                                <p>￥139</p>
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200529/15907486169990.jpg"
+                                    alt="">
+                                <p>设计师款鲜花兑换卡</p>
+                                <p>￥99</p>
+                            </div>
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">定制花卡</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">商务花卡解决方案</span>
+                        </p>
+                        <div>
+                            <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887609852172.jpg!60" alt="">
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">鲜花采购</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">批量鲜花解决方案</span>
+                        </p>
+                        <div>
+                            <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887611811685.jpg!60" alt="">
+                        </div>
+                    </li>
+                    <li>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">精品绿植</span>
+                        </p>
+                        <div class="fiexs" style="margin-bottom:20px;">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200513/15893610593621.jpg"
+                                    alt="">
+                                <p>薄荷盆栽</p>
+                                <p>￥39.9</p>
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200810/15970446754814.jpg"
+                                    alt="">
+                                <p>春林绿影·桌面屏风</p>
+                                <p>￥69</p>
+                            </div>
+                        </div>
+                        <div class="fiexs">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200810/15970454246414.jpg"
+                                    alt="">
+                                <p>森林合唱团</p>
+                                <p>￥69</p>
+                            </div>
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">商业美陈</span>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">商业空间鲜花服务</span>
+                        </p>
+                        <img src="https://oss.flowerplus.cn/oss_jpg/2020-05-06/15887608886916.jpg!60" alt="">
+                    </li>
+                    <li>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">商务合作</span><br>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">BUSINESS</span>
+                        </p>
+                        <div class="coo">
+                            <span class="bla">商务线-商业合作</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">社区团长招募</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">媒体采访&平牌合作</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <p style="margin: 30px 0 10px;">
+                            <span style="font-weight: bold;font-size: 18px;">加盟合作</span><br>
+                            <span style="font-size: 12px;color:rgb(179, 179, 179);">COOPERATION</span>
+                        </p>
+                        <div class="coo">
+                            <span class="bla">线下店加盟</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo">
+                            <span class="bla">花店合作申请</span>
+                            <span class="icon icon-right"></span>
+                        </div>
+                        <div class="coo" style="margin-bottom: 30px;">
+                            <span class="bla">商家入驻</span>
+                            <span class="icon icon-right"></span>
+                        </div>
                     </li>
                 </ul>
                 <div class="pics">
@@ -166,7 +398,7 @@
                     <span href="javascript:;"></span>
                     <span href="javascript:;"></span>
                 </div>
-            </section> -->
+            </section>
         </div>
     </div>
 
@@ -178,7 +410,7 @@
         $(function () {
             var wrap = document.querySelector('.wrap');
             var list = document.querySelector('.list');
-            var pic = document.querySelectorAll('pic a');
+            var pic = document.querySelectorAll('a');
             var disX = 0;
             //获取到父元素的左边距
             var oList = 0;
@@ -222,53 +454,55 @@
             }
             $.init();
         });
-        // $(function () {
-        //     var wrap = document.querySelector('.wraps');
-        //     var list = document.querySelector('.lists');
-        //     var pic = document.querySelectorAll('pics span');
-        //     var disX = 0;
-        //     //获取到父元素的左边距
-        //     var oList = 0;
-        //     var num = 0;
-        //     //获取容器的宽度
-        //     var len = wrap.offsetWidth;
-        //     //li的个数
-        //     var listLen = list.children.length;
-        //     var n = 0;
-        //     //给元素绑定事件
-        //     list.addEventListener('touchstart', start);
-        //     list.addEventListener('touchmove', move);
-        //     list.addEventListener('touchend', end);
-        //     function start(ev) {
-        //         var e = ev.changedTouches[0];
-        //         disX = e.pageX;
-        //         oList = this.offsetLeft;
-        //         list.style.transition = 'none';
-        //         if (num == 0) {
-        //             num = pic.length;
-        //             oList = -num * len;
-        //         }
-        //         if (-num == listLen - 1) {
-        //             num = pic.length - 1;
-        //             oList = -num * len;
-        //         }
-        //     }
-        //     function move(ev) {
-        //         var e = ev.changedTouches[0];
-        //         list.style.left = e.pageX - disX + oList + 'px';
-        //     }
-        //     function end() {
-        //         oList = this.offsetLeft;
-        //         num = Math.round(oList / len);
-        //         list.style.transition = '.5s';
-        //         list.style.left = num * len + 'px';
-        //         //滑块的控制
-        //         pic[n % pic.length].className = '';
-        //         pic[-num % pic.length].className = 'light';
-        //         n = -num;
-        //     }
-        //     $.init();
-        // });
+
+        $(function () {
+            var wrap = document.querySelector('.wraps');
+            var list = document.querySelector('.lists');
+            var pic = document.querySelectorAll('.pics span');
+            console.log(pic);
+            var disX = 0;
+            //获取到父元素的左边距
+            var oList = 0;
+            var num = 0;
+            //获取容器的宽度
+            var len = wrap.offsetWidth;
+            //li的个数
+            var listLen = list.children.length;
+            var n = 0;
+            //给元素绑定事件
+            list.addEventListener('touchstart', start);
+            list.addEventListener('touchmove', move);
+            list.addEventListener('touchend', end);
+            function start(ev) {
+                var e = ev.changedTouches[0];
+                disX = e.pageX;
+                oList = this.offsetLeft;
+                list.style.transition = 'none';
+                if (num == 0) {
+                    num = pic.length;
+                    oList = -num * len;
+                }
+                if (-num == listLen - 1) {
+                    num = pic.length - 1;
+                    oList = -num * len;
+                }
+            }
+            function move(ev) {
+                var e = ev.changedTouches[0];
+                list.style.left = e.pageX - disX + oList + 'px';
+            }
+            function end() {
+                oList = this.offsetLeft;
+                num = Math.round(oList / len);
+                list.style.transition = '.5s';
+                list.style.left = num * len + 'px';
+                //滑块的控制
+                pic[n % pic.length].className = '';
+                pic[-num % pic.length].className = 'light';
+                n = -num;
+            }
+            $.init();
+        });
     </script>
 </body>
 

@@ -221,7 +221,7 @@
         </section>
         <p><b>其他帮助</b></p>
         <section>
-            <div>
+            <div class="myHelp">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/help_center.svg" alt="">
                 <p>常见问题</p>
             </div>
@@ -229,7 +229,7 @@
                 <img src="https://static2.flowerplus.cn/Static/img/my/company_service.svg" alt="">
                 <p>企业服务</p>
             </div>
-            <div>
+            <div class="advise">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/proposal.svg" alt="">
                 <p>产品建议</p>
             </div>
@@ -292,6 +292,12 @@
         })
         $(".server").click(function () {
             location.href = '/myServer'
+        })
+        $('.myHelp').click(function () {
+            location.href = '/myHelp'
+        })
+        $('.advise').click(function () {
+            location.href = '/myAdvise'
         })
     </script>
 </body>
