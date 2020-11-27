@@ -225,8 +225,62 @@ router.get("/getFlowTopic", (req, res) => {
         }
     })
 })
+// 搜索
+router.get("/search", (req, res) => {
+    // console.log(req.query.content);
+    Users.findOne({name: req.cookies.username}, (err, data) => {
+        if (!err && data) {
+            let id = data.id;
+            Topic.find({content:new RegExp(req.query.content, "g")},(err, data) => {
+                if (!err) {
+                    // console.log(data);
+                    if (data.length) {
+                        data.forEach((topic, index) => {
+                            // 判断是否点赞或者收藏
+                            isGood(req, topic, id);
+                        })
+                       
+                    }
+                    data.reverse();
+                    res.render("disContent",{docTitle:"搜索结果",data});
+                } else {
+                    console.log("帖表访问失败----search");
+                    console.log(err);
+                }
+            }).lean();        
+        } else {
+            console.log(data);
+            console.log("访问User表失败---search");
+            console.log(err);
+        }
+    })
+})
 
 
+// 对应用户帖子跳转
+router.get("/detailTopic", (req, res) => {
+    // console.log(req.query.id);
+    Users.findOne({name: req.cookies.username}, (err, data) => {
+        let id = data.id;
+        if (!err) {
+            Topic.find({nameId: req.query.id}, (err, data) => {
+                if (!err) {
+                    data.forEach(topic => {
+                        isGood(req, topic, id);
+                    });
+                    data.reverse();
+                    res.render("disContent", {data});
+                } else {
+                    console.log("帖表访问失败---/detailTopic");
+                    console.log(err);
+                }
+            }).lean();
+        } else {
+            console.log("用户表访问失败---detailTopic");
+            console.log("err");
+        }
+    })
+})
 
 // 商城跳转
 router.get("/shop", (req, res) => {
@@ -649,27 +703,47 @@ router.get("/removeCollect", (req, res) => {
 
 // 点赞和收藏的方法
 function addLAC(req, res, target) {
+    // console.log(req.query.id);
     Users.findOne({name:req.cookies.username}, (err, user) => {
         let id = user.id;
-        // 收藏和点赞总量
-        user.getGoods = user.getGoods || 0;
-        user.topics = user.topics || [].push;
+        user.topics = user.topics || [];
          // 找到对应的帖子
         if (!err) {
             // console.log(req.query.id);
             Topic.findOne({_id: req.query.id}, (err, data) => {
                 if (!err) {
                     // 添加对应的id
+                    let topicId = data.nameId;
                     data[target] = data[target] || [];
                     data[target].push(id);
                     if (target == "getCollect") {
+                        // console.log(data.id);
                         user.topics.push(data.id);
+                        // console.log(user.topics);
                     }
                     // 更新数据库
                     Topic.findOneAndUpdate({_id: req.query.id}, data, err => {
                         if (!err) {
                             sendInfo(res, 1, "点赞/收藏成功");
-                            user.getGoods++;
+                            Users.findOne({_id:topicId}, (err, data) => {
+                                if (!err) {
+                                    // 收藏和点赞总量
+                                    data.getGoods = data.getGoods || 0;
+                                    data.getGoods++;
+                                    data.topics = user.topics;
+                                    Users.findOneAndUpdate({_id:topicId},data, err => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    })
+                                } else {
+                                    console.log("获取数据库失败---addLAC730");
+                                    console.log(err);
+                                }
+
+                            })
+                            
+                            // user.getGoods++;
                             Users.update({_id: id}, user, (err) => {
                                 if (err) {
                                     console.log("更新用户表失败---addGood")
@@ -693,13 +767,14 @@ function addLAC(req, res, target) {
 }
 // 取消点赞和收藏的方法
 function reLAC(req, res, target) {
+    // console.log(req.query.id);
     Users.findOne({name:req.cookies.username}, (err, user) => {
         let id = user.id;
-        // user.getGoods = user.getGoods;
          // 找到对应的帖子
         if (!err) {
             Topic.findOne({_id: req.query.id}, (err, data) => {
                 if (!err) {
+                    let topicId = data.nameId;
                     // 移除对应的id
                     data[target] = data[target].filter(userId => {
                         return userId != id;
@@ -712,7 +787,22 @@ function reLAC(req, res, target) {
                     Topic.findOneAndUpdate({_id: req.query.id}, data, err => {
                         if (!err) {
                             sendInfo(res, 1, "取消点赞/收藏成功");
-                            user.getGoods--;
+                            Users.findOne({_id:topicId}, (err, data) => {
+                                if (!err) {
+                                    data.topics = user.topics;
+                                    data.getGoods--;
+                                    Users.findOneAndUpdate({_id:topicId},data, err => {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    })
+                                } else {
+                                    console.log("获取数据库失败---addLAC730");
+                                    console.log(err);
+                                }
+
+                            })
+                            
                             Users.update({_id: id}, user, (err) => {
                                 if (err) {
                                     console.log("更新用户表失败---removeGood")
