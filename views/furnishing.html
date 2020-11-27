@@ -266,6 +266,9 @@
                 el: '.new .swiper-pagination',
             },
         })
+        $('.hot_main li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
+        })
     </script>
 </body>
 </html>

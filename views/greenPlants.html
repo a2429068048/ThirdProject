@@ -336,6 +336,9 @@
         $('.search-input').click(function(){
             location.href='/home/greenSearch'
         })
+        $('.hot_main li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
+        })
     </script>
 </body>
 </html>

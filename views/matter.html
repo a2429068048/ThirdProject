@@ -146,5 +146,10 @@
     </footer>
 
     <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script>
+        $('.main>ul li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
+        })
+    </script>
 </body>
 </html>

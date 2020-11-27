@@ -179,8 +179,7 @@
         }
         /* 热卖专区 */
         .hot img,.goodThings img{
-            width: 160px;
-            height: 208px;
+            width: 100%;
         }
         p{
             margin: 0;
@@ -200,11 +199,19 @@
             height: 14px;
         }
         .hot_main,.goodThings_main{
-            display: flex;
-            flex-wrap: wrap;
+            width: 92%;
+            margin: auto;
         }
         .hot_main li,.goodThings_main li{
-            margin: 8px 0 8px 12px;
+            width: 48%;
+        }
+        .hot_main,.goodThings_main{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .hot_main li,.goodThings_main li{
+            margin: 8px 0;
         }
         .hot_nav,.goodThings_nav{
             margin: 16px;
@@ -426,7 +433,7 @@
                         <b>${item.title}</b>
                         <p>${item.goodsInfo}</p>
                         <b>￥${item.info}</b>
-                    <li>
+                    </li>
                 `
             });
             $('.hot_main').html(str)
@@ -440,7 +447,7 @@
                         <div><img src="${item.imgSrc}"></div>
                         <b>${item.title}</b>
                         <p><b>${item.info}</b></p>
-                    <li>
+                    </li>
                 `
             });
             $('.goodThings_main').html(str)
@@ -491,7 +498,11 @@
                 location.href='/home/details?id='+$(this).data('id')
             })
         }, 100);
-        
+        setTimeout(() => {
+            $('.goodThings_main>li').click(function(){
+                location.href='/home/details?id='+$(this).data('id')
+            })
+        }, 100);
         
     </script>
 </body>

@@ -927,6 +927,9 @@
         $('.fixed').click(function(){
             location.href='/home/gift'
         })
+        $('.detailed>ul li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
+        })
     </script>
 </body>
 </html>
