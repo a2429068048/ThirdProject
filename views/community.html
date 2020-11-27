@@ -391,7 +391,7 @@
         <div class="swiper-container">
           <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
             {{each topUsers user}}
-            {{if user.topics.length}}
+            {{if user.topics.length && user.topics.length >= 2}}
             <div class="swiper-slide">
               <div class="box">
                 <div class="imgs line">
@@ -507,20 +507,21 @@
 
       </div>
     </div>
-    {{include "./script.html"}}
-    <script>
-      // 最新页面初始化请求
-      getNews();
-      function getNews() {
-        $.get("/discovery/getTopics", data => {
-          let strLeft = "";
-          let strRight = "";
-          console.log(data);
-          data.data.forEach((topic, index) => {
-            if (index % 2 == 0) {
-              strLeft += `
+  </div>
+  {{include "./script.html"}}
+  <script>
+    // 最新页面初始化请求
+    getNews();
+    function getNews() {
+      $.get("/discovery/getTopics", data => {
+        let strLeft = "";
+        let strRight = "";
+        console.log(data);
+        data.data.forEach((topic, index) => {
+          if (index % 2 == 0) {
+            strLeft += `
               <div class="infos">
-                <img src="/topics/${topic.img}" alt="">
+                <img src="/topics/${topic.img}" alt=""  data-id="${topic.nameId}" class="linkImg">
                 <div class="text">
                   <div class="label" ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
                   <div class="describe">
@@ -540,10 +541,10 @@
                 </div>
               </div>
               `
-            } else {
-              strRight += `
-              <div class="infos">
-                <img src="/topics/${topic.img}" alt="">
+          } else {
+            strRight += `
+              <div class="infos " >
+                <img src="/topics/${topic.img}" alt="" data-id="${topic.nameId}" class="linkImg">
                 <div class="text">
                   <div class="label"  ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
                   <div class="describe">
@@ -563,103 +564,103 @@
                 </div>
               </div>
               `
-            };
-            $(".newAndRe .left").html(strLeft);
-            $(".newAndRe .right").html(strRight);
-          })
+          };
+          $(".newAndRe .left").html(strLeft);
+          $(".newAndRe .right").html(strRight);
+        })
+      })
+    }
+    // 点赞事件绑定
+    $(document).on("click", ".up", function () {
+      if (document.cookie) {
+        $(this).find("img").toggle();
+        let num = $(this).find("span").text().trim() * 1;
+        num = $(this).hasClass("checked") ? --num : ++num;
+        $(this).find("span").text(num);
+        // 发送请求
+        // 添加或者取消点赞
+        $.get(`/discovery/${$(this).hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id")}`, data => {
+          console.log(data);
+        })
+        $(this).toggleClass("checked");
+      } else {
+        $.alert("请先登录", () => {
+          location.href = "/login";
         })
       }
-      // 点赞事件绑定
-      $(document).on("click", ".up", function () {
+
+    })
+    // 收藏事件绑定
+    $(document).on("click", ".collect", function () {
+      if (document.cookie) {
+        $(this).find("img").toggle();
+        let num = $(this).find("span").text().trim() * 1;
+        num = $(this).hasClass("collected") ? --num : ++num;
+        $(this).find("span").text(num);
+        // 发送请求
+        // 添加或者取消点赞
+        $.get(`/discovery/${$(this).hasClass("collected") ? "removeCollect" : "addCollect"}?id=${$(this).data("id")}`, data => {
+          console.log(data);
+        })
+        $(this).toggleClass("collected");
+      } else {
+        $.alert("请先登录", () => {
+          location.href = "/login";
+        })
+      }
+    })
+
+
+    $(function () {
+      let height = $(".head").innerHeight();
+      $(".content").css({
+        marginTop: height
+      })
+      $(".head .swiper-container").swiper({
+        // setWrapperSize:true,
+        slidesPerView: 3.2,
+        spaceBetween: 6,
+        slidesOffsetAfte: 6,
+        slidesOffsetBefore: 6,
+      });
+      $.initPullToRefresh('.pull-to-refresh-content')
+      $(document).on('refresh', '.pull-to-refresh-content', function (e) {
+        $.pullToRefreshDone('.pull-to-refresh-content')
+      });
+      // 添加关注
+      $(document).on("click", ".add", function () {
         if (document.cookie) {
-          $(this).find("img").toggle();
-          let num = $(this).find("span").text().trim() * 1;
-          num = $(this).hasClass("checked") ? --num : ++num;
-          $(this).find("span").text(num);
-          // 发送请求
-          // 添加或者取消点赞
-          $.get(`/discovery/${$(this).hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id")}`, data => {
+          $.get(`/discovery/${$(this).hasClass("selected") ? "removeLike" : "addLike"}?id=${$(this).data("id")}`, data => {
             console.log(data);
           })
-          $(this).toggleClass("checked");
+          $(this).toggleClass("selected");
+          $(this).find("img").toggle();
         } else {
-          $.alert("请先登录", () => {
+          $.alert("请先进行登录", () => {
             location.href = "/login";
           })
         }
-
       })
-      // 收藏事件绑定
-      $(document).on("click", ".collect", function () {
-          if (document.cookie) {
-            $(this).find("img").toggle();
-            let num = $(this).find("span").text().trim() * 1;
-            num = $(this).hasClass("collected") ? --num : ++num;
-            $(this).find("span").text(num);
-            // 发送请求
-            // 添加或者取消点赞
-            $.get(`/discovery/${$(this).hasClass("collected") ? "removeCollect" : "addCollect"}?id=${$(this).data("id")}`, data => {
-              console.log(data);
-            })
-            $(this).toggleClass("collected");
-          } else {
-            $.alert("请先登录", () => {
-              location.href = "/login";
-            })
-          }
-        })
-        
 
-      $(function () {
-        let height = $(".head").innerHeight();
-        $(".content").css({
-          marginTop: height
-        })
-        $(".head .swiper-container").swiper({
-          // setWrapperSize:true,
-          slidesPerView: 3.2,
-          spaceBetween: 6,
-          slidesOffsetAfte: 6,
-          slidesOffsetBefore: 6,
-        });
-        $.initPullToRefresh('.pull-to-refresh-content')
-        $(document).on('refresh', '.pull-to-refresh-content', function (e) {
-          $.pullToRefreshDone('.pull-to-refresh-content')
-        });
-        // 添加关注
-        $(document).on("click", ".add", function () {
-          if (document.cookie) {
-            $.get(`/discovery/${$(this).hasClass("selected") ? "removeLike" : "addLike"}?id=${$(this).data("id")}`, data => {
-              console.log(data);
-            })
-            $(this).toggleClass("selected");
-            $(this).find("img").toggle();
-          } else {
-            $.alert("请先进行登录", () => {
-              location.href = "/login";
-            })
-          }
-        })
-        
-        // 头部菜单栏切换
-        $(".menue li").click(function () {
-          $.showIndicator("正在载入");
-          $(this).addClass("active").siblings().removeClass("active");
-          // console.log($(this))
-          // console.log($(this).hasClass("like"))
-          if ($(this).hasClass("like")) {
-            setTimeout(function () {
-              if ($.cookie("username")) {
-                $(".myLike").show().siblings().hide();
-                $.get("/discovery/getFlowTopic", data => {
-                  console.log(data);
-                  let str = "";
-                  if (data.data.length) {
-                    data.data.forEach(topic => {
-                      // console.log(topic)
-                      // console.log(new Date(topic.time * 1))
-                      topic.time = moment(new Date(topic.time * 1)).format("YYYY-MM-DD HH:mm:ss")
-                      str += ` 
+      // 头部菜单栏切换
+      $(".menue li").click(function () {
+        $.showIndicator("正在载入");
+        $(this).addClass("active").siblings().removeClass("active");
+        // console.log($(this))
+        // console.log($(this).hasClass("like"))
+        if ($(this).hasClass("like")) {
+          setTimeout(function () {
+            if ($.cookie("username")) {
+              $(".myLike").show().siblings().hide();
+              $.get("/discovery/getFlowTopic", data => {
+                console.log(data);
+                let str = "";
+                if (data.data.length) {
+                  data.data.forEach(topic => {
+                    // console.log(topic)
+                    // console.log(new Date(topic.time * 1))
+                    topic.time = moment(new Date(topic.time * 1)).format("YYYY-MM-DD HH:mm:ss")
+                    str += ` 
                           <div class="likeBox" >
                             <div class="likeTitle line">
                               <div class="titleLeft line">
@@ -671,7 +672,7 @@
                   
                               </div>
                             </div>
-                            <div class="goodsImg">
+                            <div class="goodsImg linkImg" data-id="${topic.nameId}">
                               <img src="/topics/${topic.img}" alt="">
                             </div>
                             <div class="text">
@@ -703,54 +704,93 @@
                             </div>
                           </div>
                           `
-                    })
-                  } else {
-                    str += "<p style='text-align:center'>您暂时没有关注的人。</p>"
-                  }
+                  })
+                } else {
+                  str += "<p style='text-align:center'>您暂时没有关注的人。</p>"
+                }
 
-                  $(".myLike").html(str);
-                })
+                $(".myLike").html(str);
+              })
 
 
-                $.hideIndicator();
-              } else {
-                $.alert("请先登录", () => {
-                  location.href = "/login";
-                })
-              }
-
-            }, 1000);
-
-          } else {
-            setTimeout(function () {
-              $(".myLike").hide().siblings().css("display", "flex");
-              // $(".newAndRe").show();
-              getNews();
               $.hideIndicator();
-            }, 2000);
-          }
-        });
+            } else {
+              $.alert("请先登录", () => {
+                location.href = "/login";
+              })
+            }
 
-        // 添加评论
-        $(".comment p").click(function () {
-          // 评论框显示
-          this.isclick = !this.isclick;
-          // console.log(this.click)
-          if (this.isclick) {
-            // footBar消失，评论框出现
-            $(".footBar").css("display", "none");
-            $(".commentBar").css("display", "flex");
-          } else {
-            $(".footBar").css("display", "flex");
-            $(".commentBar").css("display", "none");
-          }
-        })
+          }, 1000);
 
+        } else {
+          setTimeout(function () {
+            $(".myLike").hide().siblings().css("display", "flex");
+            // $(".newAndRe").show();
+            getNews();
+            $.hideIndicator();
+          }, 2000);
+        }
       });
 
+      // 添加评论
+      $(".comment p").click(function () {
+        // 评论框显示
+        this.isclick = !this.isclick;
+        // console.log(this.click)
+        if (this.isclick) {
+          // footBar消失，评论框出现
+          $(".footBar").css("display", "none");
+          $(".commentBar").css("display", "flex");
+        } else {
+          $(".footBar").css("display", "flex");
+          $(".commentBar").css("display", "none");
+        }
+      })
 
 
-    </script>
+
+      // 搜索
+      $(".searchbar span").click(function () {
+        let text = $(this).parent().find("input").val().trim();
+        console.log(text);
+        // 发送后端请求
+        location.href = `/discovery/search?content=${text}`
+
+      })
+
+      // 用户帖子跳转
+      $(document).on("click", ".linkImg", function () {
+        console.log($(this).data("id"));
+        location.href = `/discovery/detailTopic?id=${$(this).data("id")}`;
+      });
+    
+      // 滚动监听
+      // 获得顶部菜单栏的高度
+      let topHeight = $(".head").innerHeight();
+      let stop = true;
+      $(".content").scroll(function ()  {
+          console.log(1)
+          
+          if ($(this).scrollTop() > topHeight) {
+            if (stop) {
+              stop = false;
+              $(".head").stop().slideUp(() => {
+                stop = true;
+              });
+              $(this).stop().animate({"margin-top": 0});
+            }
+          } else {
+            $(".head").stop().slideDown(() => {
+              stop = true;
+            });
+            $(this).stop().animate({"margin-top": topHeight});
+          }
+      })
+    });
+
+
+
+  </script>
 </body>
 
 </html>

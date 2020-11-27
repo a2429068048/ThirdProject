@@ -332,7 +332,7 @@
             $(this).find("img").toggle();
             let good = $(this).find("span").text() * 1;
             let nums = $(".menu li").eq(2).find("span").text().trim() * 1;
-            $(this).find("span").text(good ? --good : ++good);
+            $(this).find("span").text($(this).find("div").hasClass("checked")  ? --good : ++good);
             $(".menu li").eq(2).find("span").text($(this).find("div").hasClass("checked") ? --nums : ++nums);
             // 发送请求
             // 添加或者取消点赞
