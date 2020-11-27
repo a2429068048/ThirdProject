@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>绿植多肉</title>
     <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
     {{include "./commend.html"}}
     <style>
@@ -335,6 +335,9 @@
         })
         $('.search-input').click(function(){
             location.href='/home/greenSearch'
+        })
+        $('.hot_main li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
         })
     </script>
 </body>

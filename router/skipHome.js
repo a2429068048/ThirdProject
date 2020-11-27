@@ -121,8 +121,16 @@ router.get('/addshop',(req,res)=>{
     })
 })
 
-// 包月鲜花
-// 简花
+// 详情页
+router.get("/details",(req,res) => {
+    Goods.findOne({sort:req.query.id},(err,shop)=>{
+        if (!err) {
+            res.render('details',{shop});
+        }else{
+            console.log(err);
+        }
+    })
+})
 
 
 

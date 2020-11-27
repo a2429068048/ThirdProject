@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>包月鲜花</title>
     {{include "./commend.html"}}
     <style>
         body header ul li:nth-of-type(1){
@@ -30,14 +30,14 @@
         }
         .main>ul{
             display: flex;
-            width: 100%;
+            width: 92%;
+            margin: auto;
             flex-wrap: wrap;
             font-size: 14px;
+            justify-content: space-between;
         }
         .main>ul li{
-            width: 42%;
-            margin-left: 4%
-            
+            width: 48%;
         }
         .main img{
             width: 100%;
@@ -181,5 +181,10 @@
             </p>
         </div>
     </footer>
+    <script>
+        $('.main>ul li').click(function(){
+            location.href='/home/details?id='+$(this).data('id')
+        })
+    </script>
 </body>
 </html>

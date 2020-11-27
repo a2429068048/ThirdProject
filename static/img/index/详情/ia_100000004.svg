@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon/常用/圆勾" fill="#FC6B80">
+            <path d="M8,0 C3.589,0 0,3.589 0,8 C0,12.411 3.589,16 8,16 C12.411,16 16,12.411 16,8 C16,3.589 12.411,0 8,0 M8,1 C11.86,1 15,4.14 15,8 C15,11.86 11.86,15 8,15 C4.14,15 1,11.86 1,8 C1,4.14 4.14,1 8,1 Z M11.9649,5.665 C11.7729,5.473 11.4649,5.472 11.2689,5.658 L11.2669,5.656 L7.0279,9.894 L4.7339,7.6 L4.7319,7.601 C4.7289,7.597 4.7279,7.592 4.7239,7.588 C4.5289,7.393 4.2119,7.393 4.0169,7.588 C3.8209,7.784 3.8209,8.1 4.0169,8.295 C4.0209,8.299 4.0259,8.3 4.0289,8.304 L4.0269,8.307 L6.3209,10.602 L6.3169,10.605 L7.0239,11.313 L11.9649,6.372 L11.9739,6.363 L11.9719,6.361 C12.1579,6.165 12.1569,5.857 11.9649,5.665 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>
