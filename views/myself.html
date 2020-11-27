@@ -206,21 +206,15 @@
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/package_upgrade.svg" alt="">
                 <p>优惠升级</p>
             </div>
-            <div>
+            <div class="volume">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/coupon.svg" alt="">
                 <p>我的优惠券</p>
             </div>
-            <div>
+            <div class="order">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/package_upgrade_png.png" alt="">
                 <p>当日达订单</p>
             </div>
-            <div>
-                <img src="https://static2.flowerplus.cn/Static//mall/images/center/help_center.svg" alt="">
-                <p>帮助与客服</p>
-            </div>
-        </section>
-        <section>
-            <div>
+            <div class="flower_cards">
                 <img src="https://oss.flowerplus.cn/service_list/15942683523478.png!60" alt="">
                 <p>花加G卡</p>
             </div>
@@ -228,6 +222,10 @@
         <p><b>其他帮助</b></p>
         <section>
             <div>
+                <img src="https://static2.flowerplus.cn/Static//mall/images/center/help_center.svg" alt="">
+                <p>常见问题</p>
+            </div>
+            <div class="server">
                 <img src="https://static2.flowerplus.cn/Static/img/my/company_service.svg" alt="">
                 <p>企业服务</p>
             </div>
@@ -235,7 +233,7 @@
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/proposal.svg" alt="">
                 <p>产品建议</p>
             </div>
-            <div>
+            <div class="third">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/my_cx.svg" alt="">
                 <p>第三方查询</p>
             </div>
@@ -279,6 +277,21 @@
         })
         $('.cheap').click(function () {
             location.href = '/cheap'
+        })
+        $(".volume").click(function () {
+            location.href = '/prize'
+        })
+        $('.order').click(function () {
+            location.href = '/dayOrder'
+        })
+        $(".flower_cards").click(function () {
+            location.href = '/flower_cards'
+        })
+        $('.third').click(function () {
+            location.href = '/order'
+        })
+        $(".server").click(function () {
+            location.href = '/myServer'
         })
     </script>
 </body>

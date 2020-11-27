@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLŌWERPLUS 礼品卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 14px;
+            min-width: 320px;
+            max-width: 750px;
+            margin: 0 auto;
+            background-color: white;
+            background-image: url("https://oss.flowerplus.cn/oss_png/2020-06-23/15928819721040.png!750"), url("https://oss.flowerplus.cn/oss_png/2020-06-23/15928822196824.png!750");
+            background-size: 100% auto, 100% auto;
+            background-repeat: no-repeat, no-repeat;
+            background-position: center top, center bottom;
+            background-attachment: fixed;
+        }
+
+        main {
+            margin: 20px 15px;
+        }
+
+        .add,
+        .why {
+            color: white;
+            display: inline-block;
+            width: 45.6px;
+            height: 45.6px;
+            line-height: 35.6px;
+            text-align: center;
+            font-size: 25px;
+            padding: 5px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .add {
+            background-color: rgb(255, 108, 108);
+        }
+
+        .why {
+            background-color: white;
+            color: rgb(255, 108, 108)
+        }
+
+        img {
+            width: 77px;
+            height: 77px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .buttom {
+            color: rgb(255, 108, 108);
+            font-size: 13px;
+            margin-top: 330px;
+        }
+
+        .used img {
+            width: 245px;
+            height: 46px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .used {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 20px;
+            right: 20px;
+            border-radius: 10px;
+            z-index: 99;
+        }
+
+        .useds {
+            position: relative;
+            top: -10px;
+            border-radius: 10px;
+            padding: 20px 10px;
+            font-size: 12px;
+            background-color: white;
+            height: 425px;
+        }
+
+        .head {
+            display: flex;
+            font-size: 14px;
+            line-height: 35.6px;
+            padding: 20px 0;
+        }
+
+        .whys {
+            font-size: 20px;
+            padding: 5px;
+            border-radius: 50%;
+            background-color: rgb(255, 146, 162);
+            line-height: 25.6px;
+            width: 35.6px;
+            height: 36.6px;
+            margin-right: 20px;
+            color: white;
+        }
+
+        .text {
+            overflow-y: auto;
+            height: 310px;
+        }
+
+        .text p {
+            text-align: left;
+            font-size: 13px;
+            color: rgb(165, 165, 165);
+        }
+
+        .heads {
+            color: black !important;
+        }
+
+        button {
+            width: 29px;
+            height: 29px;
+            border: none;
+            padding: 5px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            bottom: -40px;
+            left: 45%;
+        }
+
+        .blacks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 360px;
+            height: 640px;
+            display: none;
+        }
+
+        .black {
+            display: block;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 50;
+            animation: color_turn 500ms ease 1 alternate;
+            animation-fill-mode: forwards
+        }
+
+        .turn {
+            display: block !important;
+        }
+
+        @keyframes color_turn {
+            form {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            to {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <p style="text-align:left;">
+            <span class="add">+</span>
+            <span class="why">?</span>
+        </p>
+        <img src="https://oss.flowerplus.cn/oss_png/2020-06-24/15929893825823.png" alt="">
+        <p style="color:white">点击左上角“+”绑定新卡</p>
+        <p style="color:rgb(255,234,235);font-size:12px">你暂无可用的礼品卡</p>
+        <p class="buttom">查看礼品卡规则</p>
+    </main>
+    <div>
+        <div class="used">
+            <img src="https://oss.flowerplus.cn/oss_png/2020-06-23/15929043218446.png" alt="">
+            <div class="useds">
+                <p class='head'>
+                    <span class="whys">?</span>
+                    <span style="display: inline-block;font-size: 16px;">使用说明</span>
+                </p>
+                <div class="text">
+                    <p class="heads">名称：</p>
+                    <p>花加G卡（面值根据购买金额而定，以下称G卡）。</p>
+                    <p class="heads">有效期：</p>
+                    <p>1、此卡自用户购买成功之日起长期有效，可多次使用，至卡内余额用完为止。</p>
+                    <p>2、本卡不记名、不挂失、不可兑换现金、不找零，请妥善保存卡密。</p>
+                    <p class="heads">使用范围：</p>
+                    <p>1、有礼G卡可在花加微信H5/花加微商城小程序使用，仅限购买礼品花（包含星座花、每日收花礼品花、节日专享礼品花、永生花。</p>
+                    <p>2、花市消费卡科长花加微信H5/花加微商城小程序使用，仅限购买花加花市商品使用。</p>
+                    <p class="heads">使用细则：</p>
+                    <p>1、一张G卡可以分多次抵扣使用，未使用完余额将留在卡中下次使用。</p>
+                    <p>2、一次购买只能抵扣一张G卡余额，支付时自动抵扣金额最大、即将过期的G卡。</p>
+                    <p>3、电子卡支付成功后自动绑定个人账户。查看方式：打开花加微信公众号—点击个人中心—点击会员服务—点击花加G卡—查看G卡列表。</p>
+                    <p class="heads">特殊规则：</p>
+                    <p>1、有礼G卡可与优惠券同时使用，不可与兑换码同时使用。</p>
+                    <p class="heads">退款细则：</p>
+                    <p>1、若G卡未使用，支持全额退款，按支付原路径返还。实体卡退回需保证卡体完好，卡密覆盖区域未被刮开或损毁。</p>
+                    <p>2、若G卡已抵扣，不支持退款。</p>
+                    <p>3、用G卡购买的商品如发生退款，金额将按原支付路径返还至支付账户。</p>
+                </div>
+            </div>
+
+            <button>&#10006;</button>
+        </div>
+    </div>
+    <div class="blacks">
+
+    </div>
+
+    <script type='text/javascript' src='/js/jquery-3.4.1.min.js' charset='utf-8'></script>
+    <script>
+        function turn() {
+            $('.blacks').addClass('black')
+            $('.used').addClass('turn')
+            $('button').click(function () {
+                $('.used').removeClass('turn')
+                $('.blacks').removeClass('black')
+            })
+        }
+        $(".buttom").click(function () {
+            turn();
+        })
+        $(".why").click(function () {
+            turn();
+        })
+        $('.add').click(function () {
+            location.href = '/card_add'
+        })
+    </script>
+</body>
+
+</html>

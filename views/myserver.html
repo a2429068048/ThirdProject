@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLŌWERPLUS 花加</title>
+    {{include "./commend.html"}}
+    <style>
+        html {
+            touch-action: none;
+        }
+
+        .wrap,
+        .wraps {
+            width: 3.75rem;
+            height: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .list,
+        .lists {
+            width: 4320px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .list li,
+        .lists li {
+            width: 360px;
+            height: 2rem;
+            float: left;
+            background-color: white;
+            border-radius: 10px 10px;
+            font-size: 14px;
+            box-shadow: 0px 4px 10px 0px #d7dfe7;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .pic,
+        .pics {
+            position: absolute;
+            bottom: 10px;
+            width: 3.75rem;
+            left: 1.5rem;
+        }
+
+        .pic a,
+        .pics a {
+            float: left;
+            margin: 5px;
+            width: 10px;
+            height: 1px;
+            padding: 1px 0;
+            background: rgb(214, 197, 197);
+            border-left: 4px solid rgba(255, 255, 255, 0);
+            border-right: 4px solid rgba(255, 255, 255, 0);
+            border-radius: 5px;
+        }
+
+        .pic a.light,
+        .pics a.lights {
+            background: white;
+            padding: 1px 5px;
+            border-left: 4px solid rgba(255, 255, 255, 1);
+            border-right: 4px solid rgba(255, 255, 255, 1);
+        }
+
+        nav {
+            padding: 10px 0;
+            display: flex;
+            background-color: white;
+        }
+
+        nav span {
+            text-align: center;
+            font-size: 12px;
+            display: inline-block;
+            width: 33.3%;
+        }
+
+        .flexs img {
+            width: 154px;
+            height: 196px;
+        }
+
+        .flexs {
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+        }
+    </style>
+    <script type="text/javascript">
+        (function () {
+            var html = document.documentElement;
+            html.style.fontSize = html.clientWidth / 3.75 + 'px';
+        })();
+        document.addEventListener('touchstart', function (e) {
+            e.preventDefault();
+        })
+    </script>
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <nav>
+                <span>鲜花花卡</span>
+                <span>企业服务</span>
+                <span>商务合作</span>
+            </nav>
+            <section class="wrap">
+                <ul class="list">
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892701272366.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892682624286.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892683082515.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892701272366.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892682624286.jpg" alt="">
+                    </li>
+                    <li>
+                        <img src="https://oss.flowerplus.cn/green_banner_image/20200512/15892683082515.jpg" alt="">
+                    </li>
+                </ul>
+                <div class="pics">
+                    <a class="light" href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                    <a href="javascript:;"></a>
+                </div>
+            </section>
+            <!-- <section class="wraps">
+                <ul class="lists">
+                    <li>
+                        <p>鲜花花卡</p>
+                        <div class="flexs">
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200721/15953169331288.jpg"
+                                    alt="">
+                                <p>鲜花礼品包月卡</p>
+                                <p>￥139</p>
+                            </div>
+                            <div>
+                                <img src="https://oss.flowerplus.cn/green_banner_image/20200529/15907486169990.jpg"
+                                    alt="">
+                                <p>设计师款鲜花兑换卡</p>
+                                <p>￥99</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pics">
+                    <span class="lights" href="javascript:;"></span>
+                    <span href="javascript:;"></span>
+                    <span href="javascript:;"></span>
+                </div>
+            </section> -->
+        </div>
+    </div>
+
+
+
+
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            var wrap = document.querySelector('.wrap');
+            var list = document.querySelector('.list');
+            var pic = document.querySelectorAll('pic a');
+            var disX = 0;
+            //获取到父元素的左边距
+            var oList = 0;
+            var num = 0;
+            //获取容器的宽度
+            var len = wrap.offsetWidth;
+            //li的个数
+            var listLen = list.children.length;
+            var n = 0;
+            //给元素绑定事件
+            list.addEventListener('touchstart', start);
+            list.addEventListener('touchmove', move);
+            list.addEventListener('touchend', end);
+            function start(ev) {
+                var e = ev.changedTouches[0];
+                disX = e.pageX;
+                oList = this.offsetLeft;
+                list.style.transition = 'none';
+                if (num == 0) {
+                    num = pic.length;
+                    oList = -num * len;
+                }
+                if (-num == listLen - 1) {
+                    num = pic.length - 1;
+                    oList = -num * len;
+                }
+            }
+            function move(ev) {
+                var e = ev.changedTouches[0];
+                list.style.left = e.pageX - disX + oList + 'px';
+            }
+            function end() {
+                oList = this.offsetLeft;
+                num = Math.round(oList / len);
+                list.style.transition = '.5s';
+                list.style.left = num * len + 'px';
+                //滑块的控制
+                pic[n % pic.length].className = '';
+                pic[-num % pic.length].className = 'light';
+                n = -num;
+            }
+            $.init();
+        });
+        // $(function () {
+        //     var wrap = document.querySelector('.wraps');
+        //     var list = document.querySelector('.lists');
+        //     var pic = document.querySelectorAll('pics span');
+        //     var disX = 0;
+        //     //获取到父元素的左边距
+        //     var oList = 0;
+        //     var num = 0;
+        //     //获取容器的宽度
+        //     var len = wrap.offsetWidth;
+        //     //li的个数
+        //     var listLen = list.children.length;
+        //     var n = 0;
+        //     //给元素绑定事件
+        //     list.addEventListener('touchstart', start);
+        //     list.addEventListener('touchmove', move);
+        //     list.addEventListener('touchend', end);
+        //     function start(ev) {
+        //         var e = ev.changedTouches[0];
+        //         disX = e.pageX;
+        //         oList = this.offsetLeft;
+        //         list.style.transition = 'none';
+        //         if (num == 0) {
+        //             num = pic.length;
+        //             oList = -num * len;
+        //         }
+        //         if (-num == listLen - 1) {
+        //             num = pic.length - 1;
+        //             oList = -num * len;
+        //         }
+        //     }
+        //     function move(ev) {
+        //         var e = ev.changedTouches[0];
+        //         list.style.left = e.pageX - disX + oList + 'px';
+        //     }
+        //     function end() {
+        //         oList = this.offsetLeft;
+        //         num = Math.round(oList / len);
+        //         list.style.transition = '.5s';
+        //         list.style.left = num * len + 'px';
+        //         //滑块的控制
+        //         pic[n % pic.length].className = '';
+        //         pic[-num % pic.length].className = 'light';
+        //         n = -num;
+        //     }
+        //     $.init();
+        // });
+    </script>
+</body>
+
+</html>
