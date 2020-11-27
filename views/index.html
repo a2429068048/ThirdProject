@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>推荐</title>
     <link rel="stylesheet" href="swiper4-animate-demo/css/swiper.min.css">
     {{include "./commend.html"}}
     <style>
@@ -138,7 +138,7 @@
         }
         .groupBuy .swiper-pagination{
             position: absolute;
-            width: 50px;
+            width: 55px;
             bottom: -5rem;
             left: 15rem;
         }
@@ -349,7 +349,7 @@
             data.forEach(item => {
                 str+=`
                     <div class="swiper-slide">
-                        <ul>
+                        <ul data-id="${item._id}">
                             <li class="groupBuy_nav_img"><img src="${item.imgSrc}" alt=""></li>
                             <li>
                                 <div>
@@ -421,7 +421,7 @@
             var str=''
             data.forEach(item => {
                 str+=`
-                    <li>
+                    <li data-id="${item._id}">
                         <div><img src="${item.imgSrc}"></div>
                         <b>${item.title}</b>
                         <p>${item.goodsInfo}</p>
@@ -485,6 +485,13 @@
         
         setInterval(showTime, 10);
         setInterval(showTime, 1000);
+        // 详情
+        setTimeout(() => {
+            $('.hot_main>li').click(function(){
+                location.href='/home/details?id='+$(this).data('id')
+            })
+        }, 100);
+        
         
     </script>
 </body>

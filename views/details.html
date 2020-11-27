@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>详情</title>
+    <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
+    {{include "./commend.html"}}
+    <style>
+        body,html{
+            background-color: white;
+            font-size: 12px;
+            overflow: auto;
+        }
+        img{
+            width: 100%;
+        }
+        .swiper-pagination-bullet-active{
+            width: 0.45rem !important;
+            height: 0.45rem !important;
+            background-color: rgb(230, 230, 230) !important;
+            opacity: 1 !important;
+            border: 1px solid white;
+        }
+        .swiper-pagination-bullet{
+            background-color: white;
+            width: 0.35rem;
+            height: 0.35rem;
+            opacity: 1;
+        }
+        p{
+            margin: 0;
+        }
+        .swiper-container{
+            padding-bottom: 0;
+        }
+        /* price */
+        .price{
+            display: flex;
+            color: white;
+            background-color: #fc6b80;
+            padding: 14px 10px;
+            justify-content: space-between;
+        }
+        .price span{
+            font-size: 20px;
+        }
+        .price>div:nth-of-type(2){
+            text-align: center;
+        }
+        .price>div:nth-of-type(1){
+            padding-top: 8px;
+        }
+        .topic{
+            width: 92%;
+            margin: auto;
+            padding: 16px 0;
+        }
+        .topic b{
+            font-size: 16px;
+        }
+        .topic p{
+            color: rgb(167, 165, 165);
+            margin: 8px 0;
+        }
+        .present img{
+            width: 16px;
+        }
+        .present{
+            display: flex;
+            background-color: #fafafa;
+            padding: 14px 4px;
+        }
+        .present span{
+            position: relative;
+            bottom: 2px;
+        }
+        .present>li{
+            margin-left: 8px;
+        }
+        /* 促销 */
+        .promotion{
+            display: flex;
+            width: 92%;
+            margin: auto;
+            padding: 16px 0;
+        }
+        .promotion>ul li{
+            display: flex;
+            margin-top: 8px;
+        }
+        .promotion div b{
+            display: flex;
+            width: 38px;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .promotion>ul li p{
+            display: inline-block;
+            border: 1px solid #ff6672;
+            color: #ff6672;
+            height: 20px;
+            padding: 1px 8px;
+        }
+        .promotion>ul li span{
+            display: inline-block;
+            width: 217px;
+            margin-left: 12px;
+        }
+        .gray{
+            width: 100%;
+            height: 12px;
+            background-color: #f1f1f1;
+        }
+        /* main */
+        .area{
+            text-align: center;
+            padding: 12px 0;
+        }
+        .area img{
+            width: 90%;
+        }   
+        /* 免责申明 */
+        .state{
+            padding: 12px 18px;
+        }
+        .state p{
+            display: flex;
+            justify-content: space-between;
+        }
+        .state p span{
+            line-height: 24px;
+        }
+        .state p span:nth-of-type(2){
+            font-size: 24px;
+        }
+        /* footer */
+        footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer li{
+            padding: 10px 0;
+            text-align: center;
+            background-color: white;
+        }
+        footer li img{
+            width: 23px;
+        }
+        footer ul{
+            display: flex;
+        }
+        footer li:nth-of-type(1){
+            width: 18%;
+        }
+        footer li:nth-of-type(2){
+            width: 82%;
+            color: white;
+            background-color: #fc6b80;
+            font-size: 16px;
+        }
+        body>h1{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .time span{
+            font-size: 13px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            color: #ff6672;
+            text-align: center;
+            line-height: 20px;
+            padding-top: 2px;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+    {{if shop}}
+    <header>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {{each shop.imgArr banner}}
+                    <div class="swiper-slide"><img src="{{banner}}" alt=""></div>
+                {{/each}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="price">
+            <div>
+                <span>{{shop.newPrice}}</span>
+                <del>原价{{shop.oldPrice}}</del>
+            </div>
+            <div>
+                <p>距结束仅剩</p>
+                <p class="time">天</p>
+            </div>
+        </div>
+        <div class="topic">
+            <b>{{shop.shopName}}</b>
+            <p>{{shop.goodsInfo}}</p>
+        </div>
+        <ul class="present">
+             <li>
+                 <img src="/img/index/详情/ia_100000004.svg" alt="">
+                 <span>产地直采</span>
+             </li>
+             <li>
+                <img src="/img/index/详情/ia_100000004.svg" alt="">
+                <span>花损赔付</span>
+            </li>
+            <li>
+                <img src="/img/index/详情/ia_100000004.svg" alt="">
+                <span>准时送达</span>
+            </li>
+        </ul>
+        <div class="gray"></div>
+        <div class="promotion">
+            <div>
+                <b>促销</b>
+            </div>
+            <ul>
+                <li>
+                    <p>赠送</p>
+                    <span>买1个月送洋牡丹6枝,共5束</span>
+                </li>
+                <li>
+                    <p>赠送</p>
+                    <span>买3个月送2束悦花+洋牡丹6枝,共15束</span>
+                </li>
+                <li>
+                    <p>赠送</p>
+                    <span>买6个月送5束悦花+洋牡丹6枝,共30束</span>
+                </li>
+                <li>
+                    <p>赠送</p>
+                    <span>买12个月送11束悦花+洋牡丹6枝,共60束</span>
+                </li>
+                <li>
+                    <p>备注说明</p>
+                    <span>洋牡丹(颜色随机)随第2次收花配送(该次不支持修改配送计划)，赠送原品在原订单结束后单独配送，仙灯花瓶11月25日起陆续单独配送</span>
+                </li>
+            </ul>
+        </div>
+        <div class="gray"></div>
+    </header>
+    <main>
+        <div class="area">
+            <img src="/img/index/详情/ia_100000005.jpg" alt="">
+        </div>
+        <div class="img">
+            {{each shop.imgArrtwo nav}}
+                <img src="{{nav}}" alt="">
+            {{/each}}
+        </div>
+        <div class="state">
+            <p>
+                <span>服务免责声明</span>
+                <span>+</span>
+            </p>
+        </div>
+        <div>
+            <img src="/img/index/详情/ia_100000035.jpg" alt="">
+        </div>
+    </main>
+    <footer>
+        <ul>
+            <li>
+                <img src="/img/index/详情/ia_100000054.svg" alt="">
+            </li>
+            <li>
+               <p>加入购物车</p> 
+            </li>
+        </ul>
+    </footer>
+    {{else}}
+        <h1>商品更新中...</h1>
+    {{/if}}
+    <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('header .swiper-container',{
+            pagination: {
+                el: 'header .swiper-pagination',
+            },
+        })
+        function showTime(){
+        // 这个是当前时间
+        var now = new Date().getTime()
+        // 获取目标时间
+        var targetTime = new Date('2020-12-6 00:00:00').getTime()
+        // console.log(now);
+        // console.log(targetTime);
+
+        // 计算时间差
+        var time = Math.floor((targetTime - now) / 1000)
+
+        var min = 60
+        var hour = 60 * min
+        var day = 24 * hour
+        // 天数
+        var days = Math.floor(time / day)
+        // console.log(days);
+
+        // 小时
+        var h= Math.floor(time%day/hour)
+
+        // 分钟
+        var m = Math.floor(time%hour/min)
+
+        // 秒数
+        var s = Math.floor(time%min)
+
+        h=h<10?'0'+h:h
+        m = m<10?'0'+m:m
+        s=s<10?'0'+s:s
+
+
+        var  str ='<span>'+days+'</span>'+'天'+'<span>'+h+'</span>'+'时'+'<span>'+m+'</span>'+'分'+'<span>'+s+'</span>'+'秒'
+
+        $('.time').html(str)
+
+        }
+        
+        showTime()
+        setInterval(showTime, 1000);
+    </script>
+</body>
+</html>

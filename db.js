@@ -51,7 +51,9 @@ const goodsListSchema = new mongoose.Schema({
     goodsInfo: String,
     info: String,
     countDown: String,
-    sort: String
+    sort: String,
+    imgArr:Array,
+    imgArrtwo:Array,
 }, {
     collection: 'goodsList'
 })
