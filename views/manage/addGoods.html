@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加商品</title>
+    {{include "./headStyle.html"}}
+    <style>
+        .inner {
+            background-color: rgb(241, 231, 231);
+        }
+        main {
+            margin: 20px 0;
+        }
+        main ul {
+            width: 360px;
+            margin: auto;
+            /* background-color: red; */
+        }
+        li {
+            display: flex;
+            /* justify-content: center; */
+            align-items:center;
+            flex-wrap: wrap;
+            font-size: 18px;
+            padding: 8px 0;
+            /* height: 40px; */
+            /* overflow: hidden; */
+            box-sizing: border-box;
+            /* background-color: red; */
+        }
+        label {
+            width: 140px;
+            text-align: right;
+            text-align: justify;
+            height: 26px;
+            overflow: hidden;
+        }
+        label::after {
+            content: "";
+            display: inline-block;
+            width: 100%;
+        }
+        li input {
+            padding: 4px 6px;
+            font-size: 16px;
+            /* outline: none; */
+            border: 1px solid #666;
+            outline-color: lightblue;
+        }
+
+        li button {
+            width: 350px;
+            font-size: 18px;
+            border: none;
+            letter-spacing: 10px;
+            background: rgb(31, 235, 31);
+            color: white;
+            height: 40px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+        li button:active {
+            background-color: orangered;
+        }
+        
+        li img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="inner">
+        <header>
+            <h1>添加商品</h1>
+        </header>
+        <main>
+            <form action="">
+                <ul>
+                    <li>
+                        <label for="">商品名称：</label><input type="text" name="shopName" required>
+                    </li>
+                    <li>
+                        <label for="">标题：</label><input type="text" name="title" required>
+                    </li>
+                    <li>
+                        <label for="">原价：</label><input type="text" name="oldPrice" required>
+                    </li>
+                    <li>
+                        <label for="">折后价：</label><input type="text" name="newPrice" required>
+                    </li>
+                    <li>
+                        <label for="">商品描述：</label><input type="text" name="goodsInfo" required>
+                    </li>
+                    <li>
+                        <label for="">优惠描述：</label><input type="text" name="info" >
+                    </li>
+                    <li>
+                        <label for="">优惠到期时间：</label><input type="text" name="countdown" >
+    
+                    </li>
+                    <li>
+                        <label for="">类别：</label><input type="text" name="sort">
+                    </li>
+                    <li>
+                        <label for="">添加图片：</label>
+                        <section>
+                            <img src="/img/addimg.png" alt="">
+                            <input type="file" name="img" accept="image/*"  hidden required>
+                        </section>
+                    </li>
+                    <li>
+                        <button>提交</button>
+                    </li>
+                </ul>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        $("li img").click(function () {
+            $(this).siblings("input").click();
+        })
+        $(":file").change(function () {
+            let src = URL.createObjectURL(this.files[0]);
+            $("li img").attr("src", src);
+        })
+        $("form").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                method:"post",
+                url:"/manager/insertGoods",
+                data: new FormData(this),
+                processData:false,
+                contentType:false
+            }).done(data => {
+                console.log(data);
+            })
+        })
+
+    </script>
+</body>
+
+</html>

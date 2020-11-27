@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员首页</title>
+    {{include "./headStyle.html"}}
+    <style>
+
+        main {
+            margin-top: 30px;
+        }
+
+        main ul li a {
+            color: #333;
+            display: block;
+            text-align: center;
+            
+        }
+        main ul li {
+            border-radius: 10px;
+            background-color: rgb(248, 108, 190);
+            margin-bottom: 10px;
+        }
+        main ul li > a {
+            font-size: 20px;
+            padding: 10px 0;
+            background-color: rgb(248, 108, 190);
+            font-weight: bold;
+            color: rgb(44, 43, 43);
+            letter-spacing: 6px;
+            border-radius: 10px;
+        }
+        main ul li > a.active {
+            background-color: orangered;
+            color: snow;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .content {
+            /* height: 0; */
+            display: none;
+            /* margin-top: -15px; */
+            background-color: white;
+        }
+        .content a {
+           line-height: 30px;
+           font-size: 18px;
+           letter-spacing: 6px;
+           background-color: rgb(76, 248, 76);
+           margin-bottom: 6px;
+        }
+        .content a:last-child {
+            margin-bottom: 0;
+        }
+        .content a:hover {
+            background-color: orange;
+            color: white;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    
+    <div class="inner">
+        <header>
+            <h1>管理员界面</h1>
+        </header>
+        <main>
+            <ul>
+                <li>
+                    <a href="javascript:;">商品管理</a>
+                    <div class="content">
+                        <a href="/manager/addGoods">添加商品</a>
+                        <a href="javascript:;">修改商品</a>
+                        <a href="javascript:;">查看商品</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;">用户管理</a>
+                    <div class="content">
+                        <a href="javascript:;">添加用户</a>
+                        <a href="javascript:;">修改用户</a>
+                        <a href="javascript:;">查看用户</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;">发布帖子管理</a>
+                    <div class="content">
+                        <a href="javascript:;">查看所有的帖子</a>
+                    </div>
+                </li>
+            </ul>
+        </main>
+    </div>
+    <script>
+        $("main ul li > a").click(function () {
+            this.isClick = !this.isClick;
+            $("main ul li > a").removeClass("active");
+            if (this.isClick) {
+                $(this).addClass("active").siblings().slideDown();
+            } else {
+                $(this).siblings().slideUp();
+            }
+        })
+        
+    </script>
+</body>
+</html>
