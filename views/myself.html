@@ -225,7 +225,7 @@
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/help_center.svg" alt="">
                 <p>常见问题</p>
             </div>
-            <div>
+            <div class="server">
                 <img src="https://static2.flowerplus.cn/Static/img/my/company_service.svg" alt="">
                 <p>企业服务</p>
             </div>
@@ -233,7 +233,7 @@
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/proposal.svg" alt="">
                 <p>产品建议</p>
             </div>
-            <div>
+            <div class="third">
                 <img src="https://static2.flowerplus.cn/Static//mall/images/center/my_cx.svg" alt="">
                 <p>第三方查询</p>
             </div>
@@ -286,6 +286,12 @@
         })
         $(".flower_cards").click(function () {
             location.href = '/flower_cards'
+        })
+        $('.third').click(function () {
+            location.href = '/order'
+        })
+        $(".server").click(function () {
+            location.href = '/myServer'
         })
     </script>
 </body>

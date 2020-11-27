@@ -125,6 +125,9 @@ router.get('/cheap', (req, res) => {
 router.get('/flower_cards', (req, res) => {
     res.render('flower_cards')
 })
+router.get('/myServer', (req, res) => {
+    res.render('myserver')
+})
 
 
 //-----查询卡单-----
@@ -140,6 +143,10 @@ router.get('/good_select', (req, res) => {
 //-----当日订单-----
 router.get('/dayOrder', (req, res) => {
     res.render('dayOrder')
+})
+//-----添加礼品卡-----
+router.get('/card_add', (req, res) => {
+    res.render('card_add')
 })
 
 
