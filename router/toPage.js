@@ -62,10 +62,7 @@ router.get("/discovery", (req, res) => {
     res.render("discovery");
 })
 
-//------- 社区 ----------
-router.get("/community", (req, res) => {
-    res.render("community");
-})
+
 
 //------- 登录 ----------
 router.get('/login', (req, res) => {
@@ -125,15 +122,38 @@ router.get('/card', (req, res) => {
 router.get('/cheap', (req, res) => {
     res.render('cheap')
 })
+router.get('/flower_cards', (req, res) => {
+    res.render('flower_cards')
+})
+router.get('/myServer', (req, res) => {
+    res.render('myserver')
+})
+router.get('/myHelp', (req, res) => {
+    res.render('myHelp')
+})
+router.get('/myAdvise', (req, res) => {
+    res.render('myAdvise')
+})
+
+
 //-----查询卡单-----
 router.get('/lookup', (req, res) => {
     res.render('lookup')
 })
+
 //-----优选-----
 router.get('/good_select', (req, res) => {
     res.render('good_select')
 })
 
+//-----当日订单-----
+router.get('/dayOrder', (req, res) => {
+    res.render('dayOrder')
+})
+//-----添加礼品卡-----
+router.get('/card_add', (req, res) => {
+    res.render('card_add')
+})
 
 
 

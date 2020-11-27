@@ -272,11 +272,18 @@
     </div>
     {{include "./script.html"}}
     <script>
+        // 判断是否登录了
+        if (!$.cookie("username")) {
+            $.alert("请先登录", () => {
+                location.href = "/login";
+            })
+        }
         let id = $(".page").data("id").replaceAll("\"", "");
         // 发送获得帖子的请求
         getMessage("topic");
         function getMessage(target) {
             $.get(`/discovery/${target}?id=${id}`, data => {
+                // console.log(data.data)
                 console.log(data.data,target);
                 if (data.data.length) {
                     $(`.${$(".nav-head .active").data("type")}`).find(".noInfo").hide()
@@ -298,11 +305,12 @@
                                     <img src="${item.pic}" alt="">
                                     <span>${item.name}</span>
                                 </a>
-                                <a href="#" class="link good">
-                                    <div>
-                                        <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="">
+                                <a href="#" class="link good" data-id="${item._id}">
+                                    <div class="${item.status ? "checked" : ""}">
+                                        <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023156349.svg" alt="" ${item.status ? "" : "hidden"}>
+                                        <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023154317.svg" alt="" ${item.status ? "hidden" : ""}>
                                     </div>
-                                    <span>1</span>
+                                    <span>${item.getGoods ? item.getGoods.length : 0}</span>
                                 </a>
                             </div>
                         </div>
@@ -318,6 +326,21 @@
                 }
             })
         }
+        // 绑定事件
+        $(document).on("click", ".good", function () {
+            console.log(1);
+            $(this).find("img").toggle();
+            let good = $(this).find("span").text() * 1;
+            let nums = $(".menu li").eq(2).find("span").text().trim() * 1;
+            $(this).find("span").text($(this).find("div").hasClass("checked")  ? --good : ++good);
+            $(".menu li").eq(2).find("span").text($(this).find("div").hasClass("checked") ? --nums : ++nums);
+            // 发送请求
+            // 添加或者取消点赞
+            $.get(`/discovery/${$(this).find("div").hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id")}`, data => {
+                console.log(data);
+            })
+            $(this).find("div").toggleClass("checked");
+        })
         $(function () {
             $(".content").css("top", $(".top").innerHeight());
 

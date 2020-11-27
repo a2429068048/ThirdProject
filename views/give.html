@@ -46,6 +46,37 @@
             display: block;
             margin: 60px auto;
         }
+
+        button {
+            font-size: 16px;
+            border: none;
+            position: fixed;
+            top: 50%;
+            left: 37%;
+            color: white;
+            padding: 7px 15px;
+            background-color: rgba(0, 0, 0, 0);
+            animation: tips 3s ease 1 alternate;
+            animation-fill-mode: forwards
+        }
+
+        @keyframes tips {
+            form {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            20% {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            99% {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+
+            to {
+                background-color: rgba(0, 0, 0, 0);
+            }
+        }
     </style>
 </head>
 
@@ -84,6 +115,14 @@
     <p>2月22日-24日、3月21日-23日、</p>
     <p>4月18日-20日</p>
     <img src="https://oss.flowerplus.cn/oss_png/2019-04-25/15561855764730.png" alt="" class="logo">
+    <button>暂无可选订单</button>
+
+    <script type='text/javascript' src='/js/jquery-3.4.1.min.js' charset='utf-8'></script>
+    <script>
+        setTimeout(function () {
+            $('button').css('display', 'none')
+        }, 3000)
+    </script>
 </body>
 
 </html>

@@ -54,7 +54,7 @@
     <div class="page">
         {{include "./footer.html"}}
         <div class="content">
-            <section data-href="/community">
+            <section data-href="/discovery/index">
                 <img src="/img/discovery/community.png" alt="">
                 <div class="text">
                     <div class="top">
@@ -74,7 +74,7 @@
                     <a href="javascript:;">立即查看</a>
                 </div>
             </section>
-            <section data-href="/flower">
+            <section data-href="/discovery/flower">
                 <img src="/img/discovery/saver.png" alt="">
                 <div class="text">
                     <div class="top">
@@ -89,6 +89,7 @@
     {{include "./script.html"}}
     <script>
         $("section").click(function () {
+            
             location.href = $(this).data("href");
         })
     </script>
