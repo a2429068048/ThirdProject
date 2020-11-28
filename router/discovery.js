@@ -31,26 +31,18 @@ function modifyImg(req, files, callback, type) {
         name: req.cookies.username
     }, (err, data) => {
         if (!err && data) {
-            fs.readdir("static/users", (err, item) => {
-                // console.log(item)
-                console.log(data._id)
-                item.map(file => {
-                    if (file.split(".").shift() == data._id + type) {
-                        // 说明文件已经存在
-                        try {
-                            fs.unlinkSync(`static/users/${file}`);
-                        } catch {
-                            console.log("头像删除失败")
-                        }
-                        return true;
-                    }
-                });
-                let name = data._id + type + "." + files.originalname.split(".").pop();
-                // console.log(name, "头像名称");
-                req.body[type] = "/users/" + name;
-                // console.log(1)
-                callback(null, name);
-            })
+            
+            // console.log(item)
+            // console.log(data._id)
+            // 查看是否有图片存在
+            if (data[type]) {
+                fs.unlinkSync("./static" + data[type])
+            }
+            let name = data._id + type + "." + files.originalname.split(".").pop();
+            // console.log(name, "头像名称");
+            req.body[type] = "/users/" + name;
+            // console.log(1)
+            callback(null, name);
         } else {
             console.log(err);
             console.log("查到的用户数据为空")
@@ -328,7 +320,27 @@ router.post("/editPic", upload.single("pic"), (req, res) => {
     }, req.body, (err) => {
         if (!err) {
             // 
-            sendInfo(res, 1, "更新成功")
+            sendInfo(res, 1, "更新成功");
+            // 修改对应的topic表
+            // 更新一下帖子表的用户数据
+            Topic.find({name: req.cookies.username},(err, topics) => {
+                if (!err) {
+                    if (topics.length) {
+                        topics.forEach(topic => {
+                            // console.log(topic)   
+                            Topic.findOneAndUpdate({_id: topic.id}, {pic:req.body.pic}, err => {
+                                if (err) {
+                                    console.log("帖子表更新失败");
+                                    console.log(err);
+                                }
+                            })
+                        })
+                    }
+                } else {
+                    console.log("帖子表查找失败---douser");
+                    console.log(err);
+                }
+            })
         } else {
             console.log(err);
             console.log("用户信息更新失败");

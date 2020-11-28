@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    {{include "./headStyle.html"}}
+    <style>
+        .inner {
+            background-color: rgb(241, 231, 231);
+        }
+
+        main {
+            margin: 20px 0;
+        }
+
+        main ul {
+            width: 360px;
+            margin: auto;
+            /* background-color: red; */
+        }
+
+        li {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 18px;
+            padding: 8px 0;
+            /* height: 40px; */
+            /* overflow: hidden; */
+            box-sizing: border-box;
+            /* background-color: red; */
+            position: relative;
+        }
+
+        label {
+            width: 140px;
+            text-align: right;
+            text-align: justify;
+            height: 26px;
+            overflow: hidden;
+        }
+
+        label::after {
+            content: "";
+            display: inline-block;
+            width: 100%;
+        }
+
+        li input {
+            padding: 4px 6px;
+            font-size: 16px;
+            /* outline: none; */
+            border: 1px solid #666;
+            outline-color: lightblue;
+        }
+
+        li button {
+            width: 350px;
+            font-size: 18px;
+            border: none;
+            letter-spacing: 10px;
+            background: rgb(31, 235, 31);
+            color: white;
+            height: 40px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        li button:active {
+            background-color: orangered;
+        }
+
+        li img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+            border-radius: 10px;
+            margin-right: 8px;
+        }
+        
+        .look {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            top: 50%;
+            right: 12px;
+            transform: translateY(-50%);
+            border: 2px solid rgb(78, 78, 78);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .look.active {
+            background-color: rgb(78, 78, 78);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="inner">
+        <header>
+            <h1>{{title}}</h1>
+        </header>
+        <main>
+            
+            <form action="">
+                <ul>
+                    <input type="text" value="{{user.id}}" hidden class="userId" name="id">
+                    <li>
+                        <label for="">用户名：</label><input type="text" name="name" required value="{{user.name}}" required>
+                    </li>
+                    <li>
+                        <label for="">密码：</label><input type="password" name="psw" required value="{{user.psw}}" required>
+                        <span class="look"></span>
+                    </li>
+                    <li>
+                        <label for="">手机号：</label><input type="text" name="phone" required value="{{user.phone}}" required>
+                    </li>
+
+                    <li>
+                        <label for="">用户头像：</label>
+                        <section>
+                            <img src={{user.pic? user.pic:"/img/addimg.png"}} alt="" class="add">
+                            <input type="file" name="pic" accept="image/*" hidden >
+                        </section>
+                    </li>
+
+                    <li>
+                        <button >{{user._id ? "修改" : "提交"}}</button>
+                    </li>
+                </ul>
+            </form>
+        </main>
+    </div>
+    <script>
+        $(".add").click(function () {
+            $(this).siblings("input").click();
+        })
+        $(":file").change(function () {
+            let src = URL.createObjectURL(this.files[0]);
+            $(this).siblings("img").attr("src", src);
+        })
+        $(".look").click(function () {
+            this.isLook = !this.isLook;
+            $(this).toggleClass("active");
+            if (this.isLook) {
+                $(this).siblings("input").attr("type", "text");
+            } else {
+                $(this).siblings("input").attr("type", "password");
+            }            
+        })
+        
+       $("form").submit(function (e) {
+           e.preventDefault();
+        let info = new FormData(this);
+            // info.append("id")
+            if( $(".userId").val()) {
+                info.append("id", $(".userId").val())
+            } 
+            $.ajax({
+                method:"post",
+                url:"/manager/doUser",
+                data:info,
+                processData:false,
+                contentType:false
+            }).done(data => {
+                console.log(data);
+                alert(data.msg);
+                if (data.coder) {
+                    history.back();
+                }
+            })
+       })
+    </script>
+</body>
+
+</html>

@@ -211,7 +211,10 @@
                         $.ajax(
                             setConfig(data.data.id, $("#goodsImgArrtwo")[0], "/manager/modifyImgArrTwo")
                         ).done( data => {
-                            console.log(data);
+                            alert(data.msg);
+                            if (data.coder) {
+                                history.back();
+                            }
                         })
                     })
                 })
@@ -233,8 +236,10 @@
                         $.ajax(
                             setConfig(data.data.id, $("#goodsImgArrtwo")[0], "/manager/goodsImgArrtwo")
                         ).done((data) => {
-                            // 传入详情图片
-                            console.log(data);
+                            alert(data.msg);
+                            if (data.coder) {
+                                history.back();
+                            }
                         })
                     })
                 })

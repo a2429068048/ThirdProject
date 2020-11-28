@@ -13,6 +13,7 @@ db.on("open", () => {
 
 //----- 用户表 -------
 const userSchema = new mongoose.Schema({
+    psw: String,
     userId: Number,
     name: String,
     pic: String,
@@ -58,11 +59,6 @@ const goodsListSchema = new mongoose.Schema({
 }, {
     collection: 'goodsList'
 })
-const easyUserSchema = new mongoose.Schema({
-    name: String,
-    phone: Number,
-    psw: String,
-})
 
 // ---- 帖子表 ----
 const topicSchema = new mongoose.Schema({
@@ -81,7 +77,6 @@ const topicSchema = new mongoose.Schema({
 const Users = mongoose.model("User", userSchema);
 const ShopCar = mongoose.model("Shop", shopCarSchema);
 const Goods = mongoose.model("Good", goodsListSchema);
-const EasyUser = mongoose.model("EasyUser", easyUserSchema);
 const Topic = mongoose.model("Topic", topicSchema);
 
 module.exports = {
@@ -89,7 +84,6 @@ module.exports = {
     Users,
     ShopCar,
     Goods,
-    EasyUser,
     Topic
 }
 
