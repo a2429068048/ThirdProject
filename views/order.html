@@ -59,22 +59,22 @@
             margin-left: 20px;
         }
 
-        .right p:nth-of-type(1) {
+        .right p:nth-of-type(2) {
             font-size: 16px;
             color: black;
         }
 
-        .right p:nth-of-type(2) {
+        .right p:nth-of-type(3) {
             font-weight: bold;
             font-size: 20px;
             color: red;
         }
 
-        .right p:nth-of-type(3) {
+        .right p:nth-of-type(4) {
             display: flex;
         }
 
-        .right p:nth-of-type(3) span {
+        .right p:nth-of-type(4) span {
             width: 50px;
             display: inline-block;
             color: red;
@@ -106,6 +106,12 @@
             background-color: red;
             color: white;
             line-height: 39.2px;
+        }
+
+        .actives {
+            color: white;
+            padding: 0 5px;
+            background-color: red;
         }
     </style>
 
@@ -190,20 +196,21 @@
                             `
                     data.forEach(function (item, i) {
                         $.post('/myself/myBuy', item, (datas) => {
-                            console.log(item);
                             datas.info = datas.info.substring(0, 2)
                             src += `
                             <div class="fiex">
                                 <img src='${datas.imgSrc}' />
                                 <div class="right">
+                                    <p><span class="icon icon-check actives"></span></p>
                                     <p>${datas.title}</p>
                                     <p>￥<span class="pric">${datas.info}</span></p>
                                     <p>
                                         <span class="reduce">-</span>
-                                        <span class="nums">${item.nums}</span>
+                                        <span class="nums adsa">${item.nums}</span>
                                         <span class="add">+</span>
                                         <i data-id='${item._id}'></i>
                                     </p>
+                                    <p><span class='del'>删除</span></p>
                                 </div>
                             </div>
                         `
@@ -229,20 +236,54 @@
         }
 
         setTimeout(function () {
-            var index = 1
             var src = 0
             var scr = 0
+            $('.icon-check').click(function () {
+                if ($(this).hasClass('actives')) {
+                    $(this).removeClass('actives')
+                    $(this).parent().next().next().next().children('.nums').removeClass('nums')
+                    src = 0
+                    $('.nums').each(function (i, item) {
+                        src += Number($(item).text())
+                    })
+                    $(".number").text(src)
+                    scr = 0
+                    $('.pric').each(function (i, item) {
+                        var b = Number($(item).text())
+                        var a = Number($(item).parent().next().children('.nums').text())
+                        scr += a * b
+                    })
+                    $('.all_price').text(scr)
+
+                } else {
+                    $(this).addClass('actives')
+                    $(this).parent().next().next().next().children('.adsa').addClass('nums')
+                    src = 0
+                    $('.nums').each(function (i, item) {
+                        src += Number($(item).text())
+                    })
+                    $(".number").text(src)
+                    scr = 0
+                    $('.pric').each(function (i, item) {
+                        var b = Number($(item).text())
+                        var a = Number($(item).parent().next().children('.nums').text())
+                        scr += a * b
+                    })
+                    $('.all_price').text(scr)
+                }
+            })
             $('.add').click(function () {
+                var index = Number($(this).prev().text())
                 var id = $(this).next().data('id')
                 index += 1
                 $(this).prev().text(index)
+                src = 0
                 $('.nums').each(function (i, item) {
-                    src = Number($(item).text())
+                    src += Number($(item).text())
                 })
                 $(".number").text(src)
-
+                scr = 0
                 $('.pric').each(function (i, item) {
-                    scr = 0
                     var b = Number($(item).text())
                     var a = Number($(item).parent().next().children('.nums').text())
                     scr += a * b
@@ -250,43 +291,50 @@
                 $('.all_price').text(scr)
 
                 $.post('/myself/turnss', { id, num: index }, (data) => {
-                    // alert(data)
                 })
             })
             $(".reduce").click(function () {
+                var index = Number($(this).next().text())
                 if (index > 1) {
                     var id = $(this).next().next().next().data('id')
                     index -= 1
                     $(this).next().text(index)
+                    src = 0
                     $('.nums').each(function (i, item) {
-                        src = Number($(item).text())
+                        src += Number($(item).text())
                     })
                     $(".number").text(src)
-
+                    scr = 0
                     $('.pric').each(function (i, item) {
-                        scr = 0
                         var b = Number($(item).text())
                         var a = Number($(item).parent().next().children('.nums').text())
                         scr += a * b
                     })
                     $('.all_price').text(scr)
                     $.post('/myself/turnss', { id, num: index }, (data) => {
-                        // alert(data)
                     })
                 }
             })
             $('.nums').each(function (i, item) {
-                src = Number($(item).text())
+                src += Number($(item).text())
             })
             $(".number").text(src)
 
             $('.pric').each(function (i, item) {
-                scr = 0
                 var b = Number($(item).text())
                 var a = Number($(item).parent().next().children('.nums').text())
                 scr += a * b
             })
             $('.all_price').text(scr)
+
+            $(".del").click(function () {
+                var a = $(this).parent().prev().children('i').data('id')
+                $.post("/myself/buy_remove", { id: a }, (data) => {
+                    alert(data)
+                    location.reload()
+                })
+            })
+
         }, 100)
 
 

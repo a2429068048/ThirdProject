@@ -210,6 +210,15 @@ router.post('/turnss', (req, res) => {
     })
 })
 
+router.post('/buy_remove', (req, res) => {
+    ShopCar.remove({ _id: req.body.id }, (err) => {
+        if (!err) {
+            res.send('删除成功')
+        } else {
+            console.log(err);
+        }
+    })
+})
 
 
 
