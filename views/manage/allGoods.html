@@ -77,12 +77,17 @@
             {{/each}}
         </table>
     </main>
+    <div class="exit">
+        退出登录
+    </div>
     <script>
         // 删除
         $(".delete").click(function () {
             $.get("/manager/deleteGood?id=" + $(this).data("id"), data => {
                 console.log(data);
+                alert(data.msg);
                 if (data.coder) {
+
                     $(this).closest("tr").remove();
                 }
             });

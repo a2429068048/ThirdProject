@@ -13,6 +13,7 @@ db.on("open", () => {
 
 //----- 用户表 -------
 const userSchema = new mongoose.Schema({
+    psw: String,
     userId: Number,
     name: String,
     pic: String,

@@ -91,7 +91,7 @@
                 <ul>
                     {{each shop item}}
                         {{if item.sort=='month-simple'}}
-                            <li>
+                            <li data-id="{{item.id}}">
                                 <div>
                                     <img src="{{item.imgSrc}}" alt="">
                                 </div>
@@ -112,7 +112,7 @@
                 <ul>
                     {{each shop item}}
                     {{if item.sort=='month-blend'}}
-                        <li>
+                        <li data-id="{{item.id}}">
                             <div>
                                 <img src="{{item.imgSrc}}" alt="">
                             </div>
@@ -133,7 +133,7 @@
                 <ul>
                     {{each shop item}}
                         {{if item.sort=='month-mini'}}
-                            <li>
+                            <li data-id="{{item.id}}">
                                 <div>
                                     <img src="{{item.imgSrc}}" alt="">
                                 </div>

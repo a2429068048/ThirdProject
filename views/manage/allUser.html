@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有用户</title>
+    {{include "./headStyle.html"}}
+    <style>
+        main {
+            margin-top: 30px;
+        }
+        table {
+            margin: auto;
+        }
+        table,tr,th,td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th {
+            padding: 10px 0;
+            min-width: 200px;
+        }
+        td {
+            padding: 10px 20px;
+        }
+        
+        tr td a {
+            display: inline-block;
+            padding:6px 14px;
+            background-color: grey;
+            color: white;
+            border-radius: 5px;
+            opacity: .8;
+        }
+        tr td a:hover {
+            opacity: 1;
+        }
+        img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .delete {
+            background-color: rgb(247, 59, 59);
+        }
+        .modify {
+            background-color: rgb(90, 90, 255);
+            
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>用户列表</h1>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <th>用户名</th>
+                <th>用户头像</th>
+                <th>操作</th>
+            </tr>
+            {{each data user}}
+            <tr>
+                <td>{{user.name}}</td>
+                <td><img src="{{user.pic}}" alt=""></td>
+                <td>
+                    <a href="javascript:;" class="delete" data-id={{user.id}}>删除</a>
+                    <a href="/manager/toModifyUser?id={{user.id}}" class="modify" data-id={{user.id}}>修改</a>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </main>
+    <div class="exit">
+        退出登录
+    </div>
+    <script>
+        // 删除
+        $(".delete").click(function () {
+            $.get("/manager/deleteUser?id=" + $(this).data("id"), data => {
+                console.log(data);
+                alert(data.msg);
+                if (data.coder) {
+                    $(this).closest("tr").remove();
+                }
+            });
+        })
+        
+    </script>
+</body>
+</html>
