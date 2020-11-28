@@ -139,7 +139,7 @@
         .groupBuy .swiper-pagination{
             position: absolute;
             width: 55px;
-            bottom: -5rem;
+            bottom: -22vw;
             left: 15rem;
         }
         /* 新品推荐 */
@@ -394,7 +394,7 @@
             data.forEach(item => {
                 str+=`
                     <div class="swiper-slide">
-                        <ul>
+                        <ul  data-id="${item._id}">
                             <li class="newpro_nav_img"><img src="${item.imgSrc}" alt=""></li>
                             <li>
                                 <b>${item.title}</b>
@@ -443,7 +443,7 @@
             var str=''
             data.forEach(item => {
                 str+=`
-                    <li>
+                    <li data-id="${item._id}">
                         <div><img src="${item.imgSrc}"></div>
                         <b>${item.title}</b>
                         <p><b>${item.info}</b></p>
@@ -503,7 +503,16 @@
                 location.href='/home/details?id='+$(this).data('id')
             })
         }, 100);
-        
+        setTimeout(() => {
+            $('.newpro .swiper-wrapper ul').click(function(){
+                location.href='/home/details?id='+$(this).data('id')
+            })
+        }, 100);
+        setTimeout(() => {
+            $('.groupBuy .swiper-wrapper ul').click(function(){
+                location.href='/home/details?id='+$(this).data('id')
+            })
+        }, 100);
     </script>
 </body>
 </html>
