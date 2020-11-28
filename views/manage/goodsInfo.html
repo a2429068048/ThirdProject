@@ -92,7 +92,7 @@
         <main>
             <ul>
                 <form action="" id="goodsText">
-                    <input type="text" name="id" value="{{goods.id}}" hidden class="goodId">
+                    <input type="text" value="{{goods.id}}" hidden class="goodId">
                     <li>
                         <label for="">商品名称：</label><input type="text" name="shopName" required
                             value="{{goods.shopName}}">
@@ -146,8 +146,8 @@
                     <li>
                         <label for="">详情图片：</label>
                         <section>
-                            {{if goods.imgArr}}
-                            {{each goods.imgArr img}}
+                            {{if goods.imgArrtwo}}
+                            {{each goods.imgArrtwo img}}
                             <img src={{img}} alt="">
                             {{/each}}
                             {{/if}}
@@ -199,6 +199,23 @@
             e.preventDefault();
             if ($(".goodId").val()) {
                 // 修改
+                $.ajax(
+                    setConfig($(".goodId").val(), this, "/manager/modifyGood")
+                ).done(data => {
+                    console.log(data);
+                    // 修改轮播图
+                    $.ajax(
+                        setConfig(data.data.id, $("#goodsImageArr")[0], "/manager/modiyfImgArr")
+                    ).done(data => {
+                        // 修改详情图片
+                        $.ajax(
+                            setConfig(data.data.id, $("#goodsImgArrtwo")[0], "/manager/modifyImgArrTwo")
+                        ).done( data => {
+                            console.log(data);
+                        })
+                    })
+                })
+
             } else {
                 // 提交
                 $.ajax({
