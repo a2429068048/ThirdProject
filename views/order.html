@@ -28,6 +28,85 @@
             font-size: 13px;
             color: rgb(153, 153, 153);
         }
+
+        input {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgb(169, 169, 169);
+        }
+
+        textarea {
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .fiex {
+            padding: 10px;
+            display: flex;
+            background-color: white;
+        }
+
+        .fiex img {
+            width: 100px;
+            margin: 0;
+        }
+
+        .right {
+            margin-left: 20px;
+        }
+
+        .right p:nth-of-type(1) {
+            font-size: 16px;
+            color: black;
+        }
+
+        .right p:nth-of-type(2) {
+            font-weight: bold;
+            font-size: 20px;
+            color: red;
+        }
+
+        .right p:nth-of-type(3) {
+            display: flex;
+        }
+
+        .right p:nth-of-type(3) span {
+            width: 50px;
+            display: inline-block;
+            color: red;
+            font-size: 16px;
+            border: 1px solid black;
+        }
+
+        .buttom {
+            margin: 0;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            padding-left: 20px;
+        }
+
+        .buttom span {
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .red {
+            padding: 0 20px !important;
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            line-height: 39.2px;
+        }
     </style>
 
 </head>
@@ -45,7 +124,7 @@
             <div class="content-block">
                 <div class="tabs">
                     <div id="tab1" class="tab active">
-                        <div class="content-block">
+                        <div class="content-block" id='all'>
                             <img src="https://oss.flowerplus.cn/oss_png/2018-01-12/15157266702670.png" alt="">
                             <p>此分类中暂无订单</p>
                         </div>
@@ -84,6 +163,7 @@
 
     {{include "./script.html"}}
 
+    <script type='text/javascript' src='/js/jquery.cookie.js' charset='utf-8'></script>
     <script>
         var test = window.location.search;
         test = decodeURIComponent(test.substring(2))
@@ -95,6 +175,85 @@
         $('.tab-link').click(function () {
             $(this).addClass('active').siblings('.tab-link').removeClass('active')
         })
+        var userId = $.cookie('username')
+        if (userId) {
+            $.post('/myself/shops', { userId }, (data) => {
+                if (data) {
+                    var src = `
+                            <span>收货日</span>
+                            <input type="text" id='picker1' value='周一'/>
+                            <textarea name="" id=""  placeholder="请填写收货地址"></textarea>
+                            <p class="buttom">
+                                <span>不含运费合计 <span>￥<span class="all_price"></span></span></span>
+                                <span class="red">去结算(<span class='number'></span>)</span>
+                            </p>
+                            `
+                    data.forEach(function (item, i) {
+                        $.post('/myself/myBuy', item, (datas) => {
+                            console.log(item);
+                            datas.info = datas.info.substring(0, 2)
+                            src += `
+                            <div class="fiex">
+                                <img src='${datas.imgSrc}' />
+                                <div class="right">
+                                    <p>${datas.title}</p>
+                                    <p>￥<span class="pric">${datas.info}</span></p>
+                                    <p>
+                                        <span class="reduce">-</span>
+                                        <span class="nums">${item.nums}</span>
+                                        <span class="add">+</span>
+                                        <i data-id='${item._id}'></i>
+                                    </p>
+                                </div>
+                            </div>
+                        `
+                            $('#all').html(src)
+                            $("#picker1").picker({
+                                toolbarTemplate: '<header class="bar bar-nav">\
+                        <button class="button button-link pull-right close-picker">确定</button>\
+                            <h1 class="title">标题</h1>\
+                            </header>',
+                                cols: [
+                                    {
+                                        textAlign: 'center',
+                                        values: ['周一', '周二', '周三', '周四', '周五', '周六', '周天']
+                                    }
+                                ]
+                            }
+                            );
+                            $.init();
+                        })
+                    });
+                }
+            })
+        }
+
+        setTimeout(function () {
+            var index = 1
+            var src = 0
+            var scr = 0
+            $('.add').click(function () {
+                var id = $(this).next().data('id')
+                index += 1
+                $(this).prev().text(index)
+            })
+            $(".reduce").click(function () {
+                if (index > 1) {
+                    var id = $(this).next().next().next().data('id')
+                    index -= 1
+                    $(this).next().text(index)
+                    // $.post('/myself/turnss', { id, num: index }, (data) => {
+
+                    // })
+                }
+            })
+            $('.nums').each(function (i, item) {
+                src += Number($(item).text())
+            })
+            $(".number").text(src)
+
+            console.log($('.pric'));
+        }, 100)
     </script>
 </body>
 

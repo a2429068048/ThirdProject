@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,164 +8,201 @@
     <link rel="stylesheet" href="/swiper4-animate-demo/css/swiper.min.css">
     {{include "./commend.html"}}
     <style>
-        body,html{
+        body,
+        html {
             background-color: white;
             font-size: 12px;
             overflow: auto;
         }
-        img{
+
+        img {
             width: 100%;
         }
-        .swiper-pagination-bullet-active{
+
+        .swiper-pagination-bullet-active {
             width: 0.45rem !important;
             height: 0.45rem !important;
             background-color: rgb(230, 230, 230) !important;
             opacity: 1 !important;
             border: 1px solid white;
         }
-        .swiper-pagination-bullet{
+
+        .swiper-pagination-bullet {
             background-color: white;
             width: 0.35rem;
             height: 0.35rem;
             opacity: 1;
         }
-        p{
+
+        p {
             margin: 0;
         }
-        .swiper-container{
+
+        .swiper-container {
             padding-bottom: 0;
         }
+
         /* price */
-        .price{
+        .price {
             display: flex;
             color: white;
             background-color: #fc6b80;
             padding: 14px 10px;
             justify-content: space-between;
         }
-        .price span{
+
+        .price span {
             font-size: 20px;
         }
-        .price>div:nth-of-type(2){
+
+        .price>div:nth-of-type(2) {
             text-align: center;
         }
-        .price>div:nth-of-type(1){
+
+        .price>div:nth-of-type(1) {
             padding-top: 8px;
         }
-        .topic{
+
+        .topic {
             width: 92%;
             margin: auto;
             padding: 16px 0;
         }
-        .topic b{
+
+        .topic b {
             font-size: 16px;
         }
-        .topic p{
+
+        .topic p {
             color: rgb(167, 165, 165);
             margin: 8px 0;
         }
-        .present img{
+
+        .present img {
             width: 16px;
         }
-        .present{
+
+        .present {
             display: flex;
             background-color: #fafafa;
             padding: 14px 4px;
         }
-        .present span{
+
+        .present span {
             position: relative;
             bottom: 2px;
         }
-        .present>li{
+
+        .present>li {
             margin-left: 8px;
         }
+
         /* 促销 */
-        .promotion{
+        .promotion {
             display: flex;
             width: 92%;
             margin: auto;
             padding: 16px 0;
         }
-        .promotion>ul li{
+
+        .promotion>ul li {
             display: flex;
             margin-top: 8px;
         }
-        .promotion div b{
+
+        .promotion div b {
             display: flex;
             width: 38px;
             font-size: 14px;
             margin-top: 8px;
         }
-        .promotion>ul li p{
+
+        .promotion>ul li p {
             display: inline-block;
             border: 1px solid #ff6672;
             color: #ff6672;
             height: 20px;
             padding: 1px 8px;
         }
-        .promotion>ul li span{
+
+        .promotion>ul li span {
             display: inline-block;
             width: 217px;
             margin-left: 12px;
         }
-        .gray{
+
+        .gray {
             width: 100%;
             height: 12px;
             background-color: #f1f1f1;
         }
+
         /* main */
-        .area{
+        .area {
             text-align: center;
             padding: 12px 0;
         }
-        .area img{
+
+        .area img {
             width: 90%;
-        }   
+        }
+
         /* 免责申明 */
-        .state{
+        .state {
             padding: 12px 18px;
         }
-        .state p{
+
+        .state p {
             display: flex;
             justify-content: space-between;
         }
-        .state p span{
+
+        .state p span {
             line-height: 24px;
         }
-        .state p span:nth-of-type(2){
+
+        .state p span:nth-of-type(2) {
             font-size: 24px;
         }
+
         /* footer */
-        footer{
+        footer {
             position: fixed;
             bottom: 0;
             width: 100%;
         }
-        footer li{
+
+        footer li {
             padding: 10px 0;
             text-align: center;
             background-color: white;
         }
-        footer li img{
+
+        footer li img {
             width: 23px;
         }
-        footer ul{
+
+        footer ul {
             display: flex;
         }
-        footer li:nth-of-type(1){
+
+        footer li:nth-of-type(1) {
             width: 18%;
         }
-        footer li:nth-of-type(2){
+
+        footer li:nth-of-type(2) {
             width: 82%;
             color: white;
             background-color: #fc6b80;
             font-size: 16px;
         }
-        body>h1{
+
+        body>h1 {
             text-align: center;
             margin-top: 50px;
         }
-        .time span{
+
+        .time span {
             font-size: 13px;
             display: inline-block;
             width: 20px;
@@ -178,13 +216,14 @@
         }
     </style>
 </head>
+
 <body>
     {{if shop}}
     <header>
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 {{each shop.imgArr banner}}
-                    <div class="swiper-slide"><img src="{{banner}}" alt=""></div>
+                <div class="swiper-slide"><img src="{{banner}}" alt=""></div>
                 {{/each}}
             </div>
             <div class="swiper-pagination"></div>
@@ -204,11 +243,11 @@
             <p>{{shop.goodsInfo}}</p>
         </div>
         <ul class="present">
-             <li>
-                 <img src="/img/index/详情/ia_100000004.svg" alt="">
-                 <span>产地直采</span>
-             </li>
-             <li>
+            <li>
+                <img src="/img/index/详情/ia_100000004.svg" alt="">
+                <span>产地直采</span>
+            </li>
+            <li>
                 <img src="/img/index/详情/ia_100000004.svg" alt="">
                 <span>花损赔付</span>
             </li>
@@ -253,7 +292,7 @@
         </div>
         <div class="img">
             {{each shop.imgArrtwo nav}}
-                <img src="{{nav}}" alt="">
+            <img src="{{nav}}" alt="">
             {{/each}}
         </div>
         <div class="state">
@@ -271,61 +310,80 @@
             <li>
                 <img src="/img/index/详情/ia_100000054.svg" alt="">
             </li>
-            <li>
-               <p>加入购物车</p> 
+            <li class="buy_car">
+                <p>加入购物车</p>
             </li>
         </ul>
     </footer>
     {{else}}
-        <h1>商品正在更新中...</h1>
+    <h1>商品正在更新中...</h1>
     {{/if}}
     <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
+    <script type='text/javascript' src='/js/jquery.cookie.js' charset='utf-8'></script>
     <script>
-        var mySwiper = new Swiper('header .swiper-container',{
+        var mySwiper = new Swiper('header .swiper-container', {
             pagination: {
                 el: 'header .swiper-pagination',
             },
         })
-        function showTime(){
-        // 这个是当前时间
-        var now = new Date().getTime()
-        // 获取目标时间
-        var targetTime = new Date('2020-12-6 00:00:00').getTime()
-        // console.log(now);
-        // console.log(targetTime);
+        function showTime() {
+            // 这个是当前时间
+            var now = new Date().getTime()
+            // 获取目标时间
+            var targetTime = new Date('2020-12-6 00:00:00').getTime()
+            // console.log(now);
+            // console.log(targetTime);
 
-        // 计算时间差
-        var time = Math.floor((targetTime - now) / 1000)
+            // 计算时间差
+            var time = Math.floor((targetTime - now) / 1000)
 
-        var min = 60
-        var hour = 60 * min
-        var day = 24 * hour
-        // 天数
-        var days = Math.floor(time / day)
-        // console.log(days);
+            var min = 60
+            var hour = 60 * min
+            var day = 24 * hour
+            // 天数
+            var days = Math.floor(time / day)
+            // console.log(days);
 
-        // 小时
-        var h= Math.floor(time%day/hour)
+            // 小时
+            var h = Math.floor(time % day / hour)
 
-        // 分钟
-        var m = Math.floor(time%hour/min)
+            // 分钟
+            var m = Math.floor(time % hour / min)
 
-        // 秒数
-        var s = Math.floor(time%min)
+            // 秒数
+            var s = Math.floor(time % min)
 
-        h=h<10?'0'+h:h
-        m = m<10?'0'+m:m
-        s=s<10?'0'+s:s
+            h = h < 10 ? '0' + h : h
+            m = m < 10 ? '0' + m : m
+            s = s < 10 ? '0' + s : s
 
 
-        var  str ='<span>'+days+'</span>'+'天'+'<span>'+h+'</span>'+'时'+'<span>'+m+'</span>'+'分'+'<span>'+s+'</span>'+'秒'
+            var str = '<span>' + days + '</span>' + '天' + '<span>' + h + '</span>' + '时' + '<span>' + m + '</span>' + '分' + '<span>' + s + '</span>' + '秒'
 
-        $('.time').html(str)
+            $('.time').html(str)
 
         }
-        
+
         showTime()
         setInterval(showTime, 1000);
+
+        var userId = $.cookie('username')
+        var goodsId = window.location.search.split('=')
+        var goodsId = goodsId[1]
+        console.log(goodsId);
+        $('.buy_car').click(function () {
+            if (userId) {
+                $.post('/myself/buy_car', { goodsId, userId }, (data) => {
+                    alert(data)
+                })
+            } else {
+                alert('请先登录')
+                location.href = '/login'
+            }
+
+        })
+
     </script>
 </body>
+
 </html>
