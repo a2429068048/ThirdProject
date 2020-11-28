@@ -8,11 +8,22 @@ const {
 const multer = require("multer");
 const exp = require("express");
 const fs = require("fs");
+const { send } = require("process");
 
 
 
 const router = exp.Router();
-
+router.use(function (req,res,next) {
+    // console.log(req.url)
+    if (req.cookies.admin) {
+        // console.log(1)
+        next();
+    } else  if (req.url == "/login" || req.url == "/exit") { 
+        next()
+    }else {
+        res.render("manage/loginM");
+    }
+})
 router.get("/", (req, res) => {
     res.render("manage/indexM");
 })
@@ -449,7 +460,63 @@ router.get("/deleteUser", (req, res) => {
 
 
 
+// 查看所有的帖子
+router.get("/allTopics", (req, res) => {
+    Topic.find((err, data) => {
+        if (!err) {
+            res.render("manage/allTopics", {data});
+           
+        } else {
+            console.log("帖子表访问失败---allTopics");
+            console.log(err);
+        }
+    })
+});
+// 删除帖子
+router.get("/deleteTopic", (req, res) => {
+    // 找到对应的帖子
+    Topic.findOne({_id: req.query.id}, (err ,data) => {
+        if (!err) {
+            // 删除帖子发布的图片
+            fs.unlinkSync("./static/topics/" + data.img);
+            Topic.findOneAndDelete({_id: data.id}, err => {
+                if (!err) {
+                    sendInfo(res, 1, "删除成功");
+                } else {
+                    console.log("删除帖子失败");
+                    console.log(err);
+                }
+            })
+        } else {
+            console.log("帖子表访问失败---deleteTopic")
+            console.log(err);
+        }
+    })
+})
 
+
+
+// 管理员登录
+router.post("/login", (req, res) => {
+    // console.log(1);
+    if (req.body.username == "admin" && req.body.psw == "123456") {
+        let time = new Date()
+        time.setMonth(time.getMonth() + 1)
+        res.cookie("admin", req.body.username, {
+            expires:new Date(time)
+        })
+        sendInfo(res, 1, "登录成功");
+    } else {
+        sendInfo(res, 0, "登录失败");
+    }
+})
+
+// 退出登录
+router.get("/exit", (req, res) => {
+
+    res.clearCookie("admin");
+    sendInfo(res, 1, "退出成功");
+})
 
 function sendInfo(res, coder = 0, msg = "", data = null) {
     res.send({

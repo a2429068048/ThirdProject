@@ -1,11 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理员登录页面</title>
+    {{include "./headStyle.html"}}
+    <style>
+        .inner {
+            background-color: rgb(241, 231, 231);
+        }
+
+        main {
+            margin: 20px 0;
+        }
+
+        main ul {
+            width: 360px;
+            margin: auto;
+            /* background-color: red; */
+        }
+
+        li {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 18px;
+            padding: 8px 0;
+            /* height: 40px; */
+            /* overflow: hidden; */
+            box-sizing: border-box;
+            /* background-color: red; */
+            position: relative;
+        }
+
+        label {
+            width: 140px;
+            text-align: right;
+            text-align: justify;
+            height: 26px;
+            overflow: hidden;
+        }
+
+        label::after {
+            content: "";
+            display: inline-block;
+            width: 100%;
+        }
+
+        li input {
+            padding: 4px 6px;
+            font-size: 16px;
+            /* outline: none; */
+            border: 1px solid #666;
+            outline-color: lightblue;
+        }
+
+        li button {
+            width: 350px;
+            font-size: 18px;
+            border: none;
+            letter-spacing: 10px;
+            background: rgb(31, 235, 31);
+            color: white;
+            height: 40px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        li button:active {
+            background-color: orangered;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="inner">
+        <header>
+            <h1>管理员登录</h1>
+        </header>
+        <main>
+            <form >
+                <ul>
+                    <li>
+                        <label for="">管理员账户：</label>
+                        <input type="text" name="username" required>
+                    </li>
+                    <li>
+                        <label for="">密码：</label>
+                        <input type="password" name="psw" required>
+                    </li>
+                    <li>
+                        <button>登录</button>
+                    </li>
+                </ul>
+            </form>
+            <script>
+                $("form").submit(function (e) {
+                    e.preventDefault();
+                    $.post("/manager/login", $(this).serialize(), data => {
+                        console.log(data);
+                        alert(data.msg);
+                        if (data.coder) {
+                            location.href = "/manager/";
+                        }
+                    })
+                })
+            </script>
+        </main>
+    </div>
 </body>
+
 </html>
