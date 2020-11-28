@@ -200,15 +200,15 @@ router.post('/myBuy', (req, res) => {
     })
 })
 
-// router.post('/turnss', (req, res) => {
-//     ShopCar.update({ _id: req.body.id }, { nums: req.body.num }, (err) => {
-//         if (!err) {
-//             res.send()
-//         } else {
-//             console.log(err);
-//         }
-//     })
-// })
+router.post('/turnss', (req, res) => {
+    ShopCar.update({ _id: req.body.id }, { nums: req.body.num }, (err) => {
+        if (!err) {
+            res.send('打钱')
+        } else {
+            console.log(err);
+        }
+    })
+})
 
 
 

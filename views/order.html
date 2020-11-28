@@ -236,24 +236,60 @@
                 var id = $(this).next().data('id')
                 index += 1
                 $(this).prev().text(index)
+                $('.nums').each(function (i, item) {
+                    src = Number($(item).text())
+                })
+                $(".number").text(src)
+
+                $('.pric').each(function (i, item) {
+                    scr = 0
+                    var b = Number($(item).text())
+                    var a = Number($(item).parent().next().children('.nums').text())
+                    scr += a * b
+                })
+                $('.all_price').text(scr)
+
+                $.post('/myself/turnss', { id, num: index }, (data) => {
+                    // alert(data)
+                })
             })
             $(".reduce").click(function () {
                 if (index > 1) {
                     var id = $(this).next().next().next().data('id')
                     index -= 1
                     $(this).next().text(index)
-                    // $.post('/myself/turnss', { id, num: index }, (data) => {
+                    $('.nums').each(function (i, item) {
+                        src = Number($(item).text())
+                    })
+                    $(".number").text(src)
 
-                    // })
+                    $('.pric').each(function (i, item) {
+                        scr = 0
+                        var b = Number($(item).text())
+                        var a = Number($(item).parent().next().children('.nums').text())
+                        scr += a * b
+                    })
+                    $('.all_price').text(scr)
+                    $.post('/myself/turnss', { id, num: index }, (data) => {
+                        // alert(data)
+                    })
                 }
             })
             $('.nums').each(function (i, item) {
-                src += Number($(item).text())
+                src = Number($(item).text())
             })
             $(".number").text(src)
 
-            console.log($('.pric'));
+            $('.pric').each(function (i, item) {
+                scr = 0
+                var b = Number($(item).text())
+                var a = Number($(item).parent().next().children('.nums').text())
+                scr += a * b
+            })
+            $('.all_price').text(scr)
         }, 100)
+
+
     </script>
 </body>
 
