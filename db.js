@@ -43,7 +43,7 @@ const shopCarSchema = new mongoose.Schema({
     userId: String,
     goodsId: String,
     time: Number,
-    nums: Number
+    nums: Number,
 })
 // ------- 商品列表 --------
 const goodsListSchema = new mongoose.Schema({

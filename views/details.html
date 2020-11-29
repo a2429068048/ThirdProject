@@ -50,14 +50,16 @@
             padding: 0.656rem 0.469rem;
             justify-content: space-between;
         }
-        .price span{
+
+        .price span {
             font-size: 0.938rem;
         }
 
         .price>div:nth-of-type(2) {
             text-align: center;
         }
-        .price>div:nth-of-type(1){
+
+        .price>div:nth-of-type(1) {
             padding-top: 0.375rem;
         }
 
@@ -66,7 +68,8 @@
             margin: auto;
             padding: 0.750rem 0;
         }
-        .topic b{
+
+        .topic b {
             font-size: 0.750rem;
         }
 
@@ -74,7 +77,8 @@
             color: rgb(167, 165, 165);
             margin: 0.375rem 0;
         }
-        .present img{
+
+        .present img {
             width: 0.750rem;
         }
 
@@ -88,7 +92,8 @@
             position: relative;
             bottom: 0.094rem;
         }
-        .present>li{
+
+        .present>li {
             margin-left: 0.375rem;
         }
 
@@ -143,20 +148,23 @@
         }
 
         /* 免责申明 */
-        .state{
+        .state {
             padding: 0.563rem 0.844rem;
         }
+
         .state p {
             display: flex;
             justify-content: space-between;
         }
-        .state p span{
+
+        .state p span {
             line-height: 1.125rem;
         }
-        .state p span:nth-of-type(2){
+
+        .state p span:nth-of-type(2) {
             font-size: 1.125rem;
 
-        
+
         }
 
         /* footer */
@@ -165,12 +173,14 @@
             bottom: 0;
             width: 100%;
         }
-        footer li{
+
+        footer li {
             padding: 0.469rem 0;
             text-align: center;
             background-color: white;
         }
-        footer li img{
+
+        footer li img {
             width: 1.078rem;
 
         }
@@ -194,7 +204,8 @@
             text-align: center;
             margin-top: 2.344rem;
         }
-        .time span{
+
+        .time span {
             font-size: 0.609rem;
             display: inline-block;
             width: 0.938rem;
@@ -362,7 +373,6 @@
         var userId = $.cookie('username')
         var goodsId = window.location.search.split('=')
         var goodsId = goodsId[1]
-        console.log(goodsId);
         $('.buy_car').click(function () {
             if (userId) {
                 $.post('/myself/buy_car', { goodsId, userId }, (data) => {

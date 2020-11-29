@@ -73,9 +73,9 @@ router.post('/phone', (req, res) => {
             if (data) {
                 res.send(data)
             }
-            // else {
-            //     console.log(data);
-            // }
+            else {
+                console.log(data);
+            }
         } else {
             console.log(err);
         }
@@ -146,8 +146,10 @@ router.post('/edits', (req, res) => {
 
 //-----加入购物车-----
 router.post('/buy_car', (req, res) => {
-    ShopCar.findOne({ goodsId: req.body.goodsId }, (err, data) => {
+    console.log(req.body.goodsId);
+    ShopCar.findOne({ goodsId: req.body.goodsId, userId: req.body.userId }, (err, data) => {
         if (!err) {
+            console.log(data);
             if (data) {
                 res.send('已经添加过了')
             } else {
