@@ -14,47 +14,47 @@
 
         .content>ul {
             background-color: white;
-            padding: 8px;
+            padding: 0.375rem;
         }
 
         .content>ul>li>a {
             justify-content: space-between;
             align-items: center;
             color: #333333;
-            font-size: 13px;
+            font-size: 0.609rem;
             /* text-align: center; */
         }
 
         .content>ul>li>a img {
-            width: 40px;
-            height: 40px;
+            width: 1.875rem;
+            height: 1.875rem;
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 0.469rem;
         }
 
         .content .userInfo {
             align-items: center;
         }
         .content .userInfo p {
-            margin: 2px;
+            margin: 0.094rem;
             text-align: left;
         }
         .content .userInfo p:nth-child(3) {
-            font-size: 12px;
+            font-size: 0.563rem;
             color: #999;
         }
         .content .btns {
-            width: 52px;
-            height: 25px;
-            font-size: 12px;
+            width: 2.438rem;
+            height: 1.172rem;
+            font-size: 0.563rem;
             font-weight: 500;
             color: #999999;
-            line-height: 25px;
+            line-height: 1.172rem;
             text-align: center;
             position: relative;
-            border: 0.5px solid #9D9D9D;
-            border-radius: 10px;
-            letter-spacing: 0.5px;
+            border: 0.023rem solid #9D9D9D;
+            border-radius: 0.469rem;
+            letter-spacing: 0.023rem;
         }
         .content .btns.active {
             border-color: #FF6772;
@@ -62,8 +62,8 @@
         }
 
         .content > p {
-            margin-top: 10px;
-            font-size: 14px;
+            margin-top: 0.469rem;
+            font-size: 0.656rem;
         }
     </style>
 </head>
@@ -72,8 +72,10 @@
     <div class="page">
         <div class="content">
             <ul {{data.length ? "" : "hidden" }}>
+                
                 {{each data user}}
                 <li>
+                    
                     <a href="" class="line">
                         <div class="userInfo line">
                             <img src="{{user.pic}}" alt="">

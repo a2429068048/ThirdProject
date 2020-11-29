@@ -1,6 +1,6 @@
 var exp = require('express')
 
-var { Users, ShopCar, Goods, EasyUser } = require('../db')
+var { Users, ShopCar, Goods } = require('../db')
 
 const cookie = require("cookie-parser");
 var router = exp.Router()
@@ -8,7 +8,7 @@ var router = exp.Router()
 
 //------------注册----------------
 router.post('/reg', (req, res) => {
-    EasyUser.findOne({ name: req.body.name }, (err, data) => {
+    Users.findOne({ name: req.body.name }, (err, data) => {
         if (!err) {
             if (data) {
                 res.send({
@@ -16,7 +16,7 @@ router.post('/reg', (req, res) => {
                     code: 0,
                 })
             } else {
-                var easyUser = new EasyUser(req.body)
+                var easyUser = new Users(req.body)
                 easyUser.save((err) => {
                     if (!err) {
                         res.send({
@@ -39,7 +39,7 @@ router.post('/reg', (req, res) => {
 
 //-------------登录---------------
 router.post('/logins', (req, res) => {
-    EasyUser.findOne({ name: req.body.username }, (err, data) => {
+    Users.findOne({ name: req.body.username }, (err, data) => {
         if (!err) {
             if (data) {
                 if (data.psw == req.body.psw) {
@@ -67,7 +67,7 @@ router.post('/logins', (req, res) => {
 })
 //------编辑手机信息-------
 router.post('/phone', (req, res) => {
-    EasyUser.findOne({ name: req.body.username }, (err, data) => {
+    Users.findOne({ name: req.body.username }, (err, data) => {
         if (!err) {
             if (data) {
                 res.send(data)

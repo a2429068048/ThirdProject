@@ -414,20 +414,21 @@ router.get("/myfolow", (req, res) => {
         if (!err) {
             // console.log(1)
             let arr = []
+            let index = 0;
             if (data.like && data.like.length) {
-                data.like.forEach((user, index) => {
+                data.like.forEach((user) => {
                     Users.findOne({
                         _id: user
                     }, (err, info) => {
                         if (!err) {
                             info.status = 1;
                             arr.push(info);
+                            index++;
                         } else {
                             console.log(err);
                             console.log("关注列表遍历查找失败");
                         }
-                        if (index == data.like.length - 1) {
-                            // console.log(arr);
+                        if (index == (data.like.length)) {
                             res.render("myFolow", {
                                 data: arr
                             });
@@ -558,9 +559,12 @@ router.get("/flowme", (req, res) => {
         if (!err) {
             let arr = [];
             // 遍历关注的我的
+            let index = 0;
             if (data.flowme && data.flowme.length) {
-                data.flowme.forEach((fuser, index) => {
+                // console.log(data.flowme);
+                data.flowme.forEach((fuser) => {
                     // 查找对应关注人的信息
+                    
                     Users.findOne({
                         _id: fuser
                     }, (err, user) => {
@@ -570,11 +574,14 @@ router.get("/flowme", (req, res) => {
                                 user.status = 1;
                             }
                             arr.push(user);
+                            // console.log(index)
+                            index++;
                         } else {
                             console.log("数据库查询失败----/flowme-2")
                             console.log(err);
                         }
-                        if (index == data.flowme.length - 1) {
+                        if (index == (data.flowme.length )) {
+                            // console.log(584)
                             res.render("myFolow", {
                                 data: arr
                             })

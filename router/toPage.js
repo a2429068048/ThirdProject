@@ -5,7 +5,7 @@ const exp = require("express");
 const router = exp.Router();
 
 
-const { Goods } = require('../db')
+const { Goods, Topic, Users } = require('../db')
 
 
 
@@ -58,8 +58,35 @@ router.get("/goodThings", (req, res) => {
 
 //------- 发现 ---------
 router.get("/discovery", (req, res) => {
-    // console.log("测试")
-    res.render("discovery");
+    let arr = [];
+    let topics = [];
+    Topic.find((err, data) => {
+        if (!err) {
+            data.forEach(topic => {
+                if (arr.length) {
+                    let flag = true;
+                    arr.forEach(item => {
+                        if (item.nameId == topic.nameId) {
+                            flag=false;
+                        }
+                    })
+
+                    if (flag) {
+                        arr.push(topic);
+                    }
+                } else {
+                    arr.push(topic);
+                }
+            })
+            
+            res.render("discovery", {topics:arr});
+        } else {
+            console.log("帖子表访问失败---discovery");
+            console.log(err);
+        }
+    })
+
+
 })
 
 
