@@ -3,6 +3,7 @@ var exp = require('express')
 var { Users, ShopCar, Goods } = require('../db')
 
 const cookie = require("cookie-parser");
+const e = require('express');
 var router = exp.Router()
 
 
@@ -71,7 +72,7 @@ router.post('/phone', (req, res) => {
         if (!err) {
             if (data) {
                 res.send(data)
-            } 
+            }
             // else {
             //     console.log(data);
             // }
@@ -142,5 +143,85 @@ router.post('/edits', (req, res) => {
         }
     })
 })
+
+//-----加入购物车-----
+router.post('/buy_car', (req, res) => {
+    ShopCar.findOne({ goodsId: req.body.goodsId }, (err, data) => {
+        if (!err) {
+            if (data) {
+                res.send('已经添加过了')
+            } else {
+                Goods.findOne({ _id: req.body.goodsId }, (err, data) => {
+                    if (!err) {
+                        if (data) {
+                            req.body.nums = 1
+                            req.body.time = new Date()
+                            var goods = new ShopCar(req.body)
+                            goods.save((err) => {
+                                if (!err) {
+                                    res.send('加入成功')
+                                } else {
+                                    console.log(err);
+                                }
+                            })
+                        } else {
+                            res.send('加入失败')
+                        }
+                    } else {
+                        console.log(err);
+                    }
+                })
+            }
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+//-----购物车页面的渲染-----
+router.post('/shops', (req, res) => {
+    ShopCar.find({ userId: req.body.userId }, (err, data) => {
+        if (!err) {
+            res.send(data)
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/myBuy', (req, res) => {
+    Goods.findOne({ _id: req.body.goodsId }, (err, data) => {
+        if (!err) {
+            console.log(data);
+            res.send(data)
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/turnss', (req, res) => {
+    ShopCar.update({ _id: req.body.id }, { nums: req.body.num }, (err) => {
+        if (!err) {
+            res.send('打钱')
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/buy_remove', (req, res) => {
+    ShopCar.remove({ _id: req.body.id }, (err) => {
+        if (!err) {
+            res.send('删除成功')
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+
+
+
 
 module.exports = router

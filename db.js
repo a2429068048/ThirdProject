@@ -36,12 +36,14 @@ const userSchema = new mongoose.Schema({
     getGoods: Number,
     // 收藏列表
     topics: Array,
+    psw: String,
 })
 // -------- 购物车列表 ----------
 const shopCarSchema = new mongoose.Schema({
     userId: String,
     goodsId: String,
-    time: Number
+    time: Number,
+    nums: Number
 })
 // ------- 商品列表 --------
 const goodsListSchema = new mongoose.Schema({
@@ -54,24 +56,24 @@ const goodsListSchema = new mongoose.Schema({
     info: String,
     countDown: String,
     sort: String,
-    imgArr:Array,
-    imgArrtwo:Array,
+    imgArr: Array,
+    imgArrtwo: Array,
 }, {
     collection: 'goodsList'
 })
 
 // ---- 帖子表 ----
 const topicSchema = new mongoose.Schema({
-    pic:String,
-    name:String,
-    getGoods:Array,
-    getCollect:Array,
-    img:String,
-    nameId:String,
+    pic: String,
+    name: String,
+    getGoods: Array,
+    getCollect: Array,
+    img: String,
+    nameId: String,
     comment: Array,
     content: String,
     address: String,
-    time:String
+    time: String
 })
 
 const Users = mongoose.model("User", userSchema);
