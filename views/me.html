@@ -226,7 +226,8 @@
             </div>
             <ul class="nav-head line">
                 <li class="active" data-type="topic" dasta-id="_id"><span>帖子</span><small>(0)</small></li>
-                <li data-type="collect" dasta-id="_id"><span>收藏</span><small>({{topics ? topics.length : 0}})</small></li>
+                <li data-type="collect" dasta-id="_id"><span>收藏</span><small>({{topics ? topics.length : 0}})</small>
+                </li>
             </ul>
         </header>
         <div class="content">
@@ -284,7 +285,7 @@
         function getMessage(target) {
             $.get(`/discovery/${target}?id=${id}`, data => {
                 // console.log(data.data)
-                console.log(data.data,target);
+                console.log(data.data, target);
                 if (data.data.length) {
                     $(`.${$(".nav-head .active").data("type")}`).find(".noInfo").hide()
                     $("li.active small").html(`(${data.data.length})`)
@@ -293,9 +294,9 @@
                         str += `
                         <div class="card demo-card-header-pic">
                             <div valign="bottom" class="card-header color-white no-border no-padding">
-                                <img class='card-cover'
+                                <img class='card-cover linkImg'
                                     src="/topics/${item.img}"
-                                    alt="">
+                                    alt="" data-id="${item.nameId}">
                             </div>
                             <div class="card-content">
                                 <p>${item.content}</p>
@@ -332,7 +333,7 @@
             $(this).find("img").toggle();
             let good = $(this).find("span").text() * 1;
             let nums = $(".menu li").eq(2).find("span").text().trim() * 1;
-            $(this).find("span").text($(this).find("div").hasClass("checked")  ? --good : ++good);
+            $(this).find("span").text($(this).find("div").hasClass("checked") ? --good : ++good);
             $(".menu li").eq(2).find("span").text($(this).find("div").hasClass("checked") ? --nums : ++nums);
             // 发送请求
             // 添加或者取消点赞
@@ -341,6 +342,12 @@
             })
             $(this).find("div").toggleClass("checked");
         })
+        // 对应帖子跳转
+        $(document).on("click", ".linkImg", function () {
+            console.log($(this).data("id"));
+            location.href = `/discovery/detailTopic?id=${$(this).data("id")}`;
+        });
+
         $(function () {
             $(".content").css("top", $(".top").innerHeight());
 
