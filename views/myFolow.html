@@ -65,7 +65,13 @@
             margin-top: 0.469rem;
             font-size: 0.656rem;
         }
+        
     </style>
+    <script>
+        function picError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
+        }
+    </script>
 </head>
 
 <body>
@@ -78,7 +84,7 @@
                     
                     <a href="" class="line">
                         <div class="userInfo line">
-                            <img src="{{user.pic}}" alt="">
+                            <img src="{{user.pic}}" alt="" onerror="picError(this)">
                             <section>
                                 <p class="name">{{user.name}}</p>
                                 <p class="likes">{{user.flowme ? user.flowme.length : 0}}人关注Ta</p>

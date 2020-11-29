@@ -73,6 +73,7 @@ const topicSchema = new mongoose.Schema({
     comment: Array,
     content: String,
     address: String,
+    label:String,
     time: String
 })
 

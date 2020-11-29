@@ -10,13 +10,16 @@
         img {
             width: 100%;
         }
+
         .content {
             padding: 0 0.375rem;
         }
+
         .content .user {
             justify-content: space-between;
 
         }
+
         .content .user .up,
         .content .user .collect {
             align-items: center;
@@ -129,6 +132,7 @@
             font-size: 0.656rem;
         }
     </style>
+    
 </head>
 
 <body>
@@ -147,10 +151,10 @@
                     </div>
                 </div>
                 <div class="goodsImg linkImg" data-id={{topic.nameId}}>
-                    <img src="/topics/{{topic.img}}" alt="">
+                    <img src="/topics/{{topic.img}}" alt="" >
                 </div>
                 <div class="text">
-                    <div class="label"><span><i>#</i>{{topic.label}}</span></div>
+                    <div class="label"><span><i>#</i>{{topic.label ? topic.label : ""}}</span></div>
                     <div class="describe">
                         {{topic.content}}
                     </div>
@@ -161,7 +165,7 @@
                         <div class="line">
                             <section class="collect line {{topic.isCollect ? 'collected' : ''}}"
                                 data-id="{{topic._id}}">
-                                <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt=""
+                                <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png" alt=""
                                     {{topic.isCollect ? 'hidden' : ''}}>
                                 <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023157102.svg"
                                     {{topic.isCollect ? "" : "hidden"}}>
@@ -197,7 +201,7 @@
                 $(this).find("span").text(num);
                 // 发送请求
                 // 添加或者取消点赞
-                $.get(`/discovery/${$(this).hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id").replaceAll("\"","")}`, data => {
+                $.get(`/discovery/${$(this).hasClass("checked") ? "removeGood" : "addGood"}?id=${$(this).data("id").replaceAll("\"", "")}`, data => {
                     console.log(data);
                 })
                 $(this).toggleClass("checked");
@@ -217,7 +221,7 @@
                 $(this).find("span").text(num);
                 // 发送请求
                 // 添加或者取消点赞
-                $.get(`/discovery/${$(this).hasClass("collected") ? "removeCollect" : "addCollect"}?id=${$(this).data("id").replaceAll("\"","")}`, data => {
+                $.get(`/discovery/${$(this).hasClass("collected") ? "removeCollect" : "addCollect"}?id=${$(this).data("id").replaceAll("\"", "")}`, data => {
                     console.log(data);
                 })
                 $(this).toggleClass("collected");
@@ -228,7 +232,7 @@
             }
         })
 
-        
+
         $(function () {
             $(document).on("click", ".linkImg", function () {
                 console.log($(this).data("id"));
@@ -236,14 +240,14 @@
             });
             // 修改时间格式
             $(".time").each((index, ele) => {
-                
+
                 let time = new Date($(ele).text().trim() * 1);
                 console.log(moment(time).format("YYYY-MM-DD HH:mm:ss"))
                 $(ele).html(moment(time).format("YYYY-MM-DD HH:mm:ss"))
                 // $(".time").html(moment(time).format("YYYY-MM-DD HH:mm:ss"));
-            } )
+            })
             // console.log(time);
-            
+
         })
     </script>
 </body>

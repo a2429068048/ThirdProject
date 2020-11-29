@@ -9,7 +9,6 @@
   {{include "./commend.html"}}
 
   <style>
-    
     img {
       width: 100%;
       vertical-align: top;
@@ -367,7 +366,11 @@
       font-size: 0.703rem;
     }
   </style>
-
+  <script>
+    function picError(img) {
+      img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
+    }
+  </script>
 </head>
 
 <body>
@@ -396,14 +399,14 @@
                   {{each user.topics topic index}}
                   {{if index < 2}}
 
-                  <img src="/topics/{{topic.img}}" alt="">
+                  <img src="/topics/{{topic.img}}" alt="" >
                   {{/if}}
                   {{/each}}
-                  <!-- <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg!750" alt=""> -->
+                  <!-- <img src="https://oss.flowerplus.cn/sns_post_image/20201121/16059373909648.jpg" alt=""> -->
                   <div class="add {{user.isLike ? 'selected' : ''}}" data-id="{{user.id}}">
 
                     <img src="/img/discovery/add.png" alt="" style="display: {{user.isLike ? 'none' : 'inline-block'}}">
-                    <img src="https://oss.flowerplus.cn/oss_png/2019-06-21/15611156361378.png!750" alt=""
+                    <img src="https://oss.flowerplus.cn/oss_png/2019-06-21/15611156361378.png" alt=""
                       style="display: {{user.isLike ? 'inline-block' : 'none'}}">
                   </div>
                 </div>
@@ -411,7 +414,7 @@
                 <div class="userInfo">
                   <div class="user line">
                     <div class="userPic">
-                      <img src="{{user.pic}}" alt="">
+                      <img src="{{user.pic}}" alt="" onerror="picError(this)">
                     </div>
                     <span>{{user.name}}</span>
                   </div>
@@ -484,7 +487,7 @@
                   </div>
                   <div class="user line">
                     <div class="userInfo line">
-                      <img src="${topic.pic}" alt="">
+                      <img src="${topic.pic}" alt="" onerror="picError(this)">
                       <span>${topic.name}</span>
                     </div>
                     <div class="up line ${topic.status ? "checked" : ""}" data-id="${topic._id}">
@@ -507,7 +510,7 @@
                   </div>
                   <div class="user line">
                     <div class="userInfo line">
-                      <img src="${topic.pic}" alt="">
+                      <img src="${topic.pic}" alt="" onerror="picError(this)">
                       <span>${topic.name}</span>
                     </div>
                     <div class="up line ${topic.status ? "checked" : ""}" data-id="${topic._id}">
@@ -631,7 +634,7 @@
                               <img src="/topics/${topic.img}" alt="">
                             </div>
                             <div class="text">
-                              <div class="label"><span><i>#</i>${topic.label}</span></div>
+                              <div class="label"><span><i>#</i>${topic.label ? topic.label : ""}</span></div>
                               <div class="describe">
                                 ${topic.content}
                               </div>
@@ -641,7 +644,7 @@
                                 </div>
                                 <div class="line">
                                   <section class="collect line ${topic.isCollect ? "collected" : ""}" data-id="${topic._id}">
-                                    <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png!750" alt="" ${topic.isCollect ? "hidden" : ""}>
+                                    <img src="https://oss.flowerplus.cn/oss_png/2019-07-29/15643876701798.png" alt="" ${topic.isCollect ? "hidden" : ""}>
                                     <img src="https://oss.flowerplus.cn/oss_svg/2019-01-18/15478023157102.svg" ${topic.isCollect ? "" : "hidden"}>
                                     <span class="num">${topic.getCollect ? topic.getCollect.length : 0}</span>
                                   </section>
@@ -718,28 +721,28 @@
         console.log($(this).data("id"));
         location.href = `/discovery/detailTopic?id=${$(this).data("id")}`;
       });
-    
+
       // 滚动监听
       // 获得顶部菜单栏的高度
       let topHeight = $(".head").innerHeight();
       let stop = true;
-      $(".content").scroll(function ()  {
-          console.log(1)
-          
-          if ($(this).scrollTop() > topHeight) {
-            if (stop) {
-              stop = false;
-              $(".head").stop().slideUp(() => {
-                stop = true;
-              });
-              $(this).stop().animate({"margin-top": 0});
-            }
-          } else {
-            $(".head").stop().slideDown(() => {
+      $(".content").scroll(function () {
+        console.log(1)
+
+        if ($(this).scrollTop() > topHeight) {
+          if (stop) {
+            stop = false;
+            $(".head").stop().slideUp(() => {
               stop = true;
             });
-            $(this).stop().animate({"margin-top": topHeight});
+            $(this).stop().animate({ "margin-top": 0 });
           }
+        } else {
+          $(".head").stop().slideDown(() => {
+            stop = true;
+          });
+          $(this).stop().animate({ "margin-top": topHeight });
+        }
       })
     });
 

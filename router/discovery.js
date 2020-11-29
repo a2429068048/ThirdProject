@@ -279,14 +279,15 @@ router.get("/shop", (req, res) => {
     res.redirect("/");
 })
 
+// 发帖
 router.get("/append", (req, res) => {
     res.render("append");
 })
-
+// 消息
 router.get("/message", (req, res) => {
     res.render("message");
 })
-
+// 我
 router.get("/me", (req, res) => {
     Users.findOne({
         name: req.cookies.username
@@ -299,6 +300,15 @@ router.get("/me", (req, res) => {
         }
     }).lean();
 })
+
+// 鲜花养殖
+router.get("/flower", (req, res) => {
+    res.render("disFlower");
+})
+
+
+
+
 
 // 编辑页面
 router.get("/disEdit", (req, res) => {

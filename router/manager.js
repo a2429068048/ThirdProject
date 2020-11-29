@@ -131,6 +131,7 @@ router.post("/goodsImgArrtwo", upload.array("imgArrtwo"), (req, res) => {
 router.get("/goodsInfo", (req, res) => {
     Goods.find((err, data) => {
         if (!err) {
+            data.reverse();
             res.render("./manage/allGoods", {
                 data
             });

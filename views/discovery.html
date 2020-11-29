@@ -48,6 +48,11 @@
             font-size: 0.563rem;
         }
     </style>
+    <script>
+        function picError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
+        }
+    </script>
 </head>
 
 <body>
@@ -64,7 +69,7 @@
                             {{each topics topic index}}
                             {{if index < 3}}
                             <li>
-                                <img src="{{topic.pic}}" alt="">
+                                <img src="{{topic.pic}}" alt="" onerror="picError(this)">
                             </li>
                             {{/if}}
                             {{/each}}

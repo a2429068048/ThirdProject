@@ -9,11 +9,12 @@
     <style>
         .top {
             /* min-height: ; */
-            background-image: url(https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg!750);
+            background-image: url(https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg);
             background-size: cover;
             background-position: center center;
             padding: 0;
         }
+        
 
         .headerMask {
             width: 100%;
@@ -183,7 +184,7 @@
     </style>
     <script>
         function picError(img) {
-            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png!57_57";
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
         }
     </script>
 </head>
@@ -191,7 +192,7 @@
 <body>
     <div class="page" data-id="{{_id}}">
         {{include "./disBartab.html"}}
-        <header class="top" style="background-image: url({{img}});">
+        <header class="top" data-img="{{img}}">
             <div class="headerMask">
                 <div class="header line">
                     <div class="left">
@@ -279,6 +280,11 @@
                 location.href = "/login";
             })
         }
+        // 默认封面设置
+        if ($(".top").data("img")) {
+            // console.log($(this).data("img"))
+            $(".top").css("background-image",`url(${$(".top").data("img")})`);
+        }
         let id = $(".page").data("id").replaceAll("\"", "");
         // 发送获得帖子的请求
         getMessage("topic");
@@ -303,7 +309,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="#" class="link">
-                                    <img src="${item.pic}" alt="">
+                                    <img src="${item.pic}" alt="" onerror="picError(this)">
                                     <span>${item.name}</span>
                                 </a>
                                 <a href="#" class="link good" data-id="${item._id}">

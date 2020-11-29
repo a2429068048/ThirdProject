@@ -273,6 +273,7 @@
                 console.log(1)
                 let file = this.files[0];
                 $(this).closest(".imgs").find("img").show().attr("src", URL.createObjectURL(file));
+                // $(".imgs img").show();
             })
             $(".imgAppend").click(function () {
                 var buttons1 = [
@@ -333,6 +334,7 @@
                         onClick: () => {
                             $.alert("删除成功");
                             $(this).hide();
+                            $(":file").val("")
                         }
                     }
                 ];
@@ -352,7 +354,7 @@
                 if ($("textarea").val() && $(":file")[0].files[0]) {
                     let data = new FormData($("#img")[0]);
                     data.append("content", $("textarea").val());
-                    data.append("label", $("#topics .active").html());
+                    data.append("label", $(".topics .selected").html());
                     data.append("address", "");
                     // data.append("img",$(":file")[0].files[0]);
                     $.ajax({
@@ -364,7 +366,7 @@
                     }).done(data => {
                         $.alert(data.msg, () => {
                             if (data.coder) {
-                                location.reload();
+                                history.back();
                             }
                         });
 
