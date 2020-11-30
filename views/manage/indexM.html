@@ -80,19 +80,23 @@
                 <li>
                     <a href="javascript:;">用户管理</a>
                     <div class="content">
-                        <a href="javascript:;">添加用户</a>
-                        <a href="javascript:;">查看用户</a>
+                        <a href="/manager/addUser">添加用户</a>
+                        <a href="/manager/getUsers">查看用户</a>
                     </div>
                 </li>
                 <li>
                     <a href="javascript:;">发布帖子管理</a>
                     <div class="content">
-                        <a href="javascript:;">查看所有的帖子</a>
+                        <a href="/manager/allTopics">查看所有的帖子</a>
                     </div>
                 </li>
             </ul>
         </main>
     </div>
+    <div class="exit">
+        退出登录
+    </div>
+    
     <script>
         $("main ul li > a").click(function () {
             this.isClick = !this.isClick;

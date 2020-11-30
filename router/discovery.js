@@ -31,26 +31,18 @@ function modifyImg(req, files, callback, type) {
         name: req.cookies.username
     }, (err, data) => {
         if (!err && data) {
-            fs.readdir("static/users", (err, item) => {
-                // console.log(item)
-                console.log(data._id)
-                item.map(file => {
-                    if (file.split(".").shift() == data._id + type) {
-                        // 说明文件已经存在
-                        try {
-                            fs.unlinkSync(`static/users/${file}`);
-                        } catch {
-                            console.log("头像删除失败")
-                        }
-                        return true;
-                    }
-                });
-                let name = data._id + type + "." + files.originalname.split(".").pop();
-                // console.log(name, "头像名称");
-                req.body[type] = "/users/" + name;
-                // console.log(1)
-                callback(null, name);
-            })
+            
+            // console.log(item)
+            // console.log(data._id)
+            // 查看是否有图片存在
+            if (data[type]) {
+                fs.unlinkSync("./static" + data[type])
+            }
+            let name = data._id + type + "." + files.originalname.split(".").pop();
+            // console.log(name, "头像名称");
+            req.body[type] = "/users/" + name;
+            // console.log(1)
+            callback(null, name);
         } else {
             console.log(err);
             console.log("查到的用户数据为空")
@@ -287,14 +279,15 @@ router.get("/shop", (req, res) => {
     res.redirect("/");
 })
 
+// 发帖
 router.get("/append", (req, res) => {
     res.render("append");
 })
-
+// 消息
 router.get("/message", (req, res) => {
     res.render("message");
 })
-
+// 我
 router.get("/me", (req, res) => {
     Users.findOne({
         name: req.cookies.username
@@ -307,6 +300,15 @@ router.get("/me", (req, res) => {
         }
     }).lean();
 })
+
+// 鲜花养殖
+router.get("/flower", (req, res) => {
+    res.render("disFlower");
+})
+
+
+
+
 
 // 编辑页面
 router.get("/disEdit", (req, res) => {
@@ -328,7 +330,27 @@ router.post("/editPic", upload.single("pic"), (req, res) => {
     }, req.body, (err) => {
         if (!err) {
             // 
-            sendInfo(res, 1, "更新成功")
+            sendInfo(res, 1, "更新成功");
+            // 修改对应的topic表
+            // 更新一下帖子表的用户数据
+            Topic.find({name: req.cookies.username},(err, topics) => {
+                if (!err) {
+                    if (topics.length) {
+                        topics.forEach(topic => {
+                            // console.log(topic)   
+                            Topic.findOneAndUpdate({_id: topic.id}, {pic:req.body.pic}, err => {
+                                if (err) {
+                                    console.log("帖子表更新失败");
+                                    console.log(err);
+                                }
+                            })
+                        })
+                    }
+                } else {
+                    console.log("帖子表查找失败---douser");
+                    console.log(err);
+                }
+            })
         } else {
             console.log(err);
             console.log("用户信息更新失败");
@@ -402,20 +424,21 @@ router.get("/myfolow", (req, res) => {
         if (!err) {
             // console.log(1)
             let arr = []
+            let index = 0;
             if (data.like && data.like.length) {
-                data.like.forEach((user, index) => {
+                data.like.forEach((user) => {
                     Users.findOne({
                         _id: user
                     }, (err, info) => {
                         if (!err) {
                             info.status = 1;
                             arr.push(info);
+                            index++;
                         } else {
                             console.log(err);
                             console.log("关注列表遍历查找失败");
                         }
-                        if (index == data.like.length - 1) {
-                            // console.log(arr);
+                        if (index == (data.like.length)) {
                             res.render("myFolow", {
                                 data: arr
                             });
@@ -546,9 +569,12 @@ router.get("/flowme", (req, res) => {
         if (!err) {
             let arr = [];
             // 遍历关注的我的
+            let index = 0;
             if (data.flowme && data.flowme.length) {
-                data.flowme.forEach((fuser, index) => {
+                // console.log(data.flowme);
+                data.flowme.forEach((fuser) => {
                     // 查找对应关注人的信息
+                    
                     Users.findOne({
                         _id: fuser
                     }, (err, user) => {
@@ -558,11 +584,14 @@ router.get("/flowme", (req, res) => {
                                 user.status = 1;
                             }
                             arr.push(user);
+                            // console.log(index)
+                            index++;
                         } else {
                             console.log("数据库查询失败----/flowme-2")
                             console.log(err);
                         }
-                        if (index == data.flowme.length - 1) {
+                        if (index == (data.flowme.length )) {
+                            // console.log(584)
                             res.render("myFolow", {
                                 data: arr
                             })

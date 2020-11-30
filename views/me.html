@@ -9,17 +9,18 @@
     <style>
         .top {
             /* min-height: ; */
-            background-image: url(https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg!750);
+            background-image: url(https://oss.flowerplus.cn/oss_jpg/2019-03-01/15514334642699.jpg);
             background-size: cover;
             background-position: center center;
             padding: 0;
         }
+        
 
         .headerMask {
             width: 100%;
-            padding: 10px;
+            padding: 0.468rem;
             background-color: rgba(0, 0, 0, .3);
-            min-height: 263px;
+            min-height: 12.33rem;
             color: white;
             display: flex;
             flex-direction: column;
@@ -33,7 +34,7 @@
         .header {
             justify-content: space-between;
             /* align-items: flex-start; */
-            padding-top: 20px;
+            padding-top: 0.937rem;
         }
 
         .header .left {
@@ -41,25 +42,25 @@
         }
 
         .header .left img {
-            width: 50px;
-            height: 50px;
+            width: 2.344rem;
+            height: 2.344rem;
             border-radius: 50%;
         }
 
         .header .left p {
-            padding-left: 14px;
-            font-size: 16px;
-            margin-top: 10px;
+            padding-left: 0.656rem;
+            font-size: 0.750rem;
+            margin-top: 0.468rem;
         }
 
         .header .left .level {
-            font-size: 14px;
+            font-size: 0.656rem;
             color: orange;
-            margin-left: 4px;
+            margin-left: 0.19rem;
         }
 
         .header .right {
-            font-size: 12px;
+            font-size: 0.56rem;
         }
 
         .header .right a {
@@ -67,21 +68,21 @@
         }
 
         .header .right p {
-            padding: 6px 26px;
-            border: 1px solid white;
-            border-radius: 16px;
+            padding: 0.281rem 1.22rem;
+            border: 0.05rem solid white;
+            border-radius: 0.750rem;
 
         }
 
         .header .right img {
-            width: 10px;
-            margin-right: 6px;
+            width: 0.468rem;
+            margin-right: 0.281rem;
         }
 
         .menu {
             justify-content: space-around;
             text-align: center;
-            font-size: 16px;
+            font-size: 0.750rem;
         }
 
         .menu a {
@@ -89,20 +90,20 @@
         }
 
         .menu p {
-            font-size: 12px;
+            font-size: 0.56rem;
         }
 
         .nav-head {
             justify-content: space-around;
             background-color: white;
-            font-size: 16px;
+            font-size: 0.750rem;
         }
 
         .nav-head span {
             display: inline-block;
-            padding: 10px 4px 7px;
+            padding: 0.468rem 0.19rem 7px;
             vertical-align: middle;
-            border-bottom: 3px solid transparent;
+            border-bottom: 0.15rem solid transparent;
         }
 
         .nav-head li.active span {
@@ -110,39 +111,39 @@
         }
 
         .contentBody {
-            font-size: 13px;
+            font-size: 0.61rem;
             text-align: center;
             color: #C3C5C6;
         }
 
         .contentBody img {
-            width: 60px;
-            margin-bottom: 14px;
+            width: 2.81rem;
+            margin-bottom: 0.656rem;
         }
 
         .noInfo {
-            padding-top: 50px;
+            padding-top: 2.344rem;
         }
 
         .info {
             justify-content: space-between;
             flex-wrap: wrap;
-            padding: 0 10px;
+            padding: 0 0.468rem;
         }
 
         .info p {
             margin: 0;
             padding: 0;
             text-align: left;
-            padding: 0 10px;
+            padding: 0 0.468rem;
             color: black;
         }
 
         .info>div {
             flex-basis: 48%;
-            border-radius: 10px;
+            border-radius: 0.468rem;
             overflow: hidden;
-            margin: 10px 0;
+            margin: 0.468rem 0;
         }
 
         .card-footer {
@@ -156,34 +157,34 @@
         }
 
         .card-footer img {
-            width: 20px;
-            height: 20px;
+            width: 0.937rem;
+            height: 0.937rem;
             border-radius: 50%;
             margin: 0;
-            margin-right: 10px;
+            margin-right: 0.468rem;
         }
 
         .card-footer {
-            font-size: 12px;
+            font-size: 0.56rem;
         }
 
         .card-cover {
-            height: 120px;
+            height: 5.625rem;
         }
 
         .card-footer .good img {
-            margin-right: 4px;
+            margin-right: 0.19rem;
             border-radius: 0;
-            width: 16px;
-            height: 16px;
+            width: 0.750rem;
+            height: 0.750rem;
             vertical-align: middle;
             position: relative;
-            top: -2px;
+            top: -0.1rem;
         }
     </style>
     <script>
         function picError(img) {
-            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png!57_57";
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
         }
     </script>
 </head>
@@ -191,7 +192,7 @@
 <body>
     <div class="page" data-id="{{_id}}">
         {{include "./disBartab.html"}}
-        <header class="top" style="background-image: url({{img}});">
+        <header class="top" data-img="{{img}}">
             <div class="headerMask">
                 <div class="header line">
                     <div class="left">
@@ -226,7 +227,8 @@
             </div>
             <ul class="nav-head line">
                 <li class="active" data-type="topic" dasta-id="_id"><span>帖子</span><small>(0)</small></li>
-                <li data-type="collect" dasta-id="_id"><span>收藏</span><small>({{topics ? topics.length : 0}})</small></li>
+                <li data-type="collect" dasta-id="_id"><span>收藏</span><small>({{topics ? topics.length : 0}})</small>
+                </li>
             </ul>
         </header>
         <div class="content">
@@ -278,13 +280,18 @@
                 location.href = "/login";
             })
         }
+        // 默认封面设置
+        if ($(".top").data("img")) {
+            // console.log($(this).data("img"))
+            $(".top").css("background-image",`url(${$(".top").data("img")})`);
+        }
         let id = $(".page").data("id").replaceAll("\"", "");
         // 发送获得帖子的请求
         getMessage("topic");
         function getMessage(target) {
             $.get(`/discovery/${target}?id=${id}`, data => {
                 // console.log(data.data)
-                console.log(data.data,target);
+                console.log(data.data, target);
                 if (data.data.length) {
                     $(`.${$(".nav-head .active").data("type")}`).find(".noInfo").hide()
                     $("li.active small").html(`(${data.data.length})`)
@@ -293,16 +300,16 @@
                         str += `
                         <div class="card demo-card-header-pic">
                             <div valign="bottom" class="card-header color-white no-border no-padding">
-                                <img class='card-cover'
+                                <img class='card-cover linkImg'
                                     src="/topics/${item.img}"
-                                    alt="">
+                                    alt="" data-id="${item.nameId}">
                             </div>
                             <div class="card-content">
                                 <p>${item.content}</p>
                             </div>
                             <div class="card-footer">
                                 <a href="#" class="link">
-                                    <img src="${item.pic}" alt="">
+                                    <img src="${item.pic}" alt="" onerror="picError(this)">
                                     <span>${item.name}</span>
                                 </a>
                                 <a href="#" class="link good" data-id="${item._id}">
@@ -332,7 +339,7 @@
             $(this).find("img").toggle();
             let good = $(this).find("span").text() * 1;
             let nums = $(".menu li").eq(2).find("span").text().trim() * 1;
-            $(this).find("span").text($(this).find("div").hasClass("checked")  ? --good : ++good);
+            $(this).find("span").text($(this).find("div").hasClass("checked") ? --good : ++good);
             $(".menu li").eq(2).find("span").text($(this).find("div").hasClass("checked") ? --nums : ++nums);
             // 发送请求
             // 添加或者取消点赞
@@ -341,6 +348,12 @@
             })
             $(this).find("div").toggleClass("checked");
         })
+        // 对应帖子跳转
+        $(document).on("click", ".linkImg", function () {
+            console.log($(this).data("id"));
+            location.href = `/discovery/detailTopic?id=${$(this).data("id")}`;
+        });
+
         $(function () {
             $(".content").css("top", $(".top").innerHeight());
 

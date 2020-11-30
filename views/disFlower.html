@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲜花养护</title>
+    {{include "./commend.html"}}
+    <style>
+        .fixed {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: white;
+            z-index: 999;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .menu {
+            display: flex;
+            margin-bottom: 0.4rem;
+        }
+
+        .menu li {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            background-color: white;
+            font-size: 0.8rem;
+        }
+
+        .menu li:first-child::after {
+            content: "";
+            height: 30%;
+            width: 0.05rem;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            background-color: #999;
+        }
+
+        .menu li span {
+            display: inline-block;
+            padding: 0.5rem 0 0.4rem;
+            border-bottom: 0.1rem solid transparent;
+        }
+
+        .menu li.active span {
+            border-bottom-color: black;
+        }
+
+        .swiper-container-horizontal>.swiper-pagination {
+            bottom: 0;
+        }
+
+        .swiper-container {
+            padding: 0;
+        }
+
+        .content-body .allFlowers ul{
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .allFlowers li {
+            width: 50%;
+            padding-bottom: 0.4rem;
+            box-sizing: border-box;
+        }
+
+        .allFlowers li:nth-child(odd) {
+            padding-left: 0.4rem;
+            padding-right: 0.2rem;
+        }
+
+        .allFlowers li:nth-child(even) {
+            padding-left: 0.2rem;
+            padding-right: 0.4rem;
+        }
+
+        .nonContent {
+            /* min-height: 10rem; */
+            text-align: center;
+            font-size: 0.5rem;
+            padding: 1.5rem;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1rem;
+        }
+
+        .nonContent img {
+            width: 2.4rem;
+            height: 2.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nonContent a {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background-color: #FF6672;
+            color: aliceblue;
+            font-weight: bold;
+            font-size: 0.7rem;
+            margin-top: 0.6rem;
+        }
+
+        .recommend {
+            text-align: center;
+            background-color: white;
+        }
+
+        .recommend img {
+            width: 80%;
+        }
+
+        .flowerBox {
+            padding: 0.5rem 0;
+            border-bottom: 0.05rem #f6f6f6 solid;
+        }
+
+        .re-title {
+            padding: 1rem 0;
+            font-size: 0.6rem;
+        }
+
+        .info {
+            font-size: 0.8rem;
+            color: #4A4A4A;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        .label {
+            font-size: 0.6rem;
+            color: #666;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="page">
+        <div class="content">
+            <div class="swiper-container" data-space-between='10' data-loop="true">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://oss.flowerplus.cn/oss_jpg/2019-08-05/15649869382873.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <ul class="menu">
+                <li class="active" data-type="allFlowers"><span>全部花束</span></li>
+                <li data-type="myFlowers"><span>我的花束</span></li>
+            </ul>
+            <div class="content-body">
+                <section class="allFlowers">
+                    <ul>
+                        <li><img src="https://oss.flowerplus.cn/oss_jpg/2019-03-05/15517680773719.jpg" alt=""></li>
+                        <li><img src="https://oss.flowerplus.cn/oss_jpg/2019-03-05/15517681435370.jpg" alt=""></li>
+                        <li><img src="https://oss.flowerplus.cn/oss_png/2018-02-11/15183194792186.png" alt=""></li>
+                        <li><img src="https://oss.flowerplus.cn/oss_png/2018-02-11/15183194799688.png" alt=""></li>
+                        <li><img src="https://oss.flowerplus.cn/oss_jpg/2018-08-16/15343901071768.jpg" alt=""></li>
+                    </ul>
+                </section>
+                <section class="myFlowers" hidden>
+                    <div class="car">
+                        <div class="nonContent">
+                            <img src="https://oss.flowerplus.cn/oss_png/2018-02-06/15178855024420.png" alt="">
+                            <p>您本周没有订花哦</p>
+                            <p>花儿在这等你</p>
+                            <a href="/">去选花</a>
+                        </div>
+                    </div>
+                    <div class="recommend">
+                        <div class="re-title">
+                            - 最新插花推荐 -
+                        </div>
+                        <div class="flowerBox">
+                            <img src="https://oss.flowerplus.cn/product/20201123/16061252666907.jpg" alt="">
+                            <p class="info">射手座星座花「筑梦庄园」</p>
+                            <p class="label">射手座主题花</p>
+                        </div>
+                        <div class="flowerBox">
+                            <img src="https://oss.flowerplus.cn/product/20201123/16061252666907.jpg" alt="">
+                            <p class="info">射手座星座花「筑梦庄园」</p>
+                            <p class="label">射手座主题花</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </div>
+    {{include "./script.html"}}
+    <script>
+        $(function () {
+            $.init();
+
+            // 菜单切换
+            $(".menu li").click(function () {
+                $(this).toggleClass("active").siblings().toggleClass("active");
+                $(`.${$(this).data("type")}`).show().siblings().hide();
+            })
+
+            // 菜单栏滚动监听
+            let topHeight = $(".swiper-container").innerHeight() + $(".menu").innerHeight();
+            $(".content").scroll(function () {
+                if ($(this).scrollTop() > topHeight) {
+                    $(".content-body").css("padding-top", $(".menu").innerHeight())
+                    $(".menu").addClass("fixed");
+                    $(".recommend").css("margin", "0 0.5rem");
+
+                } else {
+                    $(".menu").removeClass("fixed");
+                    $(".recommend").css("margin", "0")
+                    $(".content-body").css("padding-top", "0")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

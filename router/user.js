@@ -1,14 +1,15 @@
 var exp = require('express')
 
-var { Users, ShopCar, Goods, EasyUser } = require('../db')
+var { Users, ShopCar, Goods } = require('../db')
 
 const cookie = require("cookie-parser");
+const e = require('express');
 var router = exp.Router()
 
 
 //------------注册----------------
 router.post('/reg', (req, res) => {
-    EasyUser.findOne({ name: req.body.name }, (err, data) => {
+    Users.findOne({ name: req.body.name }, (err, data) => {
         if (!err) {
             if (data) {
                 res.send({
@@ -16,7 +17,7 @@ router.post('/reg', (req, res) => {
                     code: 0,
                 })
             } else {
-                var easyUser = new EasyUser(req.body)
+                var easyUser = new Users(req.body)
                 easyUser.save((err) => {
                     if (!err) {
                         res.send({
@@ -39,7 +40,7 @@ router.post('/reg', (req, res) => {
 
 //-------------登录---------------
 router.post('/logins', (req, res) => {
-    EasyUser.findOne({ name: req.body.username }, (err, data) => {
+    Users.findOne({ name: req.body.username }, (err, data) => {
         if (!err) {
             if (data) {
                 if (data.psw == req.body.psw) {
@@ -67,14 +68,14 @@ router.post('/logins', (req, res) => {
 })
 //------编辑手机信息-------
 router.post('/phone', (req, res) => {
-    EasyUser.findOne({ name: req.body.username }, (err, data) => {
+    Users.findOne({ name: req.body.username }, (err, data) => {
         if (!err) {
             if (data) {
                 res.send(data)
-            } 
-            // else {
-            //     console.log(data);
-            // }
+            }
+            else {
+                console.log(data);
+            }
         } else {
             console.log(err);
         }
@@ -142,5 +143,87 @@ router.post('/edits', (req, res) => {
         }
     })
 })
+
+//-----加入购物车-----
+router.post('/buy_car', (req, res) => {
+    console.log(req.body.goodsId);
+    ShopCar.findOne({ goodsId: req.body.goodsId, userId: req.body.userId }, (err, data) => {
+        if (!err) {
+            console.log(data);
+            if (data) {
+                res.send('已经添加过了')
+            } else {
+                Goods.findOne({ _id: req.body.goodsId }, (err, data) => {
+                    if (!err) {
+                        if (data) {
+                            req.body.nums = 1
+                            req.body.time = new Date()
+                            var goods = new ShopCar(req.body)
+                            goods.save((err) => {
+                                if (!err) {
+                                    res.send('加入成功')
+                                } else {
+                                    console.log(err);
+                                }
+                            })
+                        } else {
+                            res.send('加入失败')
+                        }
+                    } else {
+                        console.log(err);
+                    }
+                })
+            }
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+//-----购物车页面的渲染-----
+router.post('/shops', (req, res) => {
+    ShopCar.find({ userId: req.body.userId }, (err, data) => {
+        if (!err) {
+            res.send(data)
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/myBuy', (req, res) => {
+    Goods.findOne({ _id: req.body.goodsId }, (err, data) => {
+        if (!err) {
+            console.log(data);
+            res.send(data)
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/turnss', (req, res) => {
+    ShopCar.update({ _id: req.body.id }, { nums: req.body.num }, (err) => {
+        if (!err) {
+            res.send('打钱')
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+router.post('/buy_remove', (req, res) => {
+    ShopCar.remove({ _id: req.body.id }, (err) => {
+        if (!err) {
+            res.send('删除成功')
+        } else {
+            console.log(err);
+        }
+    })
+})
+
+
+
+
 
 module.exports = router

@@ -8,18 +8,19 @@
     {{include "./commend.html"}}
     <style>
         .content>section {
-            padding: 16px;
+            padding: 0.750rem;
             background-color: white;
-            margin-bottom: 10px;
+            margin-bottom: 0.469rem;
             position: relative;
         }
         .content>section img {
             width: 100%;
         }
         .content .pics img {
-            width: 20px;
+            width: 0.9rem;
+            height: 0.9rem;
             border-radius: 50%;
-            overflow: hidden;
+            margin-right: 0.188rem;
         }
         .content .text {
             position: absolute;
@@ -32,22 +33,26 @@
             top:50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 14px;
+            font-size: 0.656rem;
         }
         .content .mytitle {
-            font-size: 20px;
-            
+            font-size: 0.938rem;
         }
         .content .info {
-            margin: 10px 0;
+            margin: 0.469rem 0;
         }
         .content a {
             color: #3d4145;
-            padding: 4px 14px;
-            border: 1px solid black;
-            font-size: 12px;
+            padding: 0.188rem 0.656rem;
+            border: 0.047rem solid black;
+            font-size: 0.563rem;
         }
     </style>
+    <script>
+        function picError(img) {
+            img.src = "https://oss.flowerplus.cn/oss_png/2019-05-23/15585981426066.png";
+        }
+    </script>
 </head>
 
 <body>
@@ -59,16 +64,20 @@
                 <div class="text">
                     <div class="top">
                         <div class="mytitle">社区</div>
-                        <div class="info">共有80w+人参加</div>
+                        <div class="info">共有{{topics.length}}人参加</div>
                         <ul class="pics line">
-                            <li></li>
-                            <li></li>
+                            {{each topics topic index}}
+                            {{if index < 3}}
+                            <li>
+                                <img src="{{topic.pic}}" alt="" onerror="picError(this)">
+                            </li>
+                            {{/if}}
+                            {{/each}}
+                            {{if topics.length > 2}}
                             <li>
                                 <img src="/img/discovery/ellipse.png" alt="">
                             </li>
-                            <li>
-                                <img src="/img/discovery/ellipse.png" alt="">
-                            </li>
+                            {{/if}}
                         </ul>
                     </div>
                     <a href="javascript:;">立即查看</a>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>所有商品</title>
+    <title>所有用户</title>
     {{include "./headStyle.html"}}
     <style>
         main {
@@ -52,26 +52,22 @@
 </head>
 <body>
     <header>
-        <h1>商品列表</h1>
+        <h1>用户列表</h1>
     </header>
     <main>
         <table>
             <tr>
-                <th>商品名称</th>
-                <th>商品图片</th>
-                <th>商品描述</th>
-                <th>商品价格</th>
+                <th>用户名</th>
+                <th>用户头像</th>
                 <th>操作</th>
             </tr>
-            {{each data good}}
+            {{each data user}}
             <tr>
-                <td>{{good.shopName}}</td>
-                <td><img src="{{good.imgSrc}}" alt=""></td>
-                <td>{{good.title}}</td>
-                <td>{{good.newPrice}}</td>
+                <td>{{user.name}}</td>
+                <td><img src="{{user.pic}}" alt=""></td>
                 <td>
-                    <a href="javascript:;" class="delete" data-id={{good.id}}>删除</a>
-                    <a href="/manager/shopInfo?id={{good.id}}" class="modify" data-id={{good.id}}>修改</a>
+                    <a href="javascript:;" class="delete" data-id={{user.id}}>删除</a>
+                    <a href="/manager/toModifyUser?id={{user.id}}" class="modify" data-id={{user.id}}>修改</a>
                 </td>
             </tr>
             {{/each}}
@@ -83,11 +79,10 @@
     <script>
         // 删除
         $(".delete").click(function () {
-            $.get("/manager/deleteGood?id=" + $(this).data("id"), data => {
+            $.get("/manager/deleteUser?id=" + $(this).data("id"), data => {
                 console.log(data);
                 alert(data.msg);
                 if (data.coder) {
-
                     $(this).closest("tr").remove();
                 }
             });
