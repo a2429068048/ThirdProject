@@ -452,11 +452,11 @@
             });
             $('.goodThings_main').html(str)
         })
-        function showTime(){
+        function showTime(time){
         // 这个是当前时间
         var now = new Date().getTime()
         // 获取目标时间
-        var targetTime = new Date('2020-12-3 00:00:00').getTime()
+        var targetTime = new Date(time).getTime()
         // console.log(now);
         // console.log(targetTime);
 
@@ -489,9 +489,12 @@
         $('.countdown').html(str)
 
         }
-        
-        setInterval(showTime, 10);
-        setInterval(showTime, 1000);
+        setInterval(() => {
+            showTime('2020-12-4')
+        }, 10);
+        setInterval(() => {
+            showTime('2020-12-4')
+        }, 10);
         // 详情
         setTimeout(() => {
             $('.hot_main>li').click(function(){
