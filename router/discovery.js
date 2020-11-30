@@ -375,16 +375,35 @@ router.post("/editImg", imgLoad.single("img"), (req, res) => {
 router.get("/editName", (req, res) => {
     // console.log(req.query)
     // 先查找到是否重名了
-    Users.findOne(req.query, (err, data) => {
+    Users.findOne({name: req.query.name}, (err, data) => {
         if (!err) {
             if (data) {
                 // 说明名字重复，提示用户
                 sendInfo(res, 0, "用户名已经存在");
             } else {
                 // 说明名字不存在
-                Users.findOneAndUpdate(req.cookies.username, req.query, (err, data) => {
+                Users.findOneAndUpdate({name:req.cookies.username}, req.query, (err, data) => {
                     if (!err) {
+                        // 更新对应的Topic表的信息
+                        Topic.find({nameId: data.id}, (err, data) => {
+                            if (!err) {
+                                data.forEach(topic => {
+                                    console.log(1);
+                                    topic.name = req.query.name;
+                                    console.log(topic.name);
+                                    Topic.findOneAndUpdate({_id: topic.id}, topic, err => {
+                                        if (err) {
+                                            console.log("topic表修改失败---editName")
+                                        }
+                                    });
+                                })
+                            } else {
+                                console.log("访问Topic表失败---editName");
+                                console.log(err);
+                            }
+                        })
                         res.cookie("username", req.query.name);
+                        
                         sendInfo(res, 1, "修改成功");
                     } else {
                         console.log(err);
@@ -759,7 +778,7 @@ function addLAC(req, res, target) {
                                     // 收藏和点赞总量
                                     data.getGoods = data.getGoods || 0;
                                     data.getGoods++;
-                                    data.topics = user.topics;
+                                    // data.topics = user.topics;
                                     Users.findOneAndUpdate({_id:topicId},data, err => {
                                         if (err) {
                                             console.log(err);
