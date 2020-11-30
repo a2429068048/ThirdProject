@@ -174,7 +174,7 @@
         .newpro .swiper-pagination{
             width: 2.344rem;
             position: absolute;
-            bottom: 0.938rem;
+            bottom: 19.938rem;
             left: 15rem;
         }
         /* 热卖专区 */
@@ -231,6 +231,9 @@
         .down img{
             width: 0.563rem;
             height: 0.563rem;
+        }
+        .groupBuy .swiper-pagination{
+            bottom: 5vw;
         }
     </style>
 </head>
@@ -452,11 +455,11 @@
             });
             $('.goodThings_main').html(str)
         })
-        function showTime(time){
+        function showTime(){
         // 这个是当前时间
         var now = new Date().getTime()
         // 获取目标时间
-        var targetTime = new Date(time).getTime()
+        var targetTime = new Date('2020-12-3 00:00:00').getTime()
         // console.log(now);
         // console.log(targetTime);
 
