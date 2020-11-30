@@ -481,7 +481,7 @@
               <div class="infos">
                 <img src="/topics/${topic.img}" alt=""  data-id="${topic.nameId}" class="linkImg">
                 <div class="text">
-                  <div class="label" ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
+                  <div class="label" ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label ? topic.label : ""}</span></div>
                   <div class="describe">
                     ${topic.content}
                   </div>
@@ -504,7 +504,7 @@
               <div class="infos " >
                 <img src="/topics/${topic.img}" alt="" data-id="${topic.nameId}" class="linkImg">
                 <div class="text">
-                  <div class="label"  ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label}</span></div>
+                  <div class="label"  ${topic.label ? "" : "hidden"}><span><i>#</i>${topic.label ? topic.label : ""}</span></div>
                   <div class="describe">
                     ${topic.content}
                   </div>
@@ -732,12 +732,14 @@
         if ($(this).scrollTop() > topHeight) {
           if (stop) {
             stop = false;
+            $(this).css("padding-top",topHeight);
             $(".head").stop().slideUp(() => {
               stop = true;
             });
             $(this).stop().animate({ "margin-top": 0 });
           }
         } else {
+          $(this).css("padding-top",0);
           $(".head").stop().slideDown(() => {
             stop = true;
           });

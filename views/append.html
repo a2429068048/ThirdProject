@@ -354,7 +354,7 @@
                 if ($("textarea").val() && $(":file")[0].files[0]) {
                     let data = new FormData($("#img")[0]);
                     data.append("content", $("textarea").val());
-                    data.append("label", $(".topics .selected").html());
+                    data.append("label", $(".topics .selected").html() ?  $(".topics .selected").html() : "");
                     data.append("address", "");
                     // data.append("img",$(":file")[0].files[0]);
                     $.ajax({
