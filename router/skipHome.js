@@ -132,6 +132,26 @@ router.get("/details",(req,res) => {
     })
 })
 
+// 搜索
+router.get("/search",(req,res) => {
+    Goods.find({$or:[{sort:/green/}]},(err,shop)=>{
+        if (!err) {
+            res.send(shop);
+        }else{
+            console.log(err);
+        }
+    })
+})
+router.get("/searchs",(req,res) => {
+    Goods.find({$or:[{sort:/green/}]},(err,shop)=>{
+        if (!err) {
+            res.send(shop);
+        }else{
+            console.log(err);
+        }
+    })
+})
+
 
 
 

@@ -78,6 +78,13 @@
         .good del{
             color: rgb(180, 180, 180);
         }
+
+        .good ul>p{
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            margin-top: 25px;
+        }
     </style>
 </head>
 <body>
@@ -114,7 +121,48 @@
     </main>
     <script src="/swiper4-animate-demo/js/swiper.min.js"></script>
     <script>
-
+        $('.everybody p span').click(function(){
+            var name=$(this).text()
+            var str=''
+            $.get('/home/search?see='+$(this).text(),(data)=>{
+                $(data).each(function(index,item){
+                    if(item.shopName.includes(name)){
+                        str+=`
+                            <li>
+                                <div><img src="${item.imgSrc}" alt=""></div>
+                                <b>${item.shopName}</b>
+                                <p>￥${item.newPrice}<del>￥${item.oldPrice}</del></p>
+                            </li>
+                        `
+                    }
+                    $('.good ul').html(str)
+                    if(!$('.good ul').html()){
+                        $('.good ul').html('<p>没有该商品</p>')
+                    }
+                })
+            })
+        })
+        $('.icon').click(function(){
+            var name=$('#search').val()
+            var str=''
+            $.get('/home/searchs?see='+$('#search').val(),(data)=>{
+                $(data).each(function(index,item){
+                    if(item.shopName.includes(name)){
+                        str+=`
+                            <li>
+                                <div><img src="${item.imgSrc}" alt=""></div>
+                                <b>${item.shopName}</b>
+                                <p>￥${item.newPrice}<del>￥${item.oldPrice}</del></p>
+                            </li>
+                        `
+                    }
+                    $('.good ul').html(str)
+                    if(!$('.good ul').html()){
+                        $('.good ul').html('<p>没有该商品</p>')
+                    }
+                })
+            })
+        })
     </script>
 </body>
 </html>
